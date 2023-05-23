@@ -9,7 +9,7 @@ router.post('/login', userActions.login)
 router.post('/register', userActions.register)
 router.post('/create', auth, profileActions.create)
 router.get('/:username', profileActions.profile)
-router.put('/profile/add', auth, profileActions.addLink)
+router.put('/profile/add-link', auth, profileActions.addLink)
 
 
 module.exports = router;
