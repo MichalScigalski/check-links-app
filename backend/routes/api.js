@@ -8,7 +8,7 @@ const profileActions = require('../actions/profile')
 router.post('/login', userActions.login)
 router.post('/register', userActions.register)
 router.post('/create', auth, profileActions.create)
-// router.get('/:username', profileActions.profile)
+router.get('/:username', profileActions.profile)
 
 
 module.exports = router;
