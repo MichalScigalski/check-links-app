@@ -31,11 +31,11 @@ module.exports = {
 
         try {
             const user = await User.findOne({ username });
-            if (!user)
+            if (!user || user.password != password)
                 return res
                     .status(403)
                     .json({ message: "Username or password is wrong!" });
-            if (user.password === password) {
+            else {
                 const token = jwt.sign(
                         { user }, 
                         process.env.TOKEN_SECRET, 
