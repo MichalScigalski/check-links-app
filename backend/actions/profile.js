@@ -8,7 +8,7 @@ module.exports = {
             const profile = new Profile({ username, links: [] })
             await profile.save()
         } catch (err) {
-            return res.status(422).json({ message: err.message });
+            res.status(422).json({ message: err.message });
         }
         res.sendStatus(200)
     },
@@ -19,6 +19,20 @@ module.exports = {
         if (profile)
             res.status(200).send({ profile })
         else
-            res.status(404).send({ message: 'uknown user' })
+            res.status(404).send({ message: 'unknown user' })
     },
+    async addLink(req, res) {
+        const name = req.body.name
+        const url = req.body.url
+        const username = req.user.user.username;
+
+        try {
+            const profile = await Profile.findOne({ username })
+            profile.links.push({ name, url })
+            profile.save()
+            res.sendStatus(201)
+        } catch (err) {
+            res.status(422).json({ message: err.message });
+        }
+    }
 }
