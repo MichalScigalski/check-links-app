@@ -4,6 +4,10 @@ const Profile = require('../db/models/profile')
 module.exports = {
     async create(req, res) {
         const username = req.user.user.username;
+        const profileExists = await Profile.findOne({ username });
+        
+        if(profileExists)
+            return res.status(409).json({ message: "Profile already exists!" });
         try {
             const profile = new Profile({ username, links: [] })
             await profile.save()
