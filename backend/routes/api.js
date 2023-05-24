@@ -9,8 +9,9 @@ router.post('/login', userActions.login)
 router.post('/register', userActions.register)
 router.post('/create', auth, profileActions.create)
 router.get('/profile/:username', profileActions.profile)
-router.put('/profile/add-link', auth, profileActions.addLink)
+router.post('/profile/add-link', auth, profileActions.addLink)
 router.delete('/profile/delete-link/:id', auth, profileActions.deleteLink)
+router.put('/profile/edit-link/:id', auth, profileActions.editLink)
 
 
 module.exports = router;
