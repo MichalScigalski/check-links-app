@@ -8,8 +8,9 @@ const profileActions = require('../actions/profile')
 router.post('/login', userActions.login)
 router.post('/register', userActions.register)
 router.post('/create', auth, profileActions.create)
-router.get('/:username', profileActions.profile)
+router.get('/profile/:username', profileActions.profile)
 router.put('/profile/add-link', auth, profileActions.addLink)
+router.delete('/profile/delete-link/:id', auth, profileActions.deleteLink)
 
 
 module.exports = router;

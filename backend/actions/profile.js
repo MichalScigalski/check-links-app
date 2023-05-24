@@ -33,9 +33,23 @@ module.exports = {
         try {
             const profile = await Profile.findOne({ username })
             profile.links.push({ name, url })
-            profile.save()
+            await profile.save()
             res.sendStatus(201)
         } catch (err) {
+            res.status(422).json({ message: err.message });
+        }
+    },
+    async deleteLink(req, res) {
+        const username = req.user.user.username
+        const id_link = req.params.id
+        
+        try {
+            const profile = await Profile.findOne({username})
+            profile.links = profile.links.filter(link => link._id != id_link)
+            await profile.save()
+            res.sendStatus(204)
+        }
+        catch (err) {
             res.status(422).json({ message: err.message });
         }
     }
