@@ -8,6 +8,11 @@ const LinkSchema = new mongoose.Schema({
     url: {
         type: String,
         required: true
+    },
+    isVisible: {
+        type: Boolean,
+        required: true,
+        default: true
     }
 })
 
