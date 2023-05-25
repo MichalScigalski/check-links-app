@@ -1,5 +1,6 @@
 const express = require('express')
-const apiRouter = require('./routes/api')
+const profileRouter = require('./routes/profile')
+const userRouter = require('./routes/user')
 const cors = require('cors')
 
 require('dotenv').config()
@@ -12,7 +13,8 @@ const app = express()
 app.use(express.json())
 app.use(cors())
 
-app.use('/api/v1/', apiRouter)
+app.use('/api/v1/user', userRouter)
+app.use('/api/v1/profile', profileRouter)
 
 app.listen(port, () => {
     console.log('Server is listening on http://localhost:' + port)
