@@ -74,5 +74,20 @@ module.exports = {
         catch (err) {
             res.status(422).json({ message: err.message });
         }
+    },
+    async toggleVisibilityLink(req, res) {
+        const id_link = req.params.id
+        const username = req.user.user.username
+
+        try {
+            const profile = await Profile.findOne({username})
+            const link = profile.links[profile.links.findIndex(link => link._id == id_link)]
+            link.isVisible = !link.isVisible
+            profile.save()
+            res.sendStatus(204)
+        }
+        catch (err) {
+            res.status(422).json({ message: err.message });
+        }
     }
 }
