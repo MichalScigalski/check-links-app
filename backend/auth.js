@@ -8,7 +8,7 @@ module.exports = (req, res, next) => {
         jwt.verify(token, process.env.TOKEN_SECRET, (err, data) => {
             if(err)
                 return res.sendStatus(403)
-            req.user = data
+            req.user = data.user
             next()
         })
     } catch (err) {

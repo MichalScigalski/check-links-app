@@ -3,7 +3,7 @@ const Profile = require('../db/models/profile')
 
 module.exports = {
     async create(req, res) {
-        const username = req.user.user.username;
+        const username = req.user.username;
         const profileExists = await Profile.findOne({ username });
         
         if(profileExists)
@@ -28,8 +28,7 @@ module.exports = {
     async addLink(req, res) {
         const name = req.body.name
         const url = req.body.url
-        const username = req.user.user.username;
-
+        const username = req.user.username;
         try {
             const profile = await Profile.findOne({ username })
             profile.links.push({ name, url })
@@ -40,7 +39,7 @@ module.exports = {
         }
     },
     async deleteLink(req, res) {
-        const username = req.user.user.username
+        const username = req.user.username
         const id_link = req.params.id
         
         try {
@@ -54,7 +53,7 @@ module.exports = {
         }
     },
     async editLink(req, res) {
-        const username = req.user.user.username
+        const username = req.user.username
         const id_link = req.params.id
 
         const nameLink = req.body.name
@@ -77,7 +76,7 @@ module.exports = {
     },
     async toggleVisibilityLink(req, res) {
         const id_link = req.params.id
-        const username = req.user.user.username
+        const username = req.user.username
 
         try {
             const profile = await Profile.findOne({username})
