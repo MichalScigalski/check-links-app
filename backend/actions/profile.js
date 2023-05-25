@@ -1,4 +1,3 @@
-// const User = require('../db/models/user');
 const Profile = require('../db/models/profile')
 
 module.exports = {
@@ -9,7 +8,10 @@ module.exports = {
         if(profileExists)
             return res.status(409).json({ message: "Profile already exists" });
         try {
-            const profile = new Profile({ username, links: [] })
+            const profile = new Profile({ 
+                username, 
+                links: []
+            })
             await profile.save()
         } catch (err) {
             res.status(422).json({ message: err.message });
