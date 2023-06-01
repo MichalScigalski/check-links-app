@@ -5,6 +5,7 @@ export const HeaderContainer = styled.header`
     justify-content: space-evenly;
     align-items: center;
     border-bottom: 2px solid #1B2430;
+    background-color: #fff;
     h1 {
         color: #1B2430;
         font-family: 'Merienda', cursive;
