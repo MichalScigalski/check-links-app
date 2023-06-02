@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import * as config from '../../globalStyles'
 
 export const FormContainer = styled.div`
     display: flex;
@@ -27,8 +28,7 @@ export const RegisterContainer = styled.div`
                 align-items: center;
                 gap: 8px;
                 font-size: 14px;
-                color: #066163;
-
+                color: ${config.green};
             }
         }
 `

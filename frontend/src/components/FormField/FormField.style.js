@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import * as config from '../../globalStyles'
 
 export const FormFieldContainer = styled.div`
     display: flex;
@@ -16,7 +17,7 @@ export const FormFieldContainer = styled.div`
         }
         :focus{
             outline: none;
-            border: 1px solid #066163;
+            border: 1px solid ${config.green};
         }
     }
 `

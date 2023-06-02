@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import * as config from '../../globalStyles'
 
 export const LoginContainer = styled.div`
     display: flex;
@@ -25,7 +26,7 @@ export const LoginContainer = styled.div`
             font-size: 14px;
         }
         span {
-            color: #066163;
+            color: ${config.green};
             cursor: pointer;
         }
     }
