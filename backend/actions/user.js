@@ -42,7 +42,7 @@ module.exports = {
                         .status(403)
                         .json({ message: 'Username or password is wrong!' })
                 const token = jwt.sign(
-                    { user },
+                    { id: user._id, username },
                     process.env.TOKEN_SECRET,
                     { expiresIn: '20m', }
                 )
