@@ -31,16 +31,21 @@ module.exports = {
 
         try {
             const user = await User.findOne({ username })
-            if (!user || user.password != password)
+            if (!user)
                 return res
                     .status(403)
                     .json({ message: 'Username or password is wrong!' })
             else {
+                const isValidPassword = await user.isValidPassword(password)
+                if (!isValidPassword)
+                    return res
+                        .status(403)
+                        .json({ message: 'Username or password is wrong!' })
                 const token = jwt.sign(
-                        { user }, 
-                        process.env.TOKEN_SECRET, 
-                        {expiresIn: '20m',}
-                    )
+                    { user },
+                    process.env.TOKEN_SECRET,
+                    { expiresIn: '20m', }
+                )
                 res.status(200).json({ user, token })
             }
         } catch (err) {
@@ -52,7 +57,7 @@ module.exports = {
         const user_id = req.user._id
 
         try {
-            await User.findByIdAndUpdate( user_id, { password: newPassword })
+            await User.findByIdAndUpdate(user_id, { password: newPassword })
             res.sendStatus(200)
         } catch (err) {
             return res.status(422).json({ message: err.message })
