@@ -1,21 +1,61 @@
-import {LoginContainer} from './Login.style'
+import axios from 'axios'
+import { LoginContainer } from './Login.style'
 import loginPicture from '../../assets/img/login-picture.svg'
 import FormField from '../../components/FormField/FormField.component'
 import Button from '../../components/Button/Button.component'
+import { useNavigate } from 'react-router'
+import { useState } from 'react'
 
 const Login = () => {
-    return(
+    const navigate = useNavigate()
+    const navigateHandler = (url) => navigate(url)
+
+    const [username, setUsername] = useState('')
+    const [password, setPassword] = useState('')
+
+    const LoginHandler = async (e) => {
+        e.preventDefault()
+
+        try {
+            const res = await axios.post('http://localhost:3002/api/v1/user/login', {
+                username,
+                password
+            })
+            const user = res.data
+            if(user) {
+                localStorage.setItem('token', user.token)
+                alert('Login success')
+                navigateHandler('/')
+            }
+        }
+        catch (err) {
+            console.log(err.message)
+        }
+    }
+
+    return (
         <LoginContainer>
             <div>
-                <form>
-                    <FormField label={'Email address'} placeholder={'name@mail.com'} />
-                    <FormField label={'Password'} placeholder={'**********'} />
+                <form onSubmit={LoginHandler}>
+                    <FormField
+                        label={'Username'}
+                        name={'username'}
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
+                        placeholder={'name'} />
+                    <FormField
+                        label={'Password'}
+                        name={'password'}
+                        value={password}
+                        type='password'
+                        onChange={(e) => setPassword(e.target.value)}
+                        placeholder={'**********'} />
                     <span>Forgot password?</span>
-                    <Button $primary value={'Login'}/>
+                    <Button $primary value={'Login'} />
                 </form>
-                <p>Not a member? <span>Sign up</span></p>
+                <p>Not a member? <span onClick={() => navigateHandler('/register')}>Sign up</span></p>
             </div>
-            <img src={loginPicture} alt="login picture" />
+            <img src={loginPicture} alt="login illustration" />
         </LoginContainer>
     )
 }
