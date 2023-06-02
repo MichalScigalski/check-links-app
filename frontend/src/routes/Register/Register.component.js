@@ -9,17 +9,16 @@ const Register = () => {
             <FormContainer>
                 <form>
                     <FormField label={'Username'} placeholder={'username'} />
-                    <FormField label={'Email address'} placeholder={'name@mail.com'} />
                     <FormField label={'Password'} placeholder={'**********'} />
                     <FormField label={'Repeat password'} placeholder={'**********'} />
                     <section>
-                        <input type="checkbox" />
+                        <input required type="checkbox" />
                         <span>I have read and agree to the "Terms Of Services"</span>
                     </section>
                     <Button $primary value={'Register'} />
                 </form>
             </FormContainer>
-            <img src={RegisterPicture} alt="Register picture" />
+            <img src={RegisterPicture} alt="register illustration" />
         </RegisterContainer>
     )
 }

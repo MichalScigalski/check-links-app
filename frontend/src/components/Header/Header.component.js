@@ -1,19 +1,18 @@
 import { HeaderContainer } from './Header.style'
 import Button from '../Button/Button.component'
-import { Navigate, useNavigate } from 'react-router'
+import { useNavigate } from 'react-router'
 
 const Header = () => {
     const navigate = useNavigate()
-    const goHomePageHandler = () => {
-        navigate('/')
-    }
+
+    const navigateHandler = (url) => navigate(url)
 
     return(
         <HeaderContainer>
-            <h1 onClick={goHomePageHandler}>CheckLinks</h1>
+            <h1 onClick={() => navigateHandler('/')}>CheckLinks</h1>
             <div>
-                <Button value={'Login'} $primary />
-                <Button value={'Donate' }/>
+                <Button value={'Login'} onClick={() => navigateHandler('/login')} $primary />
+                <Button value={'Donate'} onClick={() => navigateHandler('/donate')}/>
             </div>
         </HeaderContainer>
     )
