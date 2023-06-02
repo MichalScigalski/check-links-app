@@ -1,11 +1,11 @@
 const express = require('express')
-const userActions = require('../actions/user')
+const userController = require('../controllers/user')
 const auth = require('../auth')
 
 const router = express.Router()
 
-router.post('/login', userActions.login)
-router.post('/register', userActions.register)
-router.put('/change-password', auth, userActions.changePassword)
+router.post('/login', userController.login)
+router.post('/register', userController.register)
+router.put('/change-password', auth, userController.changePassword)
 
 module.exports = router;
