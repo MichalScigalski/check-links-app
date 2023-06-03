@@ -9,8 +9,11 @@ const Header = () => {
     const navigate = useNavigate()
 
     const NavigateHandler = (url) => navigate(url)
-    const LogoutHandler = () => setUser(null)
-    
+    const LogoutHandler = () => {
+        setUser(null)
+        localStorage.removeItem('token')
+    }
+
     return (
         <HeaderContainer>
             <h1 onClick={() => NavigateHandler('/')}>CheckLinks</h1>
