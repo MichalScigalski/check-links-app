@@ -2,7 +2,9 @@ import jwt from 'jwt-decode'
 
 const getCurrentUser = () => {
     const token = localStorage.getItem('token')
-    return jwt(token)
+    if (token)
+        return jwt(token)
+    return null
 }
 
 const authService = {
