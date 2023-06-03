@@ -5,11 +5,13 @@ import FormField from '../../components/FormField/FormField.component'
 import Button from '../../components/Button/Button.component'
 import { useNavigate } from 'react-router'
 import { useState } from 'react'
+import { useContext } from 'react'
+import { UserContext } from '../../context/User.Context'
 
 const Login = () => {
     const navigate = useNavigate()
     const navigateHandler = (url) => navigate(url)
-
+    const { setUser } = useContext(UserContext)
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
 
@@ -21,15 +23,13 @@ const Login = () => {
                 username,
                 password
             })
-            const user = res.data
-            if(user) {
-                localStorage.setItem('token', user.token)
-                alert('Login success')
-                navigateHandler('/')
-            }
+            localStorage.setItem('token', res.data.token)
+            alert('Login success')
+            setUser(res.data.user)
+            navigateHandler('/')
         }
         catch (err) {
-            console.log(err.message)
+            alert(err.response.data.message)
         }
     }
 

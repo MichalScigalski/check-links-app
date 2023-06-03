@@ -18,9 +18,9 @@ export const HeaderContainer = styled.header`
     }
 
     div {
-        height: fit-content;
         display: flex;
         justify-content: center;
+        align-items: center;
         column-gap: 10px;
     }
 `
