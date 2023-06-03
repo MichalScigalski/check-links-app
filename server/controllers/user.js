@@ -23,7 +23,7 @@ module.exports = {
         } catch (err) {
             return res.status(422).json({ message: err.message })
         }
-        res.status(201).json(user)
+        res.status(201)
     },
     async login(req, res) {
         const username = req.body.username
@@ -46,7 +46,7 @@ module.exports = {
                     process.env.TOKEN_SECRET,
                     { expiresIn: '20m', }
                 )
-                res.status(200).json({ user, token })
+                res.status(200).json({ token })
             }
         } catch (err) {
             return res.status(422).json({ message: err.message })
