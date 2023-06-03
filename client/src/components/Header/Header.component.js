@@ -6,14 +6,11 @@ import { UserContext } from '../../context/User.Context'
 
 const Header = () => {
     const { user, setUser } = useContext(UserContext)
-
     const navigate = useNavigate()
+
     const NavigateHandler = (url) => navigate(url)
-
-    const LogoutHandler = () => {
-        setUser(null)
-    }
-
+    const LogoutHandler = () => setUser(null)
+    
     return (
         <HeaderContainer>
             <h1 onClick={() => NavigateHandler('/')}>CheckLinks</h1>
@@ -28,7 +25,6 @@ const Header = () => {
                     <Button value={'Donate'} onClick={() => NavigateHandler('/donate')} />
                 </div>
             }
-
         </HeaderContainer>
     )
 }

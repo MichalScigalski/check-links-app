@@ -9,15 +9,14 @@ import { useContext } from 'react'
 import { UserContext } from '../../context/User.Context'
 
 const Login = () => {
-    const navigate = useNavigate()
-    const navigateHandler = (url) => navigate(url)
-    const { setUser } = useContext(UserContext)
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
+    const { setUser } = useContext(UserContext)
+    const navigate = useNavigate()
 
+    const navigateHandler = (url) => navigate(url)
     const LoginHandler = async (e) => {
         e.preventDefault()
-
         try {
             const res = await axios.post('http://localhost:3002/api/v1/user/login', {
                 username,

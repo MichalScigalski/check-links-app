@@ -12,14 +12,14 @@ const Register = () => {
 
     const RegisterHandler = async (e) => {
         e.preventDefault()
-        if(password !== passwordRepeat)
+        if (password !== passwordRepeat)
             return alert('Passwords are different!')
         try {
             const res = await axios.post('http://localhost:3002/api/v1/user/register', {
-                username, 
+                username,
                 password
             })
-            if(res.data) {
+            if (res.data) {
                 alert('Register success')
             }
         } catch (err) {
@@ -33,27 +33,25 @@ const Register = () => {
         <RegisterContainer>
             <FormContainer>
                 <form onSubmit={RegisterHandler}>
-                    <FormField 
-                        label={'Username'} 
-                        placeholder={'username'} 
+                    <FormField
+                        label={'Username'}
+                        placeholder={'username'}
                         value={username}
-                        onChange={(e)=>setUsername(e.target.value)}
+                        onChange={(e) => setUsername(e.target.value)}
                     />
-
-                    <FormField 
-                        label={'Password'} 
+                    <FormField
+                        label={'Password'}
                         placeholder={'**********'}
                         type={'password'}
                         value={password}
-                        onChange={(e)=>setPassword(e.target.value)}
-
+                        onChange={(e) => setPassword(e.target.value)}
                     />
-                    <FormField 
-                        label={'Repeat password'} 
+                    <FormField
+                        label={'Repeat password'}
                         placeholder={'**********'}
                         type={'password'}
                         value={passwordRepeat}
-                        onChange={(e)=>setPasswordRepeat(e.target.value)}
+                        onChange={(e) => setPasswordRepeat(e.target.value)}
                     />
                     <section>
                         <input required type="checkbox" />
