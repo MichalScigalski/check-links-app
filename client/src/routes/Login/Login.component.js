@@ -5,13 +5,10 @@ import FormField from '../../components/FormField/FormField.component'
 import Button from '../../components/Button/Button.component'
 import { useNavigate } from 'react-router'
 import { useState } from 'react'
-import { useContext } from 'react'
-import { UserContext } from '../../context/User.Context'
 
 const Login = () => {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
-    const { setUser } = useContext(UserContext)
     const navigate = useNavigate()
 
     const navigateHandler = (url) => navigate(url)
@@ -24,7 +21,6 @@ const Login = () => {
             })
             localStorage.setItem('token', res.data.token)
             alert('Login success')
-            setUser(res.data.user)
             navigateHandler('/')
         }
         catch (err) {
