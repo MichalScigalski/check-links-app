@@ -11,7 +11,6 @@ const Login = () => {
     const [password, setPassword] = useState('')
     const navigate = useNavigate()
 
-    const navigateHandler = (url) => navigate(url)
     const LoginHandler = async (e) => {
         e.preventDefault()
         try {
@@ -21,7 +20,8 @@ const Login = () => {
             })
             localStorage.setItem('token', res.data.token)
             alert('Login success')
-            navigateHandler('/')
+            navigate('/')
+            navigate(0)
         }
         catch (err) {
             alert(err.response.data.message)
@@ -48,7 +48,7 @@ const Login = () => {
                     <span>Forgot password?</span>
                     <Button $primary value={'Login'} />
                 </form>
-                <p>Not a member? <span onClick={() => navigateHandler('/register')}>Sign up</span></p>
+                <p>Not a member? <span onClick={() => navigate('/register')}>Sign up</span></p>
             </div>
             <img src={loginPicture} alt="login illustration" />
         </LoginContainer>
