@@ -8,7 +8,6 @@ import { useNavigate } from 'react-router'
 
 const Home = () => {
     const { profile, setProfile } = useContext(ProfileContext)
-    console.log(authService.getAuthToken())
     const navigate = useNavigate()
     const createProfileHandler = async () => {
 
@@ -19,7 +18,7 @@ const Home = () => {
                     Authorization: 'Bearer ' + authService.getAuthToken()
                 }
             })
-            if(res.data) {
+            if (res.data) {
                 setProfile(authService.getCurrentUser())
                 navigate('/myprofile')
             }
@@ -27,7 +26,6 @@ const Home = () => {
         catch (err) {
             console.log(err)
         }
-
     }
 
     return (
@@ -44,9 +42,7 @@ const Home = () => {
                     <h2>Set up your profile right now</h2>
                     <Button value={'Create Profile'} onClick={createProfileHandler} />
                 </div>
-
             }
-
         </HomeContainer>
     )
 }

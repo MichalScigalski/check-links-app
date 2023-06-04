@@ -1,12 +1,5 @@
 import jwt from 'jwt-decode'
 
-const getCurrentUser = () => {
-    const token = localStorage.getItem('token')
-    if (token)
-        return jwt(token)
-    return null
-}
-
 const getAuthToken = () => {
     const token = localStorage.getItem('token')
     if (token)
@@ -14,9 +7,16 @@ const getAuthToken = () => {
     return null    
 }
 
+const getCurrentUser = () => {
+    const token = getAuthToken()
+    if (token)
+        return jwt(token)
+    return null
+}
+
 const authService = {
-    getCurrentUser,
-    getAuthToken
+    getAuthToken,
+    getCurrentUser
 }
 
 export default authService
