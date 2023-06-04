@@ -7,8 +7,16 @@ const getCurrentUser = () => {
     return null
 }
 
+const getAuthToken = () => {
+    const token = localStorage.getItem('token')
+    if (token)
+        return token
+    return null    
+}
+
 const authService = {
-    getCurrentUser
+    getCurrentUser,
+    getAuthToken
 }
 
 export default authService

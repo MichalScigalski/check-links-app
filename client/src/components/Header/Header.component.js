@@ -2,7 +2,7 @@ import { HeaderContainer } from './Header.style'
 import Button from '../Button/Button.component'
 import { useNavigate } from 'react-router'
 import { useContext } from 'react'
-import { UserContext } from '../../context/User.Context'
+import { UserContext } from '../../context/User.context'
 
 const Header = () => {
     const { user, setUser } = useContext(UserContext)
