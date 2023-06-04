@@ -16,19 +16,27 @@ export const RegisterContainer = styled.div`
     margin: 5rem auto;
     background-color: #fff;
 
-        form {
-            gap: 1rem;
-            display: flex;
-            flex-direction: column;
-            input {
-                max-width: 400px;
-            }
-            section {
-                display: flex;
-                align-items: center;
-                gap: 8px;
-                font-size: 14px;
-                color: ${config.green};
-            }
+    p {
+        font-size: 14px;
+        
+        span {
+            color: ${config.green};
+            cursor: pointer;
         }
+    }
+
+    form {
+        gap: 1rem;
+        display: flex;
+        flex-direction: column;
+        input {
+            max-width: 400px;
+        }
+        section {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+        }
+    }
 `

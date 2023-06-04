@@ -8,10 +8,10 @@ import { UserContext } from './context/User.Context';
 import authService from './services/auth.service';
 
 const App = () => {
-  const { setUser } = useContext(UserContext)
+  const { setUser, user } = useContext(UserContext)
 
   useEffect(() => {
-      const user = authService.getCurrentUser()
+    const user = authService.getCurrentUser()
       if (user)
           setUser(user)
   }, [])

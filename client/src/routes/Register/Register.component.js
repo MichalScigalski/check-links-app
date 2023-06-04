@@ -4,11 +4,13 @@ import RegisterPicture from '../../assets/img/login-picture.svg'
 import FormField from '../../components/FormField/FormField.component'
 import Button from '../../components/Button/Button.component'
 import { useState } from 'react'
+import { useNavigate } from 'react-router'
 
 const Register = () => {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [passwordRepeat, setPasswordRepeat] = useState('')
+    const navigate = useNavigate()
 
     const RegisterHandler = async (e) => {
         e.preventDefault()
@@ -58,6 +60,8 @@ const Register = () => {
                         <span>I have read and agree to the "Terms Of Services"</span>
                     </section>
                     <Button $primary value={'Register'} />
+                    <p>I already have an account, <span onClick={() => navigate('/login')}>Login In</span></p>
+
                 </form>
             </FormContainer>
             <img src={RegisterPicture} alt="register illustration" />
