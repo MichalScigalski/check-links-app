@@ -20,10 +20,10 @@ module.exports = {
         try {
             user = new User({ username, password })
             await user.save()
+            res.sendStatus(201)
         } catch (err) {
-            return res.status(422).json({ message: err.message })
+            res.status(422).json({ message: err.message })
         }
-        res.status(201)
     },
     async login(req, res) {
         const username = req.body.username
