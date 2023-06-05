@@ -8,7 +8,6 @@ const Header = () => {
     const { user, setUser } = useContext(UserContext)
     const navigate = useNavigate()
 
-    const NavigateHandler = (url) => navigate(url)
     const LogoutHandler = () => {
         setUser(null)
         localStorage.removeItem('token')
@@ -16,16 +15,16 @@ const Header = () => {
 
     return (
         <HeaderContainer>
-            <h1 onClick={() => NavigateHandler('/')}>CheckLinks</h1>
+            <h1 onClick={() => navigate('/')}>CheckLinks</h1>
             {user ?
                 <div>
-                    <h3>{user.username}</h3>
+                    <h3 onClick={() => navigate('/myprofile')}>{user.username}</h3>
                     <Button value='Logout' onClick={LogoutHandler}/>
                 </div>
                 :
                 <div>
-                    <Button value={'Login'} onClick={() => NavigateHandler('/login')} $primary />
-                    <Button value={'Donate'} onClick={() => NavigateHandler('/donate')} />
+                    <Button value={'Login'} onClick={() => navigate('/login')} $primary />
+                    <Button value={'Donate'} onClick={() => navigate('/donate')} />
                 </div>
             }
         </HeaderContainer>

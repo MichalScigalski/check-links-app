@@ -16,7 +16,7 @@ export const HeaderContainer = styled.header`
             color: ${config.green};
         }
     }
-
+    h3 {cursor: pointer}
     div {
         display: flex;
         justify-content: center;
