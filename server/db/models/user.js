@@ -9,6 +9,10 @@ const UserSchema = new mongoose.Schema({
     password: {
         type: String,
         required: true
+    },
+    isProfile: {
+        type: Boolean,
+        default: false
     }
 })
 
