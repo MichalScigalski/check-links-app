@@ -9,7 +9,7 @@ import authService from './services/auth.service';
 import Profile from './routes/Profile/Profile.component';
 
 const App = () => {
-  const { setUser, user } = useContext(UserContext)
+  const { user, setUser } = useContext(UserContext)
 
   useEffect(() => {
     const userLocalStorage = authService.getCurrentUser()
@@ -17,12 +17,14 @@ const App = () => {
       setUser(userLocalStorage)
   }, [])
 
+  console.log(user)
+
   return (
     <>
       <Header />
       <Routes>
-        <Route index path='*' element={<Home />} />
-        { user ?
+        <Route index path='/' element={<Home />} />
+        {user ?
           <>
             <Route path='/myprofile' element={<Profile />} />
           </>
