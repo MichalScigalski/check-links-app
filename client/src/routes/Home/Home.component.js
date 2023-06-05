@@ -12,7 +12,6 @@ const Home = () => {
     const createProfileHandler = async () => {
 
         try {
-            console.log('Bearer ' + authService.getAuthToken())
             const res = await axios.post(process.env.REACT_APP_API_URL + '/profile/create', {}, {
                 headers: {
                     Authorization: 'Bearer ' + authService.getAuthToken()
