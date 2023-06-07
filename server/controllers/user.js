@@ -19,6 +19,7 @@ module.exports = {
 
         try {
             user = new User({ username, password })
+            await user.bcryptPassword()
             await user.save()
             res.sendStatus(201)
         } catch (err) {
