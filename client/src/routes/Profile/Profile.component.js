@@ -31,7 +31,7 @@ const Profile = () => {
                     <h1>{profile.username}</h1>
                     {profile.links.length ?
                         <ProfileLinks>
-                            {profile.links.map(link => <LinkProfile link={link} />)}
+                            {profile.links.map((link, _id) => <LinkProfile key={_id} link={link} />)}
                         </ProfileLinks>
                         :
                         <span>No links yet!</span>

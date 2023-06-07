@@ -10,4 +10,9 @@ export const MyProfileContainer = styled.div`
     padding: 3rem;
     height: 70vh;
     margin: 1rem;
+
+    div {
+        display: flex;
+        gap: 1rem;
+    }
 `

@@ -4,6 +4,7 @@ import axios from 'axios'
 import authService from '../../services/auth.service'
 import Button from '../../components/Button/Button.component'
 import { useNavigate } from 'react-router'
+import LinkProfile from '../../components/LinkProfile/LinkProfile.component'
 
 const MyProfile = () => {
     const [profile, setProfile] = useState(null)
@@ -49,7 +50,10 @@ const MyProfile = () => {
                 <ul>
                     <li>id: {profile.user_id}</li>
                     <li>username: {profile.username}</li>
-                    {/* <li>links: {user.links.map(link => link.name + '=' + link.url)}</li> */}
+                    <li>links: </li>
+                    <div>
+                        {profile.links.map((link, _id) => <LinkProfile key={_id} link={link}/>)}
+                    </div>
                 </ul>
                 :
                 <Button value='Create profile' onClick={createProfileHandler} />
