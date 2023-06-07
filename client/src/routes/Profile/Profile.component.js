@@ -3,6 +3,7 @@ import { useEffect } from 'react'
 import { ProfileContainer } from './Profile.style'
 import { useNavigate, useParams } from 'react-router'
 import { useState } from 'react'
+import LinkProfile from '../../components/LinkProfile/LinkProfile.component'
 
 const Profile = () => {
     const { username } = useParams()
@@ -29,7 +30,7 @@ const Profile = () => {
                 <>
                     <h1>{profile.username}</h1>
                     <ul>
-                        {profile.links.map(link => <li>{link.name} ➡️ {link.url}</li>)}
+                        {profile.links.map(link => <LinkProfile link={link}/>)}
                     </ul>
                 </>
             }
