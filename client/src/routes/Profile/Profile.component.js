@@ -1,13 +1,13 @@
 import axios from 'axios'
 import { useEffect } from 'react'
-import { ProfileContainer } from './Profile.style'
+import { ProfileContainer, ProfileLinks } from './Profile.style'
 import { useNavigate, useParams } from 'react-router'
 import { useState } from 'react'
 import LinkProfile from '../../components/LinkProfile/LinkProfile.component'
 
 const Profile = () => {
     const { username } = useParams()
-    const [ profile, setProfile ] = useState(null)
+    const [profile, setProfile] = useState(null)
     const navigate = useNavigate()
 
     useEffect(() => {
@@ -26,12 +26,16 @@ const Profile = () => {
 
     return (
         <ProfileContainer>
-            { profile &&
+            {profile &&
                 <>
                     <h1>{profile.username}</h1>
-                    <ul>
-                        {profile.links.map(link => <LinkProfile link={link}/>)}
-                    </ul>
+                    {profile.links.length ?
+                        <ProfileLinks>
+                            {profile.links.map(link => <LinkProfile link={link} />)}
+                        </ProfileLinks>
+                        :
+                        <span>No links yet!</span>
+                    }
                 </>
             }
         </ProfileContainer>

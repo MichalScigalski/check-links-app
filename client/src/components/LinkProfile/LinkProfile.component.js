@@ -7,7 +7,7 @@ const LinkProfile = ({ link }) => {
     return (
         <LinkProfileBoxContainer target='_blank' href={url} title={url}>
             <img src={LinkIcon} alt='link-icon' />
-            <h2>{name}</h2>
+            <span>{name}</span>
         </LinkProfileBoxContainer>
     )
 }

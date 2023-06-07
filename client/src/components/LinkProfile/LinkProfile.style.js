@@ -4,25 +4,34 @@ import * as config from '../../globalStyles'
 export const LinkProfileBoxContainer = styled.a`
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    width: 200px;
+    justify-content: left;
     border-radius: 12px;
+    max-width: 400px;
     color: #fff;
     text-decoration: none;
-    background-color: ${config.green};
+    background-color: #f5f5f5;
+    color: #000;
     transition: all 0.2s;
 
     &:hover {
-        box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+        box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+        img {
+            background-color: ${config.green};
+        }
+        color: ${config.green};
     }
 
     img {
-        height: 40px;
+        height: 20px;
         width: auto;
-        margin: 8px 1rem;
+        margin: 0.5rem 1rem;
+        background-color: black;
+        padding: 5px;
+        border-radius: 50%;
     }
 
-    h2 {
-        margin: 8px 1rem;
+    span {
+        margin: 0.5rem 1rem;
+        font-size: 18px;
     }
 `

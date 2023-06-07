@@ -12,3 +12,9 @@ export const ProfileContainer = styled.div`
     height: 70vh;
     margin: 1rem;
 `
+
+export const ProfileLinks = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+`
