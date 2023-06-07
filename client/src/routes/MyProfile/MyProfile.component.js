@@ -54,6 +54,7 @@ const MyProfile = () => {
                     <div>
                         {profile.links.map((link, _id) => <LinkProfile key={_id} link={link}/>)}
                     </div>
+                    <span onClick={() => navigate(`/${profile.username}`)}>Show my Profile</span>
                 </ul>
                 :
                 <Button value='Create profile' onClick={createProfileHandler} />
