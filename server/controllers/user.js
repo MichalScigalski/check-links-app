@@ -38,7 +38,6 @@ module.exports = {
                     .json({ message: 'User not found' })
             else {
                 const isValidPassword = await user.isValidPassword(password)
-                console.log(isValidPassword)
                 if (!isValidPassword)
                     return res
                         .status(403)

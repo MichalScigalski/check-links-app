@@ -4,7 +4,6 @@ const User = require('../db/models/user');
 module.exports = {
     async create(req, res) {
         const user_id = req.user.id
-        console.log(user_id)
         const username = req.user.username
         const profileExists = await Profile.findOne({ user_id })
         const user = await User.findOne({ username })
