@@ -6,6 +6,7 @@ import Register from './routes/Register/Register.component';
 import { useContext, useEffect } from 'react'
 import { UserContext } from './context/User.context';
 import authService from './services/auth.service';
+import MyProfile from './routes/MyProfile/MyProfile.component';
 import Profile from './routes/Profile/Profile.component';
 
 const App = () => {
@@ -17,16 +18,15 @@ const App = () => {
       setUser(userLocalStorage)
   }, [])
 
-  console.log(user)
-
   return (
     <>
       <Header />
       <Routes>
         <Route index path='/' element={<Home />} />
+        <Route path='/:username' element={<Profile />}/>
         {user ?
           <>
-            <Route path='/myprofile' element={<Profile />} />
+            <Route path='/myprofile' element={<MyProfile />} />
           </>
           :
           <>
