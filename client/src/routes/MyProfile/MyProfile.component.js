@@ -50,16 +50,15 @@ const MyProfile = () => {
         e.preventDefault()
         try {
             const res = await axios.post(process.env.REACT_APP_API_URL + '/profile/add-link', {
-                name: "OnlyFans",
-                url: "http://OnlyFans.com"
+                ...link
             }, {
                 headers: {
                     Authorization: 'Bearer ' + authService.getAuthToken()
-                }
+                },
             })
             if (res.data) {
                 alert('Link added')
-                navigate(0)
+                console.log(res.data)
             }
         } catch (err) {
             alert(err.response.data.message)
@@ -70,6 +69,10 @@ const MyProfile = () => {
         <>
             {profile ?
                 <MyProfileDashboard>
+                    <Container>
+                        <FormField label='Display name' value={profile.username} />
+                        <Button value='Save' />
+                    </Container>
                     <Container>
                         <form onSubmit={addLinkHandler}>
                             <FormField
@@ -84,6 +87,17 @@ const MyProfile = () => {
                                 placeholder='http://instagram.com/user' />
                             <Button type='submit' $primary value='Create link' />
                         </form>
+                    </Container>
+                    <Container>
+                        <ul>
+                            <div>
+                                {profile.links.map((link, _id) => <LinkProfile key={_id} link={link} />)}
+                            </div>
+                            <Button
+                                value='Show my Profile'
+                                onClick={() => navigate(`/${profile.username}`)}
+                            />
+                        </ul>
                     </Container>
                 </MyProfileDashboard>
                 :
