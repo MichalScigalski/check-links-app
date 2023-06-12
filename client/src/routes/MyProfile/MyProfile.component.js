@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { MyProfileContainer, MyProfileDashboard, Container } from './MyProfile.style'
+import { MyProfileContainer, MyProfileDashboard, Container, LinksContainer } from './MyProfile.style'
 import axios from 'axios'
 import authService from '../../services/auth.service'
 import Button from '../../components/Button/Button.component'
@@ -89,16 +89,14 @@ const MyProfile = () => {
                         </form>
                     </Container>
                     <Container>
-                        <ul>
-                            <div>
-                                {profile.links.map((link, _id) => <LinkProfile key={_id} link={link} />)}
-                            </div>
-                            <Button
-                                value='Show my Profile'
-                                onClick={() => navigate(`/${profile.username}`)}
-                            />
-                        </ul>
+                        <Button
+                            value='Show my Profile'
+                            onClick={() => navigate(`/${profile.username}`)}
+                        />
                     </Container>
+                    <LinksContainer>
+                        {profile.links.map((link, _id) => <LinkProfile key={_id} link={link} />)}
+                    </LinksContainer>
                 </MyProfileDashboard>
                 :
                 <MyProfileContainer>
