@@ -9,6 +9,7 @@ import FormField from '../../components/FormField/FormField.component'
 
 const MyProfile = () => {
     const [profile, setProfile] = useState(null)
+    const [displayName, setDisplayName] = useState('')
     const [link, setLink] = useState({})
     const navigate = useNavigate()
 
@@ -23,7 +24,9 @@ const MyProfile = () => {
                     Authorization: 'Bearer ' + authService.getAuthToken()
                 }
             })
-            setProfile(res.data.profile)
+            const data = res.data.profile
+            setProfile(data)
+            setDisplayName(data.display_name)
         } catch (err) {
             console.log(err.response.data.message)
         }
@@ -70,7 +73,10 @@ const MyProfile = () => {
             {profile ?
                 <MyProfileDashboard>
                     <Container>
-                        <FormField label='Display name' value={profile.username} />
+                        <FormField
+                            label='Display name'
+                            value={displayName}
+                            onChange={e => setDisplayName(e.target.value)} />
                         <Button value='Save' />
                     </Container>
                     <Container>
@@ -94,9 +100,11 @@ const MyProfile = () => {
                             onClick={() => navigate(`/${profile.username}`)}
                         />
                     </Container>
-                    <LinksContainer>
-                        {profile.links.map((link, _id) => <LinkProfile key={_id} link={link} />)}
-                    </LinksContainer>
+                    {profile.links.length &&
+                        <LinksContainer>
+                            {profile.links.map((link, _id) => <LinkProfile key={_id} link={link} />)}
+                        </LinksContainer>
+                    }
                 </MyProfileDashboard>
                 :
                 <MyProfileContainer>

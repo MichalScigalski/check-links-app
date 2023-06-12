@@ -28,7 +28,8 @@ const Profile = () => {
         <ProfileContainer>
             {profile &&
                 <>
-                    <h1>{profile.username}</h1>
+                    <h1>{profile.display_name}</h1>
+                    <span>@{profile.username}</span>
                     {profile.links.length ?
                         <ProfileLinks>
                             {profile.links.map((link, _id) => <LinkProfile key={_id} link={link} />)}

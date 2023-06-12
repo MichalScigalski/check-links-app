@@ -17,7 +17,6 @@ const Register = () => {
         if (password !== passwordRepeat)
             return alert('Passwords are different!')
         try {
-            console.log('start')
             const res = await axios.post(process.env.REACT_APP_API_URL + '/user/register', {
                 username,
                 password

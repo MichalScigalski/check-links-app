@@ -11,6 +11,14 @@ export const ProfileContainer = styled.div`
     padding: 3rem;
     height: 70vh;
     margin: 1rem;
+    
+    h1 {
+        margin: 2px;
+    }
+
+    span {
+        margin-bottom: 1rem;
+    }
 `
 
 export const ProfileLinks = styled.div`

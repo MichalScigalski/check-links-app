@@ -13,6 +13,7 @@ module.exports = {
         try {
             const profile = new Profile({
                 user_id,
+                display_name: username,
                 username, 
                 links: []
             })
@@ -106,7 +107,7 @@ module.exports = {
         try {
             const profile = await Profile.findOne({username})
             const link = profile.links[profile.links.findIndex(link => link._id == id_link)]
-            link.isVisible = !link.isVisible
+            link.is_visible = !link.is_visible
             profile.save()
             res.sendStatus(204)
         }
