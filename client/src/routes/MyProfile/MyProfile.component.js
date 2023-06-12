@@ -1,13 +1,15 @@
 import { useEffect, useState } from 'react'
-import { MyProfileContainer } from './MyProfile.style'
+import { MyProfileContainer, MyProfileDashboard, Container } from './MyProfile.style'
 import axios from 'axios'
 import authService from '../../services/auth.service'
 import Button from '../../components/Button/Button.component'
 import { useNavigate } from 'react-router'
 import LinkProfile from '../../components/LinkProfile/LinkProfile.component'
+import FormField from '../../components/FormField/FormField.component'
 
 const MyProfile = () => {
     const [profile, setProfile] = useState(null)
+    const [link, setLink] = useState({})
     const navigate = useNavigate()
 
     useEffect(() => {
@@ -44,22 +46,52 @@ const MyProfile = () => {
         }
     }
 
-    return (
-        <MyProfileContainer>
-            {profile ?
-                <ul>
-                    <li>id: {profile.user_id}</li>
-                    <li>username: {profile.username}</li>
-                    <li>links: </li>
-                    <div>
-                        {profile.links.map((link, _id) => <LinkProfile key={_id} link={link}/>)}
-                    </div>
-                    <span onClick={() => navigate(`/${profile.username}`)}>Show my Profile</span>
-                </ul>
-                :
-                <Button value='Create profile' onClick={createProfileHandler} />
+    const addLinkHandler = async e => {
+        e.preventDefault()
+        try {
+            const res = await axios.post(process.env.REACT_APP_API_URL + '/profile/add-link', {
+                name: "OnlyFans",
+                url: "http://OnlyFans.com"
+            }, {
+                headers: {
+                    Authorization: 'Bearer ' + authService.getAuthToken()
+                }
+            })
+            if (res.data) {
+                alert('Link added')
+                navigate(0)
             }
-        </MyProfileContainer>
+        } catch (err) {
+            alert(err.response.data.message)
+        }
+    }
+
+    return (
+        <>
+            {profile ?
+                <MyProfileDashboard>
+                    <Container>
+                        <form onSubmit={addLinkHandler}>
+                            <FormField
+                                label='Name'
+                                value={link.name}
+                                onChange={e => setLink({ ...link, name: e.target.value })}
+                                placeholder='Instagram' />
+                            <FormField
+                                label='Url'
+                                value={link.url}
+                                onChange={e => setLink({ ...link, url: e.target.value })}
+                                placeholder='http://instagram.com/user' />
+                            <Button type='submit' $primary value='Create link' />
+                        </form>
+                    </Container>
+                </MyProfileDashboard>
+                :
+                <MyProfileContainer>
+                    <Button value='Create profile' onClick={createProfileHandler} />
+                </MyProfileContainer>
+            }
+        </>
     )
 }
 

@@ -9,14 +9,11 @@ module.exports = {
         const userExists = await User.findOne({ username })
         if (userExists)
             return res.status(409).json({ message: 'User already exists!' })
-
         if (username.length < 4 || password.length < 4)
             return res
                 .status(500)
                 .json({ message: 'Username or password is too short!' })
-
         let user
-
         try {
             user = new User({ username, password })
             await user.bcryptPassword()
