@@ -26,7 +26,7 @@ const MyProfile = () => {
             })
             const data = res.data.profile
             setProfile(data)
-            setDisplayName(data.display_name)
+            setDisplayName(data.displayName)
         } catch (err) {
             console.log(err.response.data.message)
         }

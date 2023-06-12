@@ -3,17 +3,17 @@ const User = require('../db/models/user');
 
 module.exports = {
     async create(req, res) {
-        const user_id = req.user.id
+        const userId = req.user.id
         const username = req.user.username
-        const profileExists = await Profile.findOne({ user_id })
+        const profileExists = await Profile.findOne({ userId })
         const user = await User.findOne({ username })
-        
+
         if(profileExists)
             return res.status(409).json({ message: "Profile already exists" })
         try {
             const profile = new Profile({
-                user_id,
-                display_name: username,
+                userId,
+                displayName: username,
                 username, 
                 links: []
             })
@@ -35,12 +35,12 @@ module.exports = {
             res.status(404).send({ message: 'Unknown user' })
     },
     async dashboard(req, res) {
-        const user_id = req.user.id
-        const user = await User.findOne({ _id: user_id }) 
+        const userId = req.user.id
+        const user = await User.findOne({ _id: userId }) 
 
         try {
             if(user.isProfile) {
-                const profile = await Profile.findOne({ user_id })
+                const profile = await Profile.findOne({ userId })
                 res.status(200).json({ profile })
             } else {
                 res.status(404).json({ message: 'You need to create profile' })
@@ -107,7 +107,7 @@ module.exports = {
         try {
             const profile = await Profile.findOne({username})
             const link = profile.links[profile.links.findIndex(link => link._id == id_link)]
-            link.is_visible = !link.is_visible
+            link.isVisible = !link.isVisible
             profile.save()
             res.sendStatus(204)
         }

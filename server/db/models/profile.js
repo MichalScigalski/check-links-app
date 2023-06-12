@@ -9,7 +9,7 @@ const LinkSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    is_visible: {
+    isVisible: {
         type: Boolean,
         required: true,
         default: true
@@ -17,11 +17,11 @@ const LinkSchema = new mongoose.Schema({
 })
 
 const ProfileSchema = new mongoose.Schema({
-    user_id: {
+    userId: {
         type: String,
         required: true
     },
-    display_name: {
+    displayName: {
         type: String,
         required: false
     },

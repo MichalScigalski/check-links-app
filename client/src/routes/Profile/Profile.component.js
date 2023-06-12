@@ -28,7 +28,7 @@ const Profile = () => {
         <ProfileContainer>
             {profile &&
                 <>
-                    <h1>{profile.display_name}</h1>
+                    <h1>{profile.displayName}</h1>
                     <span>@{profile.username}</span>
                     {profile.links.length ?
                         <ProfileLinks>
