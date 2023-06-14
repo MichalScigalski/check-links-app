@@ -5,10 +5,16 @@ export const LoginContainer = styled.div`
     display: flex;
     align-items: stretch;
     justify-content: center;
-    column-gap: 2rem;
-    padding: 10rem;
+    padding: 10rem 1rem;
     margin: 5rem auto;
     background-color: #fff;
+
+    @media (max-width: 768px) {
+        img {
+            display: none;
+        }
+    }
+
     div {
         display: flex;
         flex-direction: column;
