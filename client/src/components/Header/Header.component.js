@@ -11,6 +11,7 @@ const Header = () => {
     const LogoutHandler = () => {
         setUser(null)
         sessionStorage.removeItem('token')
+        navigate(0)
     }
 
     return (

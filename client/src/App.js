@@ -22,16 +22,16 @@ const App = () => {
     <>
       <Header />
       <Routes>
-        <Route index path='/' element={<Home />} />
+        <Route exact index path='/' element={<Home />} />
         <Route path='/:username' element={<Profile />} />
         {
           authService.getCurrentUser() ?
             <Route path='/dashboard' element={<Dashboard />} />
             :
-            <Routes>
+            <>
               <Route path='/login' element={<Login />} />
               <Route path='/register' element={<Register />} />
-            </Routes>
+            </>
         }
       </Routes>
     </>
