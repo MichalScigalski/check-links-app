@@ -57,12 +57,26 @@ const MyProfile = () => {
             }, {
                 headers: {
                     Authorization: 'Bearer ' + authService.getAuthToken()
-                },
+                }
             })
-            if (res.data) {
+            if (res.data)
                 alert('Link added')
-                console.log(res.data)
-            }
+        } catch (err) {
+            alert(err.response.data.message)
+        }
+    }
+
+    const updateDisplayNameHandler = async e => {
+        e.preventDefault()
+        try {
+            const res = await axios.put(process.env.REACT_APP_API_URL + '/profile/edit-name', {
+                displayName
+            }, {
+                headers: {
+                    Authorization: 'Bearer ' + authService.getAuthToken()
+                }
+            })
+            alert('Name updated')
         } catch (err) {
             alert(err.response.data.message)
         }
@@ -73,11 +87,13 @@ const MyProfile = () => {
             {profile ?
                 <MyProfileDashboard>
                     <Container>
-                        <FormField
-                            label='Display name'
-                            value={displayName}
-                            onChange={e => setDisplayName(e.target.value)} />
-                        <Button value='Save' />
+                        <form onSubmit={updateDisplayNameHandler}>
+                            <FormField
+                                label='Display name'
+                                value={displayName}
+                                onChange={e => setDisplayName(e.target.value)} />
+                            <Button value='Save' type='submit' />
+                        </form>
                     </Container>
                     <Container>
                         <form onSubmit={addLinkHandler}>

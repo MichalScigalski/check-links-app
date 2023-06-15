@@ -36,6 +36,12 @@ export const Container = styled.div`
     input {
         margin-bottom: 1rem;
     }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
 `
 
 export const LinksContainer = styled.div`
