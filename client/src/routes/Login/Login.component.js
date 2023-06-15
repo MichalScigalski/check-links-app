@@ -18,7 +18,7 @@ const Login = () => {
                 username,
                 password
             })
-            localStorage.setItem('token', res.data.token)
+            sessionStorage.setItem('token', res.data.token)
             alert('Login success')
             navigate('/')
             navigate(0)
