@@ -69,7 +69,7 @@ const MyProfile = () => {
     const updateDisplayNameHandler = async e => {
         e.preventDefault()
         try {
-            const res = await axios.put(process.env.REACT_APP_API_URL + '/profile/edit-name', {
+            await axios.put(process.env.REACT_APP_API_URL + '/profile/edit-name', {
                 displayName
             }, {
                 headers: {
@@ -92,8 +92,12 @@ const MyProfile = () => {
                                 label='Display name'
                                 value={displayName}
                                 onChange={e => setDisplayName(e.target.value)} />
-                            <Button value='Save' type='submit' />
+                            <Button $primary value='Save' type='submit' />
                         </form>
+                        <Button
+                            value='Show my Profile'
+                            onClick={() => navigate(`/${profile.username}`)}
+                        />
                     </Container>
                     <Container>
                         <form onSubmit={addLinkHandler}>
@@ -109,12 +113,6 @@ const MyProfile = () => {
                                 placeholder='http://instagram.com/user' />
                             <Button type='submit' $primary value='Create link' />
                         </form>
-                    </Container>
-                    <Container>
-                        <Button
-                            value='Show my Profile'
-                            onClick={() => navigate(`/${profile.username}`)}
-                        />
                     </Container>
                     {profile.links.length &&
                         <LinksContainer>

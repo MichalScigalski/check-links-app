@@ -41,6 +41,10 @@ export const Container = styled.div`
         display: flex;
         flex-direction: column;
         align-items: center;
+
+        button {
+            margin: 4px 0;
+        }
     }
 `
 
@@ -51,5 +55,4 @@ export const LinksContainer = styled.div`
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 1rem 4rem;
     background-color: white;
-    grid-column: 1/3;
 `
