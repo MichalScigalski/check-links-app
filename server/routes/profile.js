@@ -6,6 +6,7 @@ const router = express.Router()
 
 router.post('/create', auth, profileController.create)
 router.get('/user/:username', profileController.profile)
+router.put('/edit-name', auth, profileController.editName)
 router.post('/add-link', auth, profileController.addLink)
 router.delete('/delete-link/:id', auth, profileController.deleteLink)
 router.put('/edit-link/:id', auth, profileController.editLink)
