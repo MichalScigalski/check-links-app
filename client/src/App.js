@@ -23,7 +23,6 @@ const App = () => {
       <Header />
       <Routes>
         <Route index path='/' element={<Home />} />
-        <Route path='/:username' element={<Profile />}/>
         {user ?
           <>
             <Route path='/myprofile' element={<MyProfile />} />
@@ -34,6 +33,7 @@ const App = () => {
             <Route path='/register' element={<Register />} />
           </>
         }
+        <Route path='/:username' element={<Profile />}/>
       </Routes>
     </>
   );

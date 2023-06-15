@@ -15,6 +15,7 @@ const MyProfile = () => {
 
     useEffect(() => {
         dashHandle()
+        console.log('test')
     }, [])
 
     const dashHandle = async () => {

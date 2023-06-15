@@ -18,7 +18,10 @@ const Profile = () => {
             }
             catch (err) {
                 console.log(err.response.data.message)
-                navigate('/')
+                if(username === 'myprofile')
+                    navigate('/myprofile')
+                else
+                    navigate('/')
             }
         }
         getProfile()
