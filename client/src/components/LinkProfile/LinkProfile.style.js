@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import * as config from '../../globalStyles'
 
-export const LinkProfileBoxContainer = styled.a`
+export const LinkProfileContainer = styled.a`
     display: flex;
     align-items: center;
     justify-content: left;
