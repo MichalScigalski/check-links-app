@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const MyProfileContainer = styled.div`
+export const CreateProfileContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -17,7 +17,7 @@ export const MyProfileContainer = styled.div`
     }
 `
 
-export const MyProfileDashboard = styled.div`
+export const DashboardContainer = styled.div`
     margin: 2rem 10%;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));

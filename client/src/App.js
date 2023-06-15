@@ -6,34 +6,33 @@ import Register from './routes/Register/Register.component';
 import { useContext, useEffect } from 'react'
 import { UserContext } from './context/User.context';
 import authService from './services/auth.service';
-import MyProfile from './routes/MyProfile/MyProfile.component';
 import Profile from './routes/Profile/Profile.component';
+import Dashboard from './routes/Dashboard/Dashboard.component';
 
 const App = () => {
-  const { user, setUser } = useContext(UserContext)
+  const { setUser } = useContext(UserContext)
 
   useEffect(() => {
-    const userLocalStorage = authService.getCurrentUser()
-    if (userLocalStorage)
-      setUser(userLocalStorage)
+    const useSession = authService.getCurrentUser()
+    if (useSession)
+      setUser(useSession)
   }, [])
-  console.log(user)
+
   return (
     <>
       <Header />
       <Routes>
         <Route index path='/' element={<Home />} />
-        {user ?
-          <>
-            <Route path='/myprofile' element={<MyProfile />} />
-          </>
-          :
-          <>
-            <Route path='/login' element={<Login />} />
-            <Route path='/register' element={<Register />} />
-          </>
+        <Route path='/:username' element={<Profile />} />
+        {
+          authService.getCurrentUser() ?
+            <Route path='/dashboard' element={<Dashboard />} />
+            :
+            <Routes>
+              <Route path='/login' element={<Login />} />
+              <Route path='/register' element={<Register />} />
+            </Routes>
         }
-        <Route path='/:username' element={<Profile />}/>
       </Routes>
     </>
   );

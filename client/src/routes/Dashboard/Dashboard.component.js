@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { MyProfileContainer, MyProfileDashboard, Container, LinksContainer } from './MyProfile.style'
+import { DashboardContainer, CreateProfileContainer, Container, LinksContainer } from './Dashboard.style'
 import axios from 'axios'
 import authService from '../../services/auth.service'
 import Button from '../../components/Button/Button.component'
@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router'
 import LinkProfile from '../../components/LinkProfile/LinkProfile.component'
 import FormField from '../../components/FormField/FormField.component'
 
-const MyProfile = () => {
+const Dashboard = () => {
     const [profile, setProfile] = useState(null)
     const [displayName, setDisplayName] = useState('')
     const [link, setLink] = useState({})
@@ -15,7 +15,6 @@ const MyProfile = () => {
 
     useEffect(() => {
         dashHandle()
-        console.log('test')
     }, [])
 
     const dashHandle = async () => {
@@ -86,7 +85,7 @@ const MyProfile = () => {
     return (
         <>
             {profile ?
-                <MyProfileDashboard>
+                <DashboardContainer>
                     <Container>
                         <form onSubmit={updateDisplayNameHandler}>
                             <FormField
@@ -120,14 +119,14 @@ const MyProfile = () => {
                             {profile.links.map((link, _id) => <LinkProfile key={_id} link={link} />)}
                         </LinksContainer>
                     }
-                </MyProfileDashboard>
+                </DashboardContainer>
                 :
-                <MyProfileContainer>
+                <CreateProfileContainer>
                     <Button value='Create profile' onClick={createProfileHandler} />
-                </MyProfileContainer>
+                </CreateProfileContainer>
             }
         </>
     )
 }
 
-export default MyProfile
+export default Dashboard
