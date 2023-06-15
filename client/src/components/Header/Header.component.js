@@ -10,7 +10,7 @@ const Header = () => {
 
     const LogoutHandler = () => {
         setUser(null)
-        localStorage.removeItem('token')
+        sessionStorage.removeItem('token')
     }
 
     return (
@@ -18,7 +18,7 @@ const Header = () => {
             <h1 onClick={() => navigate('/')}>CheckLinks</h1>
             {user ?
                 <div>
-                    <h3 onClick={() => navigate('/myprofile')}>{user.username}</h3>
+                    <h3 onClick={() => navigate('/dashboard')}>{user.username}</h3>
                     <Button value='Logout' onClick={LogoutHandler}/>
                 </div>
                 :
