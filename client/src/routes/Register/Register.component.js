@@ -5,6 +5,7 @@ import FormField from '../../components/FormField/FormField.component'
 import Button from '../../components/Button/Button.component'
 import { useState } from 'react'
 import { useNavigate } from 'react-router'
+import userService from '../../services/user.service'
 
 const Register = () => {
     const [username, setUsername] = useState('')
@@ -12,21 +13,15 @@ const Register = () => {
     const [passwordRepeat, setPasswordRepeat] = useState('')
     const navigate = useNavigate()
 
-    const RegisterHandler = async (e) => {
+    const registerHandler = async (e) => {
         e.preventDefault()
         if (password !== passwordRepeat)
             return alert('Passwords are different!')
         try {
-            const res = await axios.post(process.env.REACT_APP_API_URL + '/user/register', {
-                username,
-                password
-            })
-            if(res.data) {
-                alert('Register success, now you can login')
-                navigate('/login')
-                navigate(0)
-            }
-
+            await userService.register(username, password)
+            alert('Register success, now you can login')
+            navigate('/login')
+            navigate(0)
         } catch (err) {
             alert(err.response.data.message)
             setPassword('')
@@ -37,7 +32,7 @@ const Register = () => {
     return (
         <RegisterContainer>
             <FormContainer>
-                <form onSubmit={RegisterHandler}>
+                <form onSubmit={registerHandler}>
                     <FormField
                         label={'Username'}
                         placeholder={'username'}

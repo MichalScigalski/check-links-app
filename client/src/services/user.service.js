@@ -11,8 +11,16 @@ const login = async (username, password) => {
     })
 }
 
+const register = async (username, password) => {
+    return axios.post(process.env.REACT_APP_API_URL + '/user/register', {
+        username,
+        password
+    })
+}
+
 const userService = {
-    login
+    login,
+    register
 }
 
 export default userService
