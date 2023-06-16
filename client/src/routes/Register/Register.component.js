@@ -1,4 +1,3 @@
-import axios from 'axios'
 import { RegisterContainer, FormContainer } from './Register.style'
 import RegisterPicture from '../../assets/img/login-picture.svg'
 import FormField from '../../components/FormField/FormField.component'

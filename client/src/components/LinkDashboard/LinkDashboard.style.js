@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import * as config from "../../globalStyles";
 
 export const LinkDashboardContainer = styled.div`
     display: flex;
