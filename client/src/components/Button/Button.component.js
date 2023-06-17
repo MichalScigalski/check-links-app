@@ -1,7 +1,7 @@
 import { ButtonContainer } from './Button.style'
 
 const Button = ({ value, ...props }) => {
-    return(
+    return (
         <ButtonContainer {...props}>
             {value}
         </ButtonContainer>

@@ -17,17 +17,26 @@ const Header = () => {
     return (
         <HeaderContainer>
             <h1 onClick={() => navigate('/')}>CheckLinks</h1>
-            {user ?
+            {user ? (
                 <div>
-                    <h3 onClick={() => navigate('/dashboard')}>{user.username}</h3>
-                    <Button value='Logout' onClick={logoutHandler}/>
+                    <h3 onClick={() => navigate('/dashboard')}>
+                        {user.username}
+                    </h3>
+                    <Button value="Logout" onClick={logoutHandler} />
                 </div>
-                :
+            ) : (
                 <div>
-                    <Button value={'Login'} onClick={() => navigate('/login')} $primary />
-                    <Button value={'Donate'} onClick={() => navigate('/donate')} />
+                    <Button
+                        value={'Login'}
+                        onClick={() => navigate('/login')}
+                        $primary
+                    />
+                    <Button
+                        value={'Donate'}
+                        onClick={() => navigate('/donate')}
+                    />
                 </div>
-            }
+            )}
         </HeaderContainer>
     )
 }

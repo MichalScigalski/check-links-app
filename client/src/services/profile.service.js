@@ -52,7 +52,7 @@ const addLink = async (link) => {
         process.env.REACT_APP_API_URL + '/profile/add-link',
         {
             name,
-            url
+            url,
         },
         {
             headers: {
@@ -65,10 +65,10 @@ const addLink = async (link) => {
 const editLink = async (link) => {
     const { name, url, _id } = link
     await axios.put(
-        process.env.REACT_APP_API_URL + '/profile/edit-link/'+ _id,
+        process.env.REACT_APP_API_URL + '/profile/edit-link/' + _id,
         {
             name,
-            url
+            url,
         },
         {
             headers: {
@@ -78,15 +78,13 @@ const editLink = async (link) => {
     )
 }
 
-
-
 const profileService = {
     getProfile,
     getDashboard,
     createProfile,
     updateName,
     addLink,
-    editLink
+    editLink,
 }
 
 export default profileService

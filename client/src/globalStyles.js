@@ -1,8 +1,8 @@
-import { createGlobalStyle } from "styled-components";
+import { createGlobalStyle } from 'styled-components'
 
 const green = '#066163',
     dark = '#1B2430',
-    fontCursive = "'Merienda', cursive";
+    fontCursive = "'Merienda', cursive"
 
 const GlobalStyle = createGlobalStyle`
     body {
@@ -15,4 +15,4 @@ const GlobalStyle = createGlobalStyle`
 
 export { green, dark, fontCursive }
 
-export default GlobalStyle;
+export default GlobalStyle

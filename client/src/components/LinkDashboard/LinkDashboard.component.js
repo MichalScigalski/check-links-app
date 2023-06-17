@@ -2,10 +2,10 @@ import {
     LinkDashboardContainer,
     LinkDashboardData,
     LinkDashboardButtons,
-} from './LinkDashboard.style';
+} from './LinkDashboard.style'
 
 const LinkDashboard = ({ link, openModel }) => {
-    const { name, url } = link;
+    const { name, url } = link
 
     return (
         <LinkDashboardContainer>
@@ -16,10 +16,10 @@ const LinkDashboard = ({ link, openModel }) => {
                 </a>
             </LinkDashboardData>
             <LinkDashboardButtons>
-                <button onClick={()=>openModel(link)}>🖊️</button>
+                <button onClick={() => openModel(link)}>🖊️</button>
             </LinkDashboardButtons>
         </LinkDashboardContainer>
-    );
-};
+    )
+}
 
-export default LinkDashboard;
+export default LinkDashboard

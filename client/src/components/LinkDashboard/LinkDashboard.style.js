@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const LinkDashboardContainer = styled.div`
     display: flex;
@@ -6,7 +6,7 @@ export const LinkDashboardContainer = styled.div`
     background-color: #e0e0e0;
     border-radius: 8px;
     padding: 1rem 0;
-`;
+`
 
 export const LinkDashboardData = styled.div`
     display: flex;
@@ -23,7 +23,7 @@ export const LinkDashboardData = styled.div`
     a {
         color: white;
     }
-`;
+`
 
 export const LinkDashboardButtons = styled.div`
     display: flex;
@@ -38,4 +38,4 @@ export const LinkDashboardButtons = styled.div`
             filter: brightness(1.2);
         }
     }
-`;
+`

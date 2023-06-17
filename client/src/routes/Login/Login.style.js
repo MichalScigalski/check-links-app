@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 import * as config from '../../globalStyles'
 
 export const LoginContainer = styled.div`
@@ -28,7 +28,8 @@ export const LoginContainer = styled.div`
                 max-width: 400px;
             }
         }
-        p,span {
+        p,
+        span {
             font-size: 14px;
         }
         span {

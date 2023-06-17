@@ -9,7 +9,7 @@ export const HomeContainer = styled.div`
     height: 80vh;
     margin: 1rem;
     border-radius: 8px;
-    
+
     div {
         margin-top: 2rem;
     }

@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 import * as config from '../../globalStyles'
 
 export const FormFieldContainer = styled.div`
@@ -12,10 +12,10 @@ export const FormFieldContainer = styled.div`
         border-radius: 4px;
         padding: 0.7rem 1rem;
 
-        ::placeholder{
+        ::placeholder {
             color: #cccccc;
         }
-        :focus{
+        :focus {
             outline: none;
             border: 1px solid ${config.green};
         }

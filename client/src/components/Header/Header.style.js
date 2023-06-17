@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 import * as config from '../../globalStyles'
 
 export const HeaderContainer = styled.header`
@@ -15,7 +15,9 @@ export const HeaderContainer = styled.header`
             color: ${config.green};
         }
     }
-    h3 {cursor: pointer}
+    h3 {
+        cursor: pointer;
+    }
     div {
         display: flex;
         justify-content: center;

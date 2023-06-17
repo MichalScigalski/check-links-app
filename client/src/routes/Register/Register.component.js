@@ -54,11 +54,15 @@ const Register = () => {
                     />
                     <section>
                         <input required type="checkbox" />
-                        <span>I have read and agree to the "Terms Of Services"</span>
+                        <span>
+                            I have read and agree to the "Terms Of Services"
+                        </span>
                     </section>
                     <Button $primary value={'Register'} />
-                    <p>I already have an account, <span onClick={() => navigate('/login')}>Login In</span></p>
-
+                    <p>
+                        I already have an account,{' '}
+                        <span onClick={() => navigate('/login')}>Login In</span>
+                    </p>
                 </form>
             </FormContainer>
             <img src={RegisterPicture} alt="register illustration" />

@@ -25,7 +25,7 @@ const modalStyles = {
         bottom: 'auto',
         transform: 'translate(-50%, -50%)',
         padding: '4rem',
-    }
+    },
 }
 
 const Dashboard = () => {

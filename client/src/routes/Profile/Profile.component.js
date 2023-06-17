@@ -16,8 +16,7 @@ const Profile = () => {
             try {
                 const profile = await profileService.getProfile(username)
                 setProfile(profile)
-            }
-            catch (err) {
+            } catch (err) {
                 console.log(err)
                 navigate('/')
             }
@@ -27,19 +26,21 @@ const Profile = () => {
 
     return (
         <ProfileContainer>
-            {profile &&
+            {profile && (
                 <>
                     <h1>{profile.displayName}</h1>
                     <span>@{profile.username}</span>
-                    {profile.links.length ?
+                    {profile.links.length ? (
                         <ProfileLinks>
-                            {profile.links.map((link, _id) => <LinkProfile key={_id} link={link} />)}
+                            {profile.links.map((link, _id) => (
+                                <LinkProfile key={_id} link={link} />
+                            ))}
                         </ProfileLinks>
-                        :
+                    ) : (
                         <span>No links yet!</span>
-                    }
+                    )}
                 </>
-            }
+            )}
         </ProfileContainer>
     )
 }
