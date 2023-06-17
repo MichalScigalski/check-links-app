@@ -1,4 +1,3 @@
-import axios from 'axios'
 import { useEffect } from 'react'
 import { ProfileContainer, ProfileLinks } from './Profile.style'
 import { useNavigate, useParams } from 'react-router'
@@ -12,17 +11,18 @@ const Profile = () => {
     const navigate = useNavigate()
 
     useEffect(() => {
-        const getProfile = async () => {
-            try {
-                const profile = await profileService.getProfile(username)
-                setProfile(profile)
-            } catch (err) {
-                console.log(err)
-                navigate('/')
-            }
-        }
         getProfile()
     }, [])
+
+    const getProfile = async () => {
+        try {
+            const profile = await profileService.getProfile(username)
+            setProfile(profile)
+        } catch (err) {
+            console.log(err)
+            navigate('/')
+        }
+    }
 
     return (
         <ProfileContainer>
