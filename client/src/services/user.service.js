@@ -1,8 +1,10 @@
 import axios from 'axios'
 
+const API_URL = process.env.REACT_APP_API_URL
+
 const login = async (username, password) => {
     return axios
-        .post(process.env.REACT_APP_API_URL + '/user/login', {
+        .post(API_URL + '/user/login', {
             username,
             password,
         })
@@ -13,7 +15,7 @@ const login = async (username, password) => {
 }
 
 const register = async (username, password) => {
-    return axios.post(process.env.REACT_APP_API_URL + '/user/register', {
+    return axios.post(API_URL + '/user/register', {
         username,
         password,
     })

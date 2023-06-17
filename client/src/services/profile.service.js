@@ -1,16 +1,18 @@
 import axios from 'axios'
 import authService from './auth.service'
 
+const API_URL = process.env.REACT_APP_API_URL
+
 const getProfile = async (username) => {
     const res = await axios.get(
-        process.env.REACT_APP_API_URL + `/profile/user/${username}`
+        API_URL + `/profile/user/${username}`
     )
     return res.data.profile
 }
 
 const getDashboard = async () => {
     const res = await axios.get(
-        process.env.REACT_APP_API_URL + '/profile/dashboard',
+        API_URL + '/profile/dashboard',
         {
             headers: {
                 Authorization: 'Bearer ' + authService.getAuthToken(),
@@ -22,7 +24,7 @@ const getDashboard = async () => {
 
 const createProfile = async () => {
     await axios.post(
-        process.env.REACT_APP_API_URL + '/profile/create',
+        API_URL + '/profile/create',
         {},
         {
             headers: {
@@ -34,7 +36,7 @@ const createProfile = async () => {
 
 const updateName = async (displayName) => {
     await axios.put(
-        process.env.REACT_APP_API_URL + '/profile/edit-name',
+        API_URL + '/profile/edit-name',
         {
             displayName,
         },
@@ -49,7 +51,7 @@ const updateName = async (displayName) => {
 const addLink = async (link) => {
     const { name, url } = link
     await axios.post(
-        process.env.REACT_APP_API_URL + '/profile/add-link',
+        API_URL + '/profile/add-link',
         {
             name,
             url,
@@ -65,7 +67,7 @@ const addLink = async (link) => {
 const editLink = async (link) => {
     const { name, url, _id } = link
     await axios.put(
-        process.env.REACT_APP_API_URL + '/profile/edit-link/' + _id,
+        API_URL + '/profile/edit-link/' + _id,
         {
             name,
             url,
