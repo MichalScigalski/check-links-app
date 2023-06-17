@@ -62,11 +62,13 @@ const addLink = async (link) => {
     )
 }
 
-const editLink = async (link, link_id) => {
+const editLink = async (link) => {
+    const { name, url, _id } = link
     await axios.put(
-        process.env.REACT_APP_API_URL + '/profile/edit-link/'+ link_id,
+        process.env.REACT_APP_API_URL + '/profile/edit-link/'+ _id,
         {
-            ...link,
+            name,
+            url
         },
         {
             headers: {

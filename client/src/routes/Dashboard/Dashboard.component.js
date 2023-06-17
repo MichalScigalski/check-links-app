@@ -12,11 +12,27 @@ import LinkDashboard from '../../components/LinkDashboard/LinkDashboard.componen
 import Modal from 'react-modal'
 import profileService from '../../services/profile.service'
 
+const linkDefault = {
+    name: '',
+    url: '',
+}
+
+const modalStyles = {
+    content: {
+        top: '50%',
+        left: '50%',
+        right: 'auto',
+        bottom: 'auto',
+        transform: 'translate(-50%, -50%)',
+        padding: '4rem',
+    }
+}
+
 const Dashboard = () => {
     const [profile, setProfile] = useState(null)
     const [displayName, setDisplayName] = useState('')
     const [isModalOpen, setIsModalOpen] = useState(false)
-    const [link, setLink] = useState({ name: '', url: '' })
+    const [link, setLink] = useState(linkDefault)
     const navigate = useNavigate()
 
     useEffect(() => {
@@ -67,41 +83,48 @@ const Dashboard = () => {
     const editLinkHandler = async (e) => {
         e.preventDefault(e)
         try {
-        //   await profileService.editLink(link, link_id)
+            await profileService.editLink(link)
+            navigate(0)
         } catch (err) {
             alert(err.response.data.message)
         }
     }
 
-    const openModal = () => setIsModalOpen(true)
-    const closeModal = () => setIsModalOpen(false)
+    const openModal = (link) => {
+        setLink(link)
+        setIsModalOpen(true)
+    }
+    const closeModal = () => {
+        setIsModalOpen(false)
+        setLink(linkDefault)
+    }
 
     return (
         <>
-            <Modal isOpen={isModalOpen}>
-                <form onSubmit={editLinkHandler}>
-                    <FormField
-                        label="Name"
-                        value={link.name}
-                        onChange={(e) =>
-                            setLink({ ...link, name: e.target.value })
-                        }
-                        placeholder="Instagram"
-                    />
-                    <FormField
-                        label="Url"
-                        value={link.url}
-                        onChange={(e) =>
-                            setLink({ ...link, url: e.target.value })
-                        }
-                        placeholder="http://instagram.com/user"
-                    />
-                    <Button $primary value="Update" type="submit" />
-                    <Button value="Close" onClick={closeModal} />
-                </form>
-            </Modal>
             {profile ? (
                 <DashboardContainer>
+                    <Modal isOpen={isModalOpen} style={modalStyles}>
+                        <form onSubmit={editLinkHandler}>
+                            <FormField
+                                label="Name"
+                                value={link.name}
+                                onChange={(e) =>
+                                    setLink({ ...link, name: e.target.value })
+                                }
+                                placeholder="Instagram"
+                            />
+                            <FormField
+                                label="Url"
+                                value={link.url}
+                                onChange={(e) =>
+                                    setLink({ ...link, url: e.target.value })
+                                }
+                                placeholder="http://instagram.com/user"
+                            />
+                            <Button $primary value="Update" type="submit" />
+                            <Button value="Close" onClick={closeModal} />
+                        </form>
+                    </Modal>
                     <Container>
                         <form onSubmit={updateDisplayNameHandler}>
                             <FormField

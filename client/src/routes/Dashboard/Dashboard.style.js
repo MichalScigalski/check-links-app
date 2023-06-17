@@ -22,6 +22,11 @@ export const DashboardContainer = styled.div`
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
     gap: 1rem;
+
+    form {
+        input {
+        }
+    }
 `
 
 export const Container = styled.div`

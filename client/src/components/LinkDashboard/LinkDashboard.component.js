@@ -16,7 +16,7 @@ const LinkDashboard = ({ link, openModel }) => {
                 </a>
             </LinkDashboardData>
             <LinkDashboardButtons>
-                <button onClick={openModel}>🖊️</button>
+                <button onClick={()=>openModel(link)}>🖊️</button>
             </LinkDashboardButtons>
         </LinkDashboardContainer>
     );
