@@ -3,15 +3,15 @@ import Button from '../Button/Button.component'
 import { useNavigate } from 'react-router'
 import { useContext } from 'react'
 import { UserContext } from '../../context/User.context'
+import userService from '../../services/user.service'
 
 const Header = () => {
     const { user, setUser } = useContext(UserContext)
     const navigate = useNavigate()
 
-    const LogoutHandler = () => {
+    const logoutHandler = () => {
         setUser(null)
-        sessionStorage.removeItem('token')
-        navigate(0)
+        userService.logout()
     }
 
     return (
@@ -20,7 +20,7 @@ const Header = () => {
             {user ?
                 <div>
                     <h3 onClick={() => navigate('/dashboard')}>{user.username}</h3>
-                    <Button value='Logout' onClick={LogoutHandler}/>
+                    <Button value='Logout' onClick={logoutHandler}/>
                 </div>
                 :
                 <div>

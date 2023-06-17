@@ -18,9 +18,15 @@ const register = async (username, password) => {
     })
 }
 
+const logout = () => {
+    sessionStorage.removeItem('token')
+    document.location.reload()
+}
+
 const userService = {
     login,
-    register
+    register,
+    logout
 }
 
 export default userService
