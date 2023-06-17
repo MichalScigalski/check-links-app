@@ -47,10 +47,12 @@ const updateName = async (displayName) => {
 }
 
 const addLink = async (link) => {
+    const { name, url } = link
     await axios.post(
         process.env.REACT_APP_API_URL + '/profile/add-link',
         {
-            ...link,
+            name,
+            url
         },
         {
             headers: {
