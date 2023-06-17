@@ -5,13 +5,12 @@ import {
     Container,
     LinksContainer,
 } from './Dashboard.style'
-import axios from 'axios'
-import authService from '../../services/auth.service'
 import Button from '../../components/Button/Button.component'
 import { useNavigate } from 'react-router'
 import FormField from '../../components/FormField/FormField.component'
 import LinkDashboard from '../../components/LinkDashboard/LinkDashboard.component'
 import Modal from 'react-modal'
+import profileService from '../../services/profile.service'
 
 const Dashboard = () => {
     const [profile, setProfile] = useState(null)
@@ -26,17 +25,9 @@ const Dashboard = () => {
 
     const dashHandle = async () => {
         try {
-            const res = await axios.get(
-                process.env.REACT_APP_API_URL + '/profile/dashboard',
-                {
-                    headers: {
-                        Authorization: 'Bearer ' + authService.getAuthToken(),
-                    },
-                }
-            )
-            const data = res.data.profile
-            setProfile(data)
-            setDisplayName(data.displayName)
+            const profile = await profileService.getDashboard()
+            setProfile(profile)
+            setDisplayName(profile.displayName)
         } catch (err) {
             console.log(err.response.data.message)
         }
@@ -44,19 +35,9 @@ const Dashboard = () => {
 
     const createProfileHandler = async () => {
         try {
-            const res = await axios.post(
-                process.env.REACT_APP_API_URL + '/profile/create',
-                {},
-                {
-                    headers: {
-                        Authorization: 'Bearer ' + authService.getAuthToken(),
-                    },
-                }
-            )
-            if (res.data) {
-                alert('Profile created')
-                navigate(0)
-            }
+            await profileService.createProfile()
+            alert('Profile created')
+            navigate(0)
         } catch (err) {
             alert(err.response.data.message)
         }
@@ -65,18 +46,8 @@ const Dashboard = () => {
     const addLinkHandler = async (e) => {
         e.preventDefault()
         try {
-            const res = await axios.post(
-                process.env.REACT_APP_API_URL + '/profile/add-link',
-                {
-                    ...link,
-                },
-                {
-                    headers: {
-                        Authorization: 'Bearer ' + authService.getAuthToken(),
-                    },
-                }
-            )
-            if (res.data) alert('Link added')
+            await profileService.addLink(link)
+            alert('Link added')
             navigate(0)
         } catch (err) {
             alert(err.response.data.message)
@@ -86,17 +57,7 @@ const Dashboard = () => {
     const updateDisplayNameHandler = async (e) => {
         e.preventDefault()
         try {
-            await axios.put(
-                process.env.REACT_APP_API_URL + '/profile/edit-name',
-                {
-                    displayName,
-                },
-                {
-                    headers: {
-                        Authorization: 'Bearer ' + authService.getAuthToken(),
-                    },
-                }
-            )
+            await profileService.updateName(displayName)
             alert('Name updated')
         } catch (err) {
             alert(err.response.data.message)
@@ -106,18 +67,7 @@ const Dashboard = () => {
     const editLinkHandler = async (e) => {
         e.preventDefault(e)
         try {
-            await axios.put(
-                process.env.REACT_APP_API_URL + '/profile/edit-link',
-                {
-                    ...link,
-                },
-                {
-                    headers: {
-                        Authorization: 'Bearer ' + authService.getAuthToken(),
-                    },
-                }
-            )
-            alert('Link updated')
+        //   await profileService.editLink(link, link_id)
         } catch (err) {
             alert(err.response.data.message)
         }

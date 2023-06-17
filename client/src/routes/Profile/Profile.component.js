@@ -4,6 +4,7 @@ import { ProfileContainer, ProfileLinks } from './Profile.style'
 import { useNavigate, useParams } from 'react-router'
 import { useState } from 'react'
 import LinkProfile from '../../components/LinkProfile/LinkProfile.component'
+import profileService from '../../services/profile.service'
 
 const Profile = () => {
     const { username } = useParams()
@@ -13,11 +14,11 @@ const Profile = () => {
     useEffect(() => {
         const getProfile = async () => {
             try {
-                const res = await axios.get(process.env.REACT_APP_API_URL + `/profile/user/${username}`)
-                setProfile(res.data.profile)
+                const profile = await profileService.getProfile(username)
+                setProfile(profile)
             }
             catch (err) {
-                console.log(err.response.data.message)
+                console.log(err)
                 navigate('/')
             }
         }
