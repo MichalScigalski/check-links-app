@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
 
-const databaseurl = process.env.DATABASEURL || 'mongodb://localhost:27017/check-links' 
+const databaseurl = process.env.DATABASE_URL
 
 mongoose.connect(databaseurl)
