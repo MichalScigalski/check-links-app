@@ -16,7 +16,6 @@ module.exports = {
         let user
         try {
             user = new User({ username, password })
-            await user.bcryptPassword()
             await user.save()
             res.sendStatus(201)
         } catch (err) {
@@ -52,10 +51,9 @@ module.exports = {
     },
     async changePassword(req, res) {
         const newPassword = req.body.password
-        const user_id = req.user._id
-
+        const _id = req.user.id
         try {
-            await User.findByIdAndUpdate(user_id, { password: newPassword })
+            await User.findByIdAndUpdate(_id, { password: newPassword })
             res.sendStatus(200)
         } catch (err) {
             return res.status(422).json({ message: err.message })

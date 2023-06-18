@@ -6,7 +6,6 @@ module.exports = {
         const userId = req.user.id
         const username = req.user.username
         const profileExists = await Profile.findOne({ userId })
-        const user = await User.findOne({ username })
 
         if (profileExists)
             return res.status(409).json({ message: "Profile already exists" })
@@ -17,8 +16,7 @@ module.exports = {
                 username,
                 links: []
             })
-            user.isProfile = true
-            await user.save()
+            await User.findByIdAndUpdate(userId, { isProfile: true })
             await profile.save()
         } catch (err) {
             res.status(422).json({ message: err.message })
@@ -106,7 +104,7 @@ module.exports = {
                 return res.status(404).send({ message: 'Wrong data' })
 
             const profile = await Profile.findOne({ userId })
-            const link = profile.links[profile.links.findIndex(link => link._id == linkId)]
+            const link = profile.links.find(link => link._id == linkId)
             link.name = nameLink;
             link.url = urlLink;
             profile.save()
@@ -122,7 +120,7 @@ module.exports = {
 
         try {
             const profile = await Profile.findOne({ userId })
-            const link = profile.links[profile.links.findIndex(link => link._id == linkId)]
+            const link = profile.links.find(link => link._id == linkId)
             link.isVisible = !link.isVisible
             profile.save()
             res.sendStatus(204)
