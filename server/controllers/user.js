@@ -1,5 +1,7 @@
 const jwt = require('jsonwebtoken')
 const User = require('../db/models/user')
+const bcrypt = require('bcrypt')
+const { hashPassword } = require('../helper')
 
 module.exports = {
     async register(req, res) {
@@ -16,6 +18,7 @@ module.exports = {
         let user
         try {
             user = new User({ username, password })
+            user.password = await hashPassword(user.password)
             await user.save()
             res.sendStatus(201)
         } catch (err) {
@@ -53,7 +56,8 @@ module.exports = {
         const newPassword = req.body.password
         const _id = req.user.id
         try {
-            await User.findByIdAndUpdate(_id, { password: newPassword })
+            const hashedPassword = await hashPassword(newPassword)
+            await User.findByIdAndUpdate(_id, { password: hashedPassword })
             res.sendStatus(200)
         } catch (err) {
             return res.status(422).json({ message: err.message })
