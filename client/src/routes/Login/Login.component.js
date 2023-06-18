@@ -18,7 +18,8 @@ const Login = () => {
             alert('Loggin success')
             navigate(0)
         } catch (err) {
-            alert(err)
+            alert(err.response.data.message)
+            setPassword('')
         }
     }
 

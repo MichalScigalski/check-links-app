@@ -14,17 +14,17 @@ const Register = () => {
 
     const registerHandler = async (e) => {
         e.preventDefault()
-        if (password !== passwordRepeat)
+        if (password !== passwordRepeat) {
+            setPassword('')
+            setPasswordRepeat('')
             return alert('Passwords are different!')
+        }
         try {
             await userService.register(username, password)
             alert('Register success, now you can login')
             navigate('/login')
-            navigate(0)
         } catch (err) {
             alert(err.response.data.message)
-            setPassword('')
-            setPasswordRepeat('')
         }
     }
 
