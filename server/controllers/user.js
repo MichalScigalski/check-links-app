@@ -33,8 +33,8 @@ module.exports = {
             const user = await User.findOne({ username })
             if (!user)
                 return res
-                    .status(404)
-                    .json({ message: 'User not found' })
+                    .status(403)
+                    .json({ message: 'Username or password is wrong!' })
             else {
                 const isValidPassword = await user.isValidPassword(password)
                 if (!isValidPassword)
