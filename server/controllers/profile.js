@@ -69,9 +69,10 @@ module.exports = {
     async addLink(req, res) {
         const name = req.body.name
         const url = req.body.url
-        const username = req.user.username;
+        const userId = req.user.id;
+
         try {
-            const profile = await Profile.findOne({ username })
+            const profile = await Profile.findOne({ userId })
             profile.links.push({ name, url })
             await profile.save()
             res.sendStatus(201)
@@ -80,12 +81,12 @@ module.exports = {
         }
     },
     async deleteLink(req, res) {
-        const username = req.user.username
-        const id_link = req.params.id
+        const userId = req.user.id
+        const linkId = req.params.id
 
         try {
-            const profile = await Profile.findOne({ username })
-            profile.links = profile.links.filter(link => link._id != id_link)
+            const profile = await Profile.findOne({ userId })
+            profile.links = profile.links.filter(link => link._id != linkId)
             await profile.save()
             res.sendStatus(204)
         }
@@ -94,8 +95,8 @@ module.exports = {
         }
     },
     async editLink(req, res) {
-        const username = req.user.username
-        const id_link = req.params.id
+        const userId = req.user.id
+        const linkId = req.params.id
 
         const nameLink = req.body.name
         const urlLink = req.body.url
@@ -104,8 +105,8 @@ module.exports = {
             if (!nameLink || !urlLink)
                 return res.status(404).send({ message: 'Wrong data' })
 
-            const profile = await Profile.findOne({ username })
-            const link = profile.links[profile.links.findIndex(link => link._id == id_link)]
+            const profile = await Profile.findOne({ userId })
+            const link = profile.links[profile.links.findIndex(link => link._id == linkId)]
             link.name = nameLink;
             link.url = urlLink;
             profile.save()
@@ -116,12 +117,12 @@ module.exports = {
         }
     },
     async toggleVisibilityLink(req, res) {
-        const id_link = req.params.id
-        const username = req.user.username
+        const linkId = req.params.id
+        const userId = req.user.id
 
         try {
-            const profile = await Profile.findOne({ username })
-            const link = profile.links[profile.links.findIndex(link => link._id == id_link)]
+            const profile = await Profile.findOne({ userId })
+            const link = profile.links[profile.links.findIndex(link => link._id == linkId)]
             link.isVisible = !link.isVisible
             profile.save()
             res.sendStatus(204)
