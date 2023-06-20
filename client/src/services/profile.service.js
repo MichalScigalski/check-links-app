@@ -80,10 +80,21 @@ const editLink = async (link) => {
     )
 }
 
-const deleteLink = async (link) => {
-    const { _id } = link
+const deleteLink = async (linkId) => {
     await axios.delete(
-        API_URL + '/profile/delete-link/' + _id,
+        API_URL + '/profile/delete-link/' + linkId,
+        {
+            headers: {
+                Authorization: 'Bearer ' + authService.getAuthToken()
+            }
+        }
+    )
+}
+
+const toggleVisibilityLink = async (linkId) => {
+    await axios.put(
+        API_URL + '/profile/toggle-link-visibility/' + linkId,
+        {},
         {
             headers: {
                 Authorization: 'Bearer ' + authService.getAuthToken()
@@ -99,7 +110,8 @@ const profileService = {
     updateName,
     addLink,
     editLink,
-    deleteLink
+    deleteLink,
+    toggleVisibilityLink
 }
 
 export default profileService
