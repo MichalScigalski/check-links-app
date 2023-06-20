@@ -80,6 +80,18 @@ const editLink = async (link) => {
     )
 }
 
+const deleteLink = async (link) => {
+    const { _id } = link
+    await axios.delete(
+        API_URL + '/profile/delete-link/' + _id,
+        {
+            headers: {
+                Authorization: 'Bearer ' + authService.getAuthToken()
+            }
+        }
+    )
+}
+
 const profileService = {
     getProfile,
     getDashboard,
@@ -87,6 +99,7 @@ const profileService = {
     updateName,
     addLink,
     editLink,
+    deleteLink
 }
 
 export default profileService
