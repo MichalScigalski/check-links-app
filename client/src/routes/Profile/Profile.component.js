@@ -32,7 +32,7 @@ const Profile = () => {
                     <span>@{profile.username}</span>
                     {profile.links.length ? (
                         <ProfileLinks>
-                            {profile.links.map((link, _id) => (
+                            {profile.links.filter(link => link.isVisible).map((link, _id) => (
                                 <LinkProfile key={_id} link={link} />
                             ))}
                         </ProfileLinks>
