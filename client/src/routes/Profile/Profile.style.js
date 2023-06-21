@@ -6,7 +6,7 @@ export const ProfileContainer = styled.div`
     align-items: center;
     justify-content: center;
     text-align: center;
-    background-color: #fff;
+    background-color: ${props => props.$bgColor || '#F5F5F5'};
     border-radius: 8px;
     padding: 3rem;
     height: 70vh;
