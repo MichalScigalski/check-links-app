@@ -1,7 +1,9 @@
 import { createGlobalStyle } from 'styled-components'
 
-const green = '#066163',
+export const green = '#49C98A',
     dark = '#1B2430',
+    purple = '#3D4DDE',
+    yellow = '#FFC40A',
     fontCursive = "'Merienda', cursive"
 
 const GlobalStyle = createGlobalStyle`
@@ -12,7 +14,5 @@ const GlobalStyle = createGlobalStyle`
         background: ${green};
     }
 `
-
-export { green, dark, fontCursive }
 
 export default GlobalStyle
