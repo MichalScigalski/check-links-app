@@ -128,5 +128,19 @@ module.exports = {
         catch (err) {
             res.status(422).json({ message: err.message });
         }
+    },
+    async editBackgroundColor(req, res) {
+        const userId = req.user.id
+        const backgroundColor = req.body.backgroundColor
+
+        try {
+            const profile = await Profile.findOne({ userId })
+            profile.backgroundColor = backgroundColor
+            profile.save()
+            res.sendStatus(204)
+        }
+        catch (err) {
+            res.status(422).json({ message: err.message });
+        }
     }
 }

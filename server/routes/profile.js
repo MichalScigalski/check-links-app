@@ -12,5 +12,6 @@ router.delete('/delete-link/:id', auth, profileController.deleteLink)
 router.put('/edit-link/:id', auth, profileController.editLink)
 router.put('/toggle-link-visibility/:id', auth, profileController.toggleVisibilityLink)
 router.get('/dashboard', auth, profileController.dashboard)
+router.put('/edit-background-color', auth, profileController.editBackgroundColor)
 
 module.exports = router;
