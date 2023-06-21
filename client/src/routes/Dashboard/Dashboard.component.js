@@ -4,6 +4,7 @@ import {
     CreateProfileContainer,
     Container,
     LinksContainer,
+    ColorField
 } from './Dashboard.style'
 import Button from '../../components/Button/Button.component'
 import { useNavigate } from 'react-router'
@@ -135,13 +136,17 @@ const Dashboard = () => {
                                 value={displayName}
                                 onChange={(e) => setDisplayName(e.target.value)}
                             />
-                            <FormField
-                                label="Background color"
-                                value={backgroundColor}
-                                onChange={(e) =>
-                                    setBackgroundColor(e.target.value)
-                                }
-                            />
+                            <ColorField>
+                                <label htmlFor="Background color">Background profile color</label>
+                                <input
+                                    label="Background color"
+                                    value={backgroundColor}
+                                    type='color'
+                                    onChange={(e) =>
+                                        setBackgroundColor(e.target.value)
+                                    }
+                                />
+                            </ColorField>
                             <Button $primary value="Save" type="submit" />
                         </form>
                         <Button

@@ -40,10 +40,10 @@ export const Container = styled.div`
     form {
         display: flex;
         flex-direction: column;
-        align-items: center;
+        align-items: left;
 
         button {
-            margin: 4px 0;
+            margin: 10px 0;
         }
     }
 `
@@ -55,4 +55,22 @@ export const LinksContainer = styled.div`
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 1rem 4rem;
     background-color: white;
+`
+
+export const ColorField = styled.div`
+    display: flex;
+    flex-direction: column;
+    label {
+        margin: 5px;
+    }
+    input {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        width: 100px;
+        height: 50px;
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+    }
 `
