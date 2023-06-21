@@ -29,7 +29,12 @@ const ProfileSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    links: [LinkSchema]
+    links: [LinkSchema],
+    backgroundColor: {
+        type: String,
+        required: false,
+        default: '#F5F5F5'
+    }
 })
 
 const Profile = mongoose.model('Profile', ProfileSchema)
