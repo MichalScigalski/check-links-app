@@ -103,6 +103,20 @@ const toggleVisibilityLink = async (linkId) => {
     )
 }
 
+const editBackgroundColor = async (backgroundColor) => {
+    await axios.put(
+        API_URL + '/profile/edit-background-color',
+        {
+            backgroundColor,
+        },
+        {
+            headers: {
+                Authorization: 'Bearer ' + authService.getAuthToken(),
+            },
+        }
+    )
+}
+
 const profileService = {
     getProfile,
     getDashboard,
@@ -111,7 +125,8 @@ const profileService = {
     addLink,
     editLink,
     deleteLink,
-    toggleVisibilityLink
+    toggleVisibilityLink,
+    editBackgroundColor
 }
 
 export default profileService

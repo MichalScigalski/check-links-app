@@ -31,6 +31,7 @@ const modalStyles = {
 const Dashboard = () => {
     const [profile, setProfile] = useState(null)
     const [displayName, setDisplayName] = useState('')
+    const [backgroundColor, setBackgroundColor] = useState('')
     const [isModalOpen, setIsModalOpen] = useState(false)
     const [link, setLink] = useState(linkDefault)
     const navigate = useNavigate()
@@ -44,6 +45,7 @@ const Dashboard = () => {
             const profile = await profileService.getDashboard()
             setProfile(profile)
             setDisplayName(profile.displayName)
+            setBackgroundColor(profile.backgroundColor)
         } catch (err) {
             console.log(err.response.data.message)
         }
@@ -70,11 +72,12 @@ const Dashboard = () => {
         }
     }
 
-    const updateDisplayNameHandler = async (e) => {
+    const updateHandler = async (e) => {
         e.preventDefault()
         try {
             await profileService.updateName(displayName)
-            alert('Name updated')
+            await profileService.editBackgroundColor(backgroundColor)
+            alert('Success')
         } catch (err) {
             alert(err.response.data.message)
         }
@@ -126,11 +129,18 @@ const Dashboard = () => {
                         </form>
                     </Modal>
                     <Container>
-                        <form onSubmit={updateDisplayNameHandler}>
+                        <form onSubmit={updateHandler}>
                             <FormField
                                 label="Display name"
                                 value={displayName}
                                 onChange={(e) => setDisplayName(e.target.value)}
+                            />
+                            <FormField
+                                label="Background color"
+                                value={backgroundColor}
+                                onChange={(e) =>
+                                    setBackgroundColor(e.target.value)
+                                }
                             />
                             <Button $primary value="Save" type="submit" />
                         </form>
@@ -164,7 +174,7 @@ const Dashboard = () => {
                             />
                         </form>
                     </Container>
-                    {profile.links.length && (
+                    {profile.links.length > 0 && (
                         <LinksContainer>
                             {profile.links.map((link, _id) => {
                                 return (
