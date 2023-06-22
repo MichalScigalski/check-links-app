@@ -13,7 +13,11 @@ const GlobalStyle = createGlobalStyle`
         margin: 0;
         padding: 0;
         font-family: 'Outfit', sans-serif;
-        background: ${colors.green};
+        background: ${colors.light};
+    }
+
+    * {
+        box-sizing: border-box;
     }
 `
 
