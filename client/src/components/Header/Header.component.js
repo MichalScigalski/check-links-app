@@ -27,12 +27,14 @@ const Header = () => {
             ) : (
                 <div>
                     <Button
+                        variant='outlined'
                         value={'Login'}
                         onClick={() => navigate('/login')}
                         $primary
                     />
                     <Button
                         value={'Donate'}
+                        variant='filled'
                         onClick={() => navigate('/donate')}
                     />
                 </div>
