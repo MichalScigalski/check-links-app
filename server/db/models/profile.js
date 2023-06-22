@@ -33,7 +33,7 @@ const ProfileSchema = new mongoose.Schema({
     backgroundColor: {
         type: String,
         required: false,
-        default: '#F5F5F5'
+        default: '#49C98A'
     }
 })
 
