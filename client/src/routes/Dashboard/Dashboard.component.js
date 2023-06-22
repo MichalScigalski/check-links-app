@@ -4,7 +4,7 @@ import {
     CreateProfileContainer,
     Container,
     LinksContainer,
-    ColorField
+    ColorField,
 } from './Dashboard.style'
 import Button from '../../components/Button/Button.component'
 import { useNavigate } from 'react-router'
@@ -137,11 +137,13 @@ const Dashboard = () => {
                                 onChange={(e) => setDisplayName(e.target.value)}
                             />
                             <ColorField>
-                                <label htmlFor="Background color">Background profile color</label>
+                                <label htmlFor="Background color">
+                                    Background profile color
+                                </label>
                                 <input
                                     label="Background color"
                                     value={backgroundColor}
-                                    type='color'
+                                    type="color"
                                     onChange={(e) =>
                                         setBackgroundColor(e.target.value)
                                     }
@@ -179,9 +181,9 @@ const Dashboard = () => {
                             />
                         </form>
                     </Container>
-                    {profile.links.length > 0 && (
-                        <LinksContainer>
-                            {profile.links.map((link, _id) => {
+                    <LinksContainer>
+                        {profile.links.length > 0 &&
+                            profile.links.map((link, _id) => {
                                 return (
                                     <LinkDashboard
                                         key={_id}
@@ -190,8 +192,7 @@ const Dashboard = () => {
                                     />
                                 )
                             })}
-                        </LinksContainer>
-                    )}
+                    </LinksContainer>
                 </DashboardContainer>
             ) : (
                 <CreateProfileContainer>

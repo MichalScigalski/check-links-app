@@ -34,7 +34,7 @@ const LinkDashboard = ({ link, openModel }) => {
     }
 
     return (
-        <LinkDashboardContainer>
+        <LinkDashboardContainer status={isChecked}>
             <LinkDashboardData>
                 <p>{name}</p>
                 <a href={url} rel="noreferrer" target="_blank">

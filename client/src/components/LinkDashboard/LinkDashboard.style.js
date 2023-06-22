@@ -2,33 +2,40 @@ import styled from 'styled-components'
 
 export const LinkDashboardContainer = styled.div`
     display: flex;
+    align-items: center;
     justify-content: space-between;
-    background-color: #e0e0e0;
     border-radius: 8px;
-    padding: 1rem 0;
+    background-color: #EDEDED;
+    padding: 14px;
+    max-width: 340px;
+    max-height: 100px;
+    opacity: ${({ status }) => (status ? '1' : '0.5')};
 `
 
 export const LinkDashboardData = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 4px;
-    margin-left: 2rem;
+    max-width: 50%;
+    max-height: 60px;
+    word-wrap: break-word;
+    overflow: scroll;
 
-    p {
-        font-size: 20px;
-        margin: 0;
+    &::-webkit-scrollbar {
+        display: none;
     }
 
-    a {
-        color: white;
+    p,a {
+        color: #959595;
+        margin: 0;
+    }
+    p {
+        font-weight: 700;
+        margin-bottom: 4px;
     }
 `
 
 export const LinkDashboardButtons = styled.div`
     display: flex;
     align-items: center;
-    margin-right: 1rem;
+    gap: 4px;
     button {
         border-radius: 50%;
         height: 30px;

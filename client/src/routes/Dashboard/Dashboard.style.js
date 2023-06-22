@@ -20,7 +20,7 @@ export const CreateProfileContainer = styled.div`
 export const DashboardContainer = styled.div`
     margin: 2rem 10%;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
     gap: 1rem;
 `
 
@@ -32,6 +32,7 @@ export const Container = styled.div`
     background-color: white;
     border-radius: 8px;
     padding: 2rem;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
 
     input {
         margin-bottom: 1rem;
@@ -52,9 +53,12 @@ export const LinksContainer = styled.div`
     display: grid;
     border-radius: 8px;
     padding: 2rem;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 1rem 4rem;
-    background-color: white;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    background-color: #FFF;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    overflow-y: scroll;
+    height: 400px;
 `
 
 export const ColorField = styled.div`
