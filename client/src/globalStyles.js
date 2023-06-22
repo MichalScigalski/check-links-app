@@ -1,19 +1,19 @@
 import { createGlobalStyle } from 'styled-components'
 
-
-export const green = '#49C98A',
-    dark = '#1B2430',
-    light = '#FBFBFB',
-    purple = '#3D4DDE',
-    yellow = '#FFC40A',
-    fontCursive = "'Merienda', cursive"
+export const colors = {
+    yellow: '#FFC40A',
+    green: '#49C98A',
+    purple: '#3D4DDE',
+    light: '#FBFBFB',
+    dark: '#1B2430'
+}
 
 const GlobalStyle = createGlobalStyle`
     body {
         margin: 0;
         padding: 0;
         font-family: 'Outfit', sans-serif;
-        background: ${green};
+        background: ${colors.green};
     }
 `
 

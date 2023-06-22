@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import * as config from '../../globalStyles'
+import colors from '../../globalStyles'
 
 export const HeaderContainer = styled.header`
     display: flex;
@@ -7,12 +7,12 @@ export const HeaderContainer = styled.header`
     align-items: center;
     background-color: #fff;
     h1 {
-        color: ${config.dark};
-        font-family: ${config.fontCursive};
+        color: ${colors.dark};
+        font-family: 'Merienda', cursive;
         cursor: pointer;
 
         &:hover {
-            color: ${config.green};
+            color: ${colors.green};
         }
     }
     h3 {

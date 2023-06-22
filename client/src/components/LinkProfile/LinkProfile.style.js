@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import * as config from '../../globalStyles'
+import colors from '../../globalStyles'
 
 export const LinkProfileContainer = styled.a`
     display: flex;
@@ -16,9 +16,9 @@ export const LinkProfileContainer = styled.a`
     &:hover {
         box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
         img {
-            background-color: ${config.green};
+            background-color: ${colors.green};
         }
-        color: ${config.green};
+        color: ${colors.green};
     }
 
     img {

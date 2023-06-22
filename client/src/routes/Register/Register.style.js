@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import * as config from '../../globalStyles'
+import colors from '../../globalStyles'
 
 export const FormContainer = styled.div`
     display: flex;
@@ -25,7 +25,7 @@ export const RegisterContainer = styled.div`
         font-size: 14px;
 
         span {
-            color: ${config.green};
+            color: ${colors.green};
             cursor: pointer;
         }
     }
