@@ -27,20 +27,24 @@ const Profile = () => {
     return (
         <>
             {profile && (
-                <ProfileContainer $bgColor={profile.backgroundColor}>
+                <ProfileContainer bgColor={profile.backgroundColor}>
                     <h1>{profile.displayName}</h1>
                     <span>@{profile.username}</span>
-                    {profile.links.length ? (
-                        <ProfileLinks>
-                            {profile.links
+                    <ProfileLinks>
+                        {profile.links.length > 0 ? (
+                            profile.links
                                 .filter((link) => link.isVisible)
                                 .map((link, _id) => (
-                                    <LinkProfile key={_id} link={link} />
-                                ))}
-                        </ProfileLinks>
-                    ) : (
-                        <span>No links yet!</span>
-                    )}
+                                    <LinkProfile
+                                        key={_id}
+                                        link={link}
+                                        color={profile.backgroundColor}
+                                    />
+                                ))
+                        ) : (
+                            <p>No links</p>
+                        )}
+                    </ProfileLinks>
                 </ProfileContainer>
             )}
         </>

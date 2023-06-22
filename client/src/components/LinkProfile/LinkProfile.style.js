@@ -1,37 +1,36 @@
 import styled from 'styled-components'
-import colors from '../../globalStyles'
 
 export const LinkProfileContainer = styled.a`
     display: flex;
-    align-items: center;
-    justify-content: left;
-    border-radius: 12px;
-    max-width: 400px;
-    color: #fff;
-    text-decoration: none;
-    background-color: #f5f5f5;
+    border-radius: 1rem;
+    column-gap: 1rem;
+    min-width: 250px;
+    padding: 10px;
     color: #000;
-    transition: all 0.2s;
+    background-color: #f5f5f5;
+    text-decoration: none;
+    transition: color 100ms ease-in;
 
     &:hover {
-        box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+        box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px,
+            rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
         img {
-            background-color: ${colors.green};
+            background-color: ${({color}) => color};
         }
-        color: ${colors.green};
+        color: ${({color}) => color};
     }
 
     img {
-        height: 20px;
+        height: 30px;
         width: auto;
-        margin: 0.5rem 1rem;
         background-color: black;
         padding: 5px;
         border-radius: 50%;
+        transition: background-color 100ms ease-in;
     }
 
     span {
-        margin: 0.5rem 1rem;
-        font-size: 18px;
+        font-size: 1.5rem;
+        margin: 0;
     }
 `
