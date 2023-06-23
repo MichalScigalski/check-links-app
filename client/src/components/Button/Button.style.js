@@ -1,26 +1,26 @@
 import styled, { css } from 'styled-components'
 import { colors } from '../../globalStyles'
 
-const variantStyles = (variant = 'filled') => {
+const variantStyles = (variant = 'filled', bgColor = colors.purple) => {
     if ((variant === 'outlined')) {
         return css`
-            color: ${colors.purple};
+            color: ${bgColor};
             background-color: transparent;
-            border-color: ${colors.purple};
+            border-color: ${bgColor};
 
             &:hover {
-                background-color: ${colors.purple};
+                background-color: ${bgColor};
                 border-color: transparent;
                 color: white;
             }
         `
     } else {
         return css`
-            background-color: ${colors.purple};
+            background-color: ${bgColor};
             border-color: transparent;
 
             &:hover {
-                background-color: #253093;
+                filter: brightness(1.2);
             }
         `
     }
@@ -34,7 +34,7 @@ export const ButtonContainer = styled.button`
     cursor: pointer;
     font-weight: 500;
     border: 3px solid transparent;
-    transition: color 100ms ease-in, background-color 100ms ease-in;
+    transition: color 100ms ease-in, background-color 100ms ease-in, filter 100ms ease-in;
 
-    ${({ variant }) => variantStyles(variant)}
+    ${({ variant, bgColor }) => variantStyles(variant, bgColor)}
 `
