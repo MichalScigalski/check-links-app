@@ -1,11 +1,12 @@
 import styled from 'styled-components'
+import { colors } from '../../globalStyles'
 
 export const LinkDashboardContainer = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
     border-radius: 8px;
-    background-color: #EDEDED;
+    background-color: ${colors.gray};
     padding: 14px;
     max-width: 340px;
     max-height: 100px;
