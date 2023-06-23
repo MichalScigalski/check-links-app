@@ -24,8 +24,9 @@ export const LinkDashboardData = styled.div`
     }
 
     p,a {
-        color: #959595;
         margin: 0;
+        color: ${colors.dark};
+
     }
     p {
         font-weight: 700;
@@ -36,14 +37,11 @@ export const LinkDashboardData = styled.div`
 export const LinkDashboardButtons = styled.div`
     display: flex;
     align-items: center;
-    gap: 4px;
+    gap: 10px;
     button {
-        border-radius: 50%;
         height: 30px;
         border: none;
         cursor: pointer;
-        &:hover {
-            filter: brightness(1.2);
-        }
+        background: transparent;
     }
 `

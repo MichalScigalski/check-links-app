@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { colors } from '../../globalStyles'
 
 export const SwitchContainer = styled.label`
     display: inline-block;
@@ -39,7 +40,7 @@ export const SwitchSlider = styled.span`
 
 export const SwitchInputChecked = styled(SwitchInput)`
     &:checked + ${SwitchSlider} {
-        background-color: #2196f3;
+        background-color: ${colors.green};
     }
 
     &:checked + ${SwitchSlider}:before {
