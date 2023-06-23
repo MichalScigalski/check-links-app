@@ -5,8 +5,9 @@ import { useState } from 'react'
 import LinkProfile from '../../components/LinkProfile/LinkProfile.component'
 import profileService from '../../services/profile.service'
 
-const Profile = () => {
-    const { username } = useParams()
+const Profile = ({ homeView }) => {
+    let { username } = useParams()
+    if (homeView) username = homeView
     const [profile, setProfile] = useState(null)
     const navigate = useNavigate()
 
