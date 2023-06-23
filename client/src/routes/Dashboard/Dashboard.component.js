@@ -12,6 +12,7 @@ import FormField from '../../components/FormField/FormField.component'
 import LinkDashboard from '../../components/LinkDashboard/LinkDashboard.component'
 import Modal from 'react-modal'
 import profileService from '../../services/profile.service'
+import { SwitchInput } from '../../components/SwitchToggle/SwitchToggle.style'
 
 const linkDefault = {
     name: '',
@@ -34,7 +35,9 @@ const Dashboard = () => {
     const [displayName, setDisplayName] = useState('')
     const [backgroundColor, setBackgroundColor] = useState('')
     const [isModalOpen, setIsModalOpen] = useState(false)
-    const [link, setLink] = useState(linkDefault)
+    const [newLink, setNewLink] = useState(linkDefault)
+    const [editLink, setEditLink] = useState(linkDefault)
+
     const navigate = useNavigate()
 
     useEffect(() => {
@@ -65,7 +68,7 @@ const Dashboard = () => {
     const addLinkHandler = async (e) => {
         e.preventDefault()
         try {
-            await profileService.addLink(link)
+            await profileService.addLink(newLink)
             alert('Link added')
             navigate(0)
         } catch (err) {
@@ -87,7 +90,7 @@ const Dashboard = () => {
     const editLinkHandler = async (e) => {
         e.preventDefault(e)
         try {
-            await profileService.editLink(link)
+            await profileService.editLink(editLink)
             navigate(0)
         } catch (err) {
             alert(err.response.data.message)
@@ -95,12 +98,12 @@ const Dashboard = () => {
     }
 
     const openModal = (link) => {
-        setLink(link)
+        setEditLink(link)
         setIsModalOpen(true)
     }
     const closeModal = () => {
         setIsModalOpen(false)
-        setLink(linkDefault)
+        setEditLink(linkDefault)
     }
 
     return (
@@ -110,94 +113,124 @@ const Dashboard = () => {
                     <Modal isOpen={isModalOpen} style={modalStyles}>
                         <form onSubmit={editLinkHandler}>
                             <FormField
-                                label="Name"
-                                value={link.name}
+                                label='Name'
+                                value={editLink.name}
                                 onChange={(e) =>
-                                    setLink({ ...link, name: e.target.value })
+                                    setEditLink({
+                                        ...editLink,
+                                        name: e.target.value,
+                                    })
                                 }
-                                placeholder="Instagram"
+                                placeholder='Instagram'
                             />
                             <FormField
-                                label="Url"
-                                value={link.url}
+                                label='Url'
+                                value={editLink.url}
                                 onChange={(e) =>
-                                    setLink({ ...link, url: e.target.value })
+                                    setEditLink({
+                                        ...editLink,
+                                        url: e.target.value,
+                                    })
                                 }
-                                placeholder="http://instagram.com/user"
+                                placeholder='http://instagram.com/user'
                             />
-                            <Button $primary value="Update" type="submit" />
-                            <Button value="Close" onClick={closeModal} />
+                            <Button $primary value='Update' type='submit' />
+                            <Button value='Close' onClick={closeModal} />
                         </form>
                     </Modal>
                     <Container>
+                        <h1>Profile.</h1>
                         <form onSubmit={updateHandler}>
                             <FormField
-                                label="Display name"
+                                label='Display name'
                                 value={displayName}
                                 onChange={(e) => setDisplayName(e.target.value)}
                             />
                             <ColorField>
-                                <label htmlFor="Background color">
+                                <label htmlFor='Background color'>
                                     Background profile color
                                 </label>
                                 <input
-                                    label="Background color"
+                                    label='Background color'
                                     value={backgroundColor}
-                                    type="color"
+                                    type='color'
                                     onChange={(e) =>
                                         setBackgroundColor(e.target.value)
                                     }
                                 />
                             </ColorField>
-                            <Button $primary value="Save" type="submit" />
+                            <Button value='Save' type='submit' />
                         </form>
                         <Button
-                            value="Show my page"
+                            value='Show my page'
+                            variant='outlined'
                             onClick={() => navigate(`/${profile.username}`)}
                         />
                     </Container>
                     <Container>
+                        <h1>Link creator.</h1>
                         <form onSubmit={addLinkHandler}>
                             <FormField
-                                label="Name"
-                                value={link.name}
+                                label='Name'
+                                value={newLink.name}
                                 onChange={(e) =>
-                                    setLink({ ...link, name: e.target.value })
+                                    setNewLink({
+                                        ...newLink,
+                                        name: e.target.value,
+                                    })
                                 }
-                                placeholder="Instagram"
+                                placeholder='Instagram'
                             />
                             <FormField
-                                label="Url"
-                                value={link.url}
+                                label='Url'
+                                value={newLink.url}
                                 onChange={(e) =>
-                                    setLink({ ...link, url: e.target.value })
+                                    setNewLink({
+                                        ...newLink,
+                                        url: e.target.value,
+                                    })
                                 }
-                                placeholder="http://instagram.com/user"
+                                placeholder='http://instagram.com/user'
                             />
                             <Button
-                                type="submit"
+                                type='submit'
                                 $primary
-                                value="Create link"
+                                value='Create link'
                             />
                         </form>
                     </Container>
-                    <LinksContainer>
-                        {profile.links.length > 0 &&
-                            profile.links.map((link, _id) => {
-                                return (
-                                    <LinkDashboard
-                                        key={_id}
-                                        link={link}
-                                        openModel={openModal}
-                                    />
-                                )
-                            })}
-                    </LinksContainer>
+                    <Container className='links'>
+                        <h1>Your links.</h1>
+                        <LinksContainer>
+                            {profile.links.length > 0 &&
+                                profile.links.map((link, _id) => {
+                                    return (
+                                        <LinkDashboard
+                                            key={_id}
+                                            link={link}
+                                            openModel={openModal}
+                                        />
+                                    )
+                                })}
+                        </LinksContainer>
+                    </Container>
+                    <Container>
+                        <h1>Account.</h1>
+                        <form>
+                            <FormField
+                                label='Username'
+                                value={profile.username}
+                                disabled
+                                placeholder='username'
+                            />
+                            <Button value='Change Password' />
+                        </form>
+                    </Container>
                 </DashboardContainer>
             ) : (
                 <CreateProfileContainer>
                     <Button
-                        value="Create profile"
+                        value='Create profile'
                         onClick={createProfileHandler}
                     />
                 </CreateProfileContainer>

@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { colors } from '../../globalStyles'
 
 export const CreateProfileContainer = styled.div`
     display: flex;
@@ -25,40 +26,63 @@ export const DashboardContainer = styled.div`
 `
 
 export const Container = styled.div`
+    position: relative;
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
-    background-color: white;
+    gap: 1rem;
     border-radius: 8px;
-    padding: 2rem;
+    padding: 4rem 3rem;
+    background-color: white;
     box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
 
-    input {
-        margin-bottom: 1rem;
+    h1 {
+        position: absolute;
+        top: 15px;
+        left: 15px;
+        font-size: 1.5rem;
     }
 
     form {
         display: flex;
         flex-direction: column;
-        align-items: left;
+        gap: 1rem;
+    }
 
-        button {
-            margin: 10px 0;
-        }
+    button {
+        width: max-content;
     }
 `
 
 export const LinksContainer = styled.div`
-    display: grid;
-    border-radius: 8px;
-    padding: 2rem;
-    grid-template-columns: 1fr;
+    display: flex;
+    flex-direction: column;
+    padding-top: 2rem;
     gap: 1rem;
-    background-color: #FFF;
-    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-    overflow-y: scroll;
-    height: 400px;
+    max-height: 360px;
+    overflow: auto;
+
+    &:hover {
+        &::-webkit-scrollbar {
+            opacity: 1;
+        }
+    }
+
+    &::-webkit-scrollbar-track {
+        border-radius: 10px;
+        background-color: #f5f5f5;
+    }
+
+    &::-webkit-scrollbar {
+        transform: scale(0);
+        width: 8px;
+        background-color: #f5f5f5;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        background-color: ${colors.purple};
+    }
 `
 
 export const ColorField = styled.div`
