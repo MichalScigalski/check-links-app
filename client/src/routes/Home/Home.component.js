@@ -1,14 +1,22 @@
 import Button from '../../components/Button/Button.component'
-import { HomeContainer } from './Home.style'
+import { colors } from '../../globalStyles'
+import { HomeContainer, WelcomeContainer, CardsContainer } from './Home.style'
+import Profile from '../Profile/Profile.component'
 
 const Home = () => {
     return (
         <HomeContainer>
-            <div>
-                <h1>Check Links!</h1>
-                <h2>Create your own custom page with social links ❤️</h2>
-                <Button $primary value={'Join now!'} />
-            </div>
+            <WelcomeContainer>
+                <h1>One place.</h1>
+                <h1>
+                    <span>Everything you</span> are.
+                </h1>
+                <Button bgColor={colors.green} value={'Get Started!'} />
+            </WelcomeContainer>
+            <CardsContainer>
+                <Profile homeView={'robert'} />
+                <Profile homeView={'jedno'} />
+            </CardsContainer>
         </HomeContainer>
     )
 }
