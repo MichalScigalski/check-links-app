@@ -43,6 +43,11 @@ export const Container = styled.div`
         font-size: 1.5rem;
     }
 
+    h2 {
+        color: ${colors.gray};
+        text-align: center;
+    }
+
     form {
         display: flex;
         flex-direction: column;
