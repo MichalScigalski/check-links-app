@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import colors from '../../globalStyles'
+import {colors} from '../../globalStyles'
 
 export const FormFieldContainer = styled.div`
     display: flex;
@@ -8,16 +8,20 @@ export const FormFieldContainer = styled.div`
         margin: 5px;
     }
     input {
-        border: 1px solid #cccccc;
-        border-radius: 4px;
-        padding: 0.7rem 1rem;
+        background-color: ${colors.gray};
+        border: 2px solid transparent;
+        border-radius: 7px;
+        padding: 12px;
+        transition: border 100ms ease-in-out;
+        font-size: 1rem;
 
         ::placeholder {
-            color: #cccccc;
+            color: #ababab;
+            line-height: 30px;
         }
         :focus {
             outline: none;
-            border: 1px solid ${colors.green};
+            border-color: ${colors.purple};
         }
     }
 `
