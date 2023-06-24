@@ -21,7 +21,7 @@ export const FormFieldContainer = styled.div`
         }
         :focus {
             outline: none;
-            border-color: ${colors.purple};
+            border-color: ${({color}) => color || colors.purple};
             background-color: ${colors.light};
         }
     }
