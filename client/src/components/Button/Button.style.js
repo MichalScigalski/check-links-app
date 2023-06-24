@@ -33,8 +33,8 @@ export const ButtonContainer = styled.button`
     color: #fff;
     cursor: pointer;
     font-weight: 500;
-    border: 3px solid transparent;
-    transition: color 100ms ease-in, background-color 100ms ease-in, filter 100ms ease-in;
+    border: 4px solid transparent;
+    transition: color 150ms ease-in, background-color 150ms ease-in, filter 150ms ease-in;
 
     ${({ variant, bgColor }) => variantStyles(variant, bgColor)}
 `

@@ -10,9 +10,9 @@ export const FormFieldContainer = styled.div`
     input {
         background-color: ${colors.gray};
         border: 2px solid transparent;
-        border-radius: 7px;
+        border-radius: 1rem;
         padding: 12px;
-        transition: border 100ms ease-in-out;
+        transition: border 200ms ease-in-out;
         font-size: 1rem;
 
         ::placeholder {
@@ -22,6 +22,7 @@ export const FormFieldContainer = styled.div`
         :focus {
             outline: none;
             border-color: ${colors.purple};
+            background-color: ${colors.light};
         }
     }
 `

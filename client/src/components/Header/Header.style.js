@@ -5,6 +5,7 @@ export const HeaderContainer = styled.header`
     display: flex;
     justify-content: space-evenly;
     align-items: center;
+    height: 10vh;
     background-color: #fff;
     h1 {
         color: ${colors.dark};
