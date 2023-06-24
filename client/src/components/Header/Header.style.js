@@ -1,25 +1,31 @@
 import styled from 'styled-components'
-import colors from '../../globalStyles'
+import { colors, shadows } from '../../globalStyles'
 
 export const HeaderContainer = styled.header`
     display: flex;
     justify-content: space-evenly;
+    position: sticky;
+    top: 0;
+    z-index: 5;
     align-items: center;
-    height: 10vh;
-    background-color: #fff;
+    background-color: #FFF;
+    padding: 1rem 0;
+    box-shadow: ${shadows.small};
+    
     h1 {
         color: ${colors.dark};
         font-family: 'Merienda', cursive;
-        cursor: pointer;
-
         &:hover {
             color: ${colors.green};
         }
     }
-    h3 {
+
+    h3,h1 {
         cursor: pointer;
     }
+
     div {
+        position: relative;
         display: flex;
         justify-content: center;
         align-items: center;

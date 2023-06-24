@@ -27,7 +27,7 @@ const variantStyles = (variant = 'filled', bgColor = colors.purple) => {
 }
 
 export const ButtonContainer = styled.button`
-    padding: 10px 20px;
+    padding: 0.6rem 1.1rem;
     border-radius: 1rem;
     font-size: 16px;
     color: #fff;
