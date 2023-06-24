@@ -5,6 +5,7 @@ import Button from '../../components/Button/Button.component'
 import { useNavigate } from 'react-router'
 import { useState } from 'react'
 import userService from '../../services/user.service'
+import { colors } from '../../globalStyles'
 
 const Login = () => {
     const [username, setUsername] = useState('')
@@ -33,6 +34,7 @@ const Login = () => {
                         value={username}
                         onChange={(e) => setUsername(e.target.value)}
                         placeholder={'name'}
+                        color={colors.green}
                     />
                     <FormField
                         label={'Password'}
@@ -41,14 +43,15 @@ const Login = () => {
                         type="password"
                         onChange={(e) => setPassword(e.target.value)}
                         placeholder={'**********'}
+                        color={colors.green}
                     />
                     <span>Forgot password?</span>
-                    <Button $primary value={'Login'} />
+                    <Button bgColor={colors.green} value={'Login'} />
+                    <p>
+                        Not a member?{' '}
+                        <span onClick={() => navigate('/register')}>Sign up</span>
+                    </p>
                 </form>
-                <p>
-                    Not a member?{' '}
-                    <span onClick={() => navigate('/register')}>Sign up</span>
-                </p>
             </div>
             <img src={loginPicture} alt="login illustration" />
         </LoginContainer>

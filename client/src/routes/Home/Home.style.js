@@ -5,7 +5,8 @@ export const HomeContainer = styled.div`
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    height: 90vh;
+    row-gap: 2rem;
+    height: 80vh;
     margin: 1rem;
     border-radius: 8px;
 `

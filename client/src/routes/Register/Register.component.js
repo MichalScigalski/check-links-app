@@ -5,6 +5,7 @@ import Button from '../../components/Button/Button.component'
 import { useState } from 'react'
 import { useNavigate } from 'react-router'
 import userService from '../../services/user.service'
+import { colors } from '../../globalStyles'
 
 const Register = () => {
     const [username, setUsername] = useState('')
@@ -37,6 +38,7 @@ const Register = () => {
                         placeholder={'username'}
                         value={username}
                         onChange={(e) => setUsername(e.target.value)}
+                        color={colors.green}
                     />
                     <FormField
                         label={'Password'}
@@ -44,6 +46,7 @@ const Register = () => {
                         type={'password'}
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
+                        color={colors.green}
                     />
                     <FormField
                         label={'Repeat password'}
@@ -51,6 +54,7 @@ const Register = () => {
                         type={'password'}
                         value={passwordRepeat}
                         onChange={(e) => setPasswordRepeat(e.target.value)}
+                        color={colors.green}
                     />
                     <section>
                         <input required type="checkbox" />
@@ -58,7 +62,7 @@ const Register = () => {
                             I have read and agree to the "Terms Of Services"
                         </span>
                     </section>
-                    <Button $primary value={'Register'} />
+                    <Button bgColor={colors.green} value={'Register'} />
                     <p>
                         I already have an account,{' '}
                         <span onClick={() => navigate('/login')}>Login In</span>
