@@ -107,3 +107,23 @@ export const ColorField = styled.div`
         cursor: pointer;
     }
 `
+
+export const ModalContainer = styled.div`
+    h1 {
+        position: absolute;
+        top: 15px;
+        left: 15px;
+        font-size: 1.5rem;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+
+        div {
+            display: flex;
+            gap: 4px;
+        }
+    }
+`

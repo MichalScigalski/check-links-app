@@ -5,6 +5,7 @@ import {
     Container,
     LinksContainer,
     ColorField,
+    ModalContainer,
 } from './Dashboard.style'
 import Button from '../../components/Button/Button.component'
 import { useNavigate } from 'react-router'
@@ -12,7 +13,6 @@ import FormField from '../../components/FormField/FormField.component'
 import LinkDashboard from '../../components/LinkDashboard/LinkDashboard.component'
 import Modal from 'react-modal'
 import profileService from '../../services/profile.service'
-import { SwitchInput } from '../../components/SwitchToggle/SwitchToggle.style'
 
 const linkDefault = {
     name: '',
@@ -20,13 +20,16 @@ const linkDefault = {
 }
 
 const modalStyles = {
+    overlay: {
+        backdropFilter: 'blur(2px)',
+    },
     content: {
         top: '50%',
         left: '50%',
         right: 'auto',
         bottom: 'auto',
         transform: 'translate(-50%, -50%)',
-        padding: '4rem',
+        padding: '5rem',
     },
 }
 
@@ -111,32 +114,41 @@ const Dashboard = () => {
             {profile ? (
                 <DashboardContainer>
                     <Modal isOpen={isModalOpen} style={modalStyles}>
-                        <form onSubmit={editLinkHandler}>
-                            <FormField
-                                label="Name"
-                                value={editLink.name}
-                                onChange={(e) =>
-                                    setEditLink({
-                                        ...editLink,
-                                        name: e.target.value,
-                                    })
-                                }
-                                placeholder="Instagram"
-                            />
-                            <FormField
-                                label="Url"
-                                value={editLink.url}
-                                onChange={(e) =>
-                                    setEditLink({
-                                        ...editLink,
-                                        url: e.target.value,
-                                    })
-                                }
-                                placeholder="http://instagram.com/user"
-                            />
-                            <Button $primary value="Update" type="submit" />
-                            <Button value="Close" onClick={closeModal} />
-                        </form>
+                        <ModalContainer>
+                            <h1>Link editor.</h1>
+                            <form onSubmit={editLinkHandler}>
+                                <FormField
+                                    label="Name"
+                                    value={editLink.name}
+                                    onChange={(e) =>
+                                        setEditLink({
+                                            ...editLink,
+                                            name: e.target.value,
+                                        })
+                                    }
+                                    placeholder="Instagram"
+                                />
+                                <FormField
+                                    label="Url"
+                                    value={editLink.url}
+                                    onChange={(e) =>
+                                        setEditLink({
+                                            ...editLink,
+                                            url: e.target.value,
+                                        })
+                                    }
+                                    placeholder="http://instagram.com/user"
+                                />
+                                <div>
+                                    <Button value="Update" type="submit" />
+                                    <Button
+                                        value="Close"
+                                        variant="outlined"
+                                        onClick={closeModal}
+                                    />
+                                </div>
+                            </form>
+                        </ModalContainer>
                     </Modal>
                     <Container>
                         <h1>Profile.</h1>
@@ -199,25 +211,26 @@ const Dashboard = () => {
                             />
                         </form>
                     </Container>
-                    
-                        <Container className="links">
-                            <h1>Your links.</h1>
-                            {profile.links.length > 0 ? 
-                                <LinksContainer>
-                                    {profile.links.map((link, _id) => {
-                                        return (
-                                            <LinkDashboard
-                                                key={_id}
-                                                link={link}
-                                                openModel={openModal}
-                                            />
-                                        )
-                                    })}
-                                </LinksContainer> :
-                                <h2>Empty</h2>
-                            }
-                        </Container>
-                    
+
+                    <Container className="links">
+                        <h1>Your links.</h1>
+                        {profile.links.length > 0 ? (
+                            <LinksContainer>
+                                {profile.links.map((link, _id) => {
+                                    return (
+                                        <LinkDashboard
+                                            key={_id}
+                                            link={link}
+                                            openModel={openModal}
+                                        />
+                                    )
+                                })}
+                            </LinksContainer>
+                        ) : (
+                            <h2>Empty</h2>
+                        )}
+                    </Container>
+
                     <Container>
                         <h1>Account.</h1>
                         <form>
