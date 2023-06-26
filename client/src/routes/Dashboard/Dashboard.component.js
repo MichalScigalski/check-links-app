@@ -13,6 +13,7 @@ import FormField from '../../components/FormField/FormField.component'
 import LinkDashboard from '../../components/LinkDashboard/LinkDashboard.component'
 import Modal from 'react-modal'
 import profileService from '../../services/profile.service'
+import Alert from '../../components/Alert/Alert.component'
 
 const linkDefault = {
     name: '',
@@ -38,6 +39,7 @@ const Dashboard = () => {
     const [isModalOpen, setIsModalOpen] = useState(false)
     const [newLink, setNewLink] = useState(linkDefault)
     const [editLink, setEditLink] = useState(linkDefault)
+    const [alertData, setAlertData] = useState(null)
 
     const navigate = useNavigate()
 
@@ -50,17 +52,20 @@ const Dashboard = () => {
             const profile = await profileService.getDashboard()
             setProfile(profile)
         } catch (err) {
-            console.log(err.response.data.message)
+            setAlertData({ status: false, text: err.response.data.message })
         }
     }
 
     const createProfileHandler = async () => {
         try {
             await profileService.createProfile()
-            alert('Profile created')
-            navigate(0)
+            setAlertData({
+                status: true,
+                text: 'Profile created',
+                isRefresh: true,
+            })
         } catch (err) {
-            alert(err.response.data.message)
+            setAlertData({ status: false, text: err.response.data.message })
         }
     }
 
@@ -68,10 +73,9 @@ const Dashboard = () => {
         e.preventDefault()
         try {
             await profileService.addLink(newLink)
-            alert('Link added')
-            navigate(0)
+            setAlertData({ status: true, text: 'Link added', isRefresh: true })
         } catch (err) {
-            alert(err.response.data.message)
+            setAlertData({ status: false, text: err.response.data.message })
         }
     }
 
@@ -80,9 +84,9 @@ const Dashboard = () => {
         try {
             await profileService.updateName(profile.displayName)
             await profileService.editBackgroundColor(profile.backgroundColor)
-            alert('Success')
+            setAlertData({ status: true, text: 'Data updated' })
         } catch (err) {
-            alert(err.response.data.message)
+            setAlertData({ status: false, text: err.response.data.message })
         }
     }
 
@@ -90,9 +94,13 @@ const Dashboard = () => {
         e.preventDefault(e)
         try {
             await profileService.editLink(editLink)
-            navigate(0)
+            setAlertData({
+                status: true,
+                text: 'Link updated',
+                isRefresh: true,
+            })
         } catch (err) {
-            alert(err.response.data.message)
+            setAlertData({ status: false, text: err.response.data.message })
         }
     }
 
@@ -104,9 +112,13 @@ const Dashboard = () => {
         setIsModalOpen(false)
         setEditLink(linkDefault)
     }
+    const closeAlertHandler = () => setAlertData(null)
 
     return (
         <>
+            {alertData && (
+                <Alert alert={alertData} onClose={closeAlertHandler} />
+            )}
             {profile ? (
                 <DashboardContainer>
                     <Modal isOpen={isModalOpen} style={modalStyles}>
@@ -123,6 +135,7 @@ const Dashboard = () => {
                                         })
                                     }
                                     placeholder="Instagram"
+                                    required
                                 />
                                 <FormField
                                     label="Url"
@@ -134,6 +147,7 @@ const Dashboard = () => {
                                         })
                                     }
                                     placeholder="http://instagram.com/user"
+                                    required
                                 />
                                 <div>
                                     <Button value="Update" type="submit" />
@@ -180,7 +194,9 @@ const Dashboard = () => {
                                 <Button
                                     value="Show my page"
                                     variant="outlined"
-                                    onClick={() => navigate(`/${profile.username}`)}
+                                    onClick={() =>
+                                        navigate(`/${profile.username}`)
+                                    }
                                 />
                             </div>
                         </form>
@@ -198,6 +214,7 @@ const Dashboard = () => {
                                     })
                                 }
                                 placeholder="Instagram"
+                                required
                             />
                             <FormField
                                 label="Url"
@@ -209,6 +226,7 @@ const Dashboard = () => {
                                     })
                                 }
                                 placeholder="http://instagram.com/user"
+                                required
                             />
                             <Button
                                 type="submit"
