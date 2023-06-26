@@ -15,7 +15,7 @@ export const AlertContainer = styled.div`
     align-items: center;
     justify-content: space-evenly;
     gap: 1rem;
-    padding: 1rem 1.5rem;
+    padding: 1rem 1.2rem;
     border-radius: 1rem;
     font-weight: bold;
     z-index: 99;
@@ -34,16 +34,16 @@ export const AlertContainer = styled.div`
         h1 {
             color: ${({ type }) =>
                 type === 'success' ? colors.green : colors.red};
-            font-size: 1.75rem;
+            font-size: 1.5rem;
         }
         h2 {
-            font-size: 1.2rem;
+            font-size: 1rem;
             font-weight: 500;
         }
     }
 
     img:first-child {
-        height: 50px;
+        height: 40px;
         width: auto;
     }
 
