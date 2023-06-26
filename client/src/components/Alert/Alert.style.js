@@ -28,12 +28,11 @@ export const AlertContainer = styled.div`
     background-color: ${colors.dark};
     max-width: 350px;
     opacity: ${({ show }) => (show ? 1 : 0)};
-    animation: ${({ show }) => (show && fadeIn)} 200ms ease-in;
+    animation: ${({ show }) => show && fadeIn} 200ms ease-in;
 
     div {
         h1 {
-            color: ${({ type }) =>
-                type === 'success' ? colors.green : colors.red};
+            color: ${({ status }) => (status ? colors.green : colors.red)};
             font-size: 1.5rem;
         }
         h2 {

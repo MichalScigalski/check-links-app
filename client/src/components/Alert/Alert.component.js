@@ -5,28 +5,28 @@ import CloseIcon from '../../assets/img/close-icon.svg'
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router'
 
-const Alert = ({ type, text, onClose, isRefresh }) => {
+const Alert = ({ status, text, onClose, isRefresh }) => {
     const navigate = useNavigate()
 
     let header = '',
         imgUrl = ''
 
-    switch (type) {
-        case 'success':
-            header = 'Success'
-            imgUrl = SuccessIcon
-            break
-        case 'error':
-            header = 'Error'
-            imgUrl = ErrorIcon
-            break
+    if (status) {
+        header = 'Success'
+        imgUrl = SuccessIcon
+    } else {
+        header = 'Error'
+        imgUrl = ErrorIcon
     }
 
     useEffect(() => {
-        const timer = setTimeout(() => {
-            onClose()
-            if (isRefresh) navigate(0)
-        }, isRefresh ? 1000 : 5000 )
+        const timer = setTimeout(
+            () => {
+                onClose()
+                if (isRefresh) navigate(0)
+            },
+            isRefresh ? 1000 : 5000
+        )
 
         return () => clearTimeout(timer)
     }, [onClose])
@@ -37,8 +37,8 @@ const Alert = ({ type, text, onClose, isRefresh }) => {
     }
 
     return (
-        <AlertContainer show={true} type={type}>
-            <img src={imgUrl} alt={type + '-icon'} />
+        <AlertContainer show={true} status={status}>
+            <img src={imgUrl} alt='alert-icon' />
             <div>
                 <h1>{header}</h1>
                 <h2>{text}</h2>
