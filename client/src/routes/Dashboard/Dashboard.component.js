@@ -175,13 +175,15 @@ const Dashboard = () => {
                                     }
                                 />
                             </ColorField>
-                            <Button value="Save" type="submit" />
+                            <div>
+                                <Button value="Save" type="submit" />
+                                <Button
+                                    value="Show my page"
+                                    variant="outlined"
+                                    onClick={() => navigate(`/${profile.username}`)}
+                                />
+                            </div>
                         </form>
-                        <Button
-                            value="Show my page"
-                            variant="outlined"
-                            onClick={() => navigate(`/${profile.username}`)}
-                        />
                     </Container>
                     <Container>
                         <h1>Link creator.</h1>

@@ -52,6 +52,12 @@ export const Container = styled.div`
         display: flex;
         flex-direction: column;
         gap: 1rem;
+
+        div {
+            button:nth-child(2) {
+                margin-left: 1rem;
+            }
+        }
     }
 
     button {
