@@ -35,8 +35,6 @@ const modalStyles = {
 
 const Dashboard = () => {
     const [profile, setProfile] = useState(null)
-    const [displayName, setDisplayName] = useState('')
-    const [backgroundColor, setBackgroundColor] = useState('')
     const [isModalOpen, setIsModalOpen] = useState(false)
     const [newLink, setNewLink] = useState(linkDefault)
     const [editLink, setEditLink] = useState(linkDefault)
@@ -51,8 +49,6 @@ const Dashboard = () => {
         try {
             const profile = await profileService.getDashboard()
             setProfile(profile)
-            setDisplayName(profile.displayName)
-            setBackgroundColor(profile.backgroundColor)
         } catch (err) {
             console.log(err.response.data.message)
         }
@@ -82,8 +78,8 @@ const Dashboard = () => {
     const updateHandler = async (e) => {
         e.preventDefault()
         try {
-            await profileService.updateName(displayName)
-            await profileService.editBackgroundColor(backgroundColor)
+            await profileService.updateName(profile.displayName)
+            await profileService.editBackgroundColor(profile.backgroundColor)
             alert('Success')
         } catch (err) {
             alert(err.response.data.message)
@@ -155,8 +151,13 @@ const Dashboard = () => {
                         <form onSubmit={updateHandler}>
                             <FormField
                                 label="Display name"
-                                value={displayName}
-                                onChange={(e) => setDisplayName(e.target.value)}
+                                value={profile.displayName}
+                                onChange={(e) =>
+                                    setProfile({
+                                        ...profile,
+                                        displayName: e.target.value,
+                                    })
+                                }
                             />
                             <ColorField>
                                 <label htmlFor="Background color">
@@ -164,10 +165,13 @@ const Dashboard = () => {
                                 </label>
                                 <input
                                     label="Background color"
-                                    value={backgroundColor}
+                                    value={profile.backgroundColor}
                                     type="color"
                                     onChange={(e) =>
-                                        setBackgroundColor(e.target.value)
+                                        setProfile({
+                                            ...profile,
+                                            backgroundColor: e.target.value,
+                                        })
                                     }
                                 />
                             </ColorField>
