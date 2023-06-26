@@ -10,6 +10,7 @@ const Header = () => {
     const navigate = useNavigate()
 
     const logoutHandler = () => {
+        navigate(0,'/')
         setUser(null)
         userService.logout()
     }

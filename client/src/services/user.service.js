@@ -23,7 +23,6 @@ const register = async (username, password) => {
 
 const logout = () => {
     sessionStorage.removeItem('token')
-    document.location.reload()
 }
 
 const userService = {
