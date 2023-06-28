@@ -9,8 +9,9 @@ export const ProfileContainer = styled.div`
     color: #FFF;
     border-radius: 8px;
     padding: 3rem;
-    height: 100vh;
-    margin: 1rem;
+    max-width: 1100px;
+    height: 850px;
+    margin: 1rem auto;
 
     h1 {
         font-size: 3rem;
