@@ -6,12 +6,12 @@ export const HeaderContainer = styled.header`
     justify-content: space-evenly;
     position: sticky;
     top: 0;
-    z-index: 5;
-    align-items: center;
+    z-index: 99;
+    align-items: start;
     background-color: #FFF;
     padding: 1rem 0;
     box-shadow: ${shadows.small};
-    
+    height: 80px;
     h1 {
         color: ${colors.dark};
         font-family: 'Merienda', cursive;
