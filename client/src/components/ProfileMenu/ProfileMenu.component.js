@@ -23,9 +23,15 @@ const ProfileMenu = () => {
     }
 
     const logoutHandler = () => {
-        navigate(0, '/')
+        navigate('/')
+        window.location.reload()
         setUser(null)
         userService.logout()
+    }
+
+    const navigateHandler = (url) => {
+        navigate(url)
+        toggleMenu()
     }
 
     return (
@@ -38,10 +44,10 @@ const ProfileMenu = () => {
             {isOpen && (
                 <DropdownMenu>
                     <MenuSection>{user.username}</MenuSection>
-                    <MenuItem onClick={() => navigate('/' + user.username)}>
+                    <MenuItem onClick={() => navigateHandler('/' + user.username)}>
                         View Page
                     </MenuItem>
-                    <MenuItem onClick={() => navigate('/dashboard')}>
+                    <MenuItem onClick={() => navigateHandler('/dashboard')}>
                         Edit Profile
                     </MenuItem>
                     <MenuItem onClick={logoutHandler}>Logout</MenuItem>

@@ -5,7 +5,6 @@ export const ProfileMenuContainer = styled.div`
     position: relative;
     flex-direction: column;
     width: 150px;
-    border-radius: 4px;
     color: #000;
 `
 
@@ -40,7 +39,8 @@ export const DropdownMenu = styled.div`
     gap: 4px;
     flex-direction: column;
     width: 100%;
-    box-shadow: ${shadows.small};
+    box-shadow: ${shadows.large};
+    border-radius: 8px;
     background-color: #fff;
 `
 
