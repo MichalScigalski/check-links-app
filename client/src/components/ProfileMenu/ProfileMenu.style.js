@@ -4,8 +4,9 @@ import { colors, shadows } from '../../globalStyles'
 export const ProfileMenuContainer = styled.div`
     position: relative;
     flex-direction: column;
-    width: 150px;
+    width: 160px;
     color: #000;
+    z-index: 99;
 `
 
 export const ProfileButton = styled.button`
@@ -47,8 +48,13 @@ export const DropdownMenu = styled.div`
 export const MenuItem = styled.div`
     cursor: pointer;
     padding: 10px 0;
+
     width: 100%;
     &:hover {
         background-color: ${colors.gray};
+    }
+    &:last-child:hover {
+        border-bottom-right-radius: 8px;
+        border-bottom-left-radius: 8px;
     }
 `

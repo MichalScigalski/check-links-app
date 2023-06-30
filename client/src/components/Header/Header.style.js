@@ -4,8 +4,6 @@ import { colors, shadows } from '../../globalStyles'
 export const HeaderContainer = styled.header`
     display: flex;
     justify-content: space-evenly;
-    position: sticky;
-    top: 0;
     z-index: 99;
     align-items: start;
     background-color: #FFF;

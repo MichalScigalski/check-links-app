@@ -3,12 +3,11 @@ import styled from 'styled-components'
 export const HomeContainer = styled.div`
     display: flex;
     justify-content: center;
-    align-items: center;
     flex-wrap: wrap;
+    align-items: center;
     row-gap: 2rem;
     height: 80vh;
-    margin: 1rem;
-    border-radius: 8px;
+    padding-top: 2rem;
 `
 
 export const WelcomeContainer = styled.div`
@@ -23,9 +22,10 @@ export const WelcomeContainer = styled.div`
     }
 
     button {
-        margin: 2rem;
+        margin: 2rem 0;
         width: max-content;
-        transform: scale(1.3);
+        font-size: 1.75rem;
+        padding: 1rem 2rem;
     }
 `
 
