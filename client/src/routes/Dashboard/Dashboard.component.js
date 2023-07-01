@@ -14,10 +14,16 @@ import LinkDashboard from '../../components/LinkDashboard/LinkDashboard.componen
 import Modal from 'react-modal'
 import profileService from '../../services/profile.service'
 import Alert from '../../components/Alert/Alert.component'
+import userService from '../../services/user.service'
 
 const linkDefault = {
     name: '',
     url: '',
+}
+
+const newPasswordDefault = {
+    password: '',
+    newPassword: ''
 }
 
 const modalStyles = {
@@ -36,9 +42,11 @@ const modalStyles = {
 
 const Dashboard = () => {
     const [profile, setProfile] = useState(null)
-    const [isModalOpen, setIsModalOpen] = useState(false)
+    const [isEditModalOpen, setIsEditModalOpen] = useState(false)
+    const [isPasswordModalOpen, setIsPasswordModalOpen] = useState(false)
     const [newLink, setNewLink] = useState(linkDefault)
     const [editLink, setEditLink] = useState(linkDefault)
+    const [newPassword, setNewPassword] = useState(newPasswordDefault)
     const [alertData, setAlertData] = useState(null)
 
     const navigate = useNavigate()
@@ -91,7 +99,7 @@ const Dashboard = () => {
     }
 
     const editLinkHandler = async (e) => {
-        e.preventDefault(e)
+        e.preventDefault()
         try {
             await profileService.editLink(editLink)
             setAlertData({
@@ -104,15 +112,44 @@ const Dashboard = () => {
         }
     }
 
-    const openModal = (link) => {
-        setEditLink(link)
-        setIsModalOpen(true)
+    const changePasswordHandler = async (e) => {
+        e.preventDefault()
+        if (newPassword.password !== newPassword.passwordRepeat)
+            return setAlertData({
+                status: false,
+                text: 'Passwords are different',
+            })
+        try {
+            await userService.changePassword(newPassword.password)
+            setAlertData({
+                status: true,
+                text: 'Password changed',
+                isRefresh: true,
+            })
+        } catch (err) {
+            setAlertData({ status: false, text: err.response.data.message })
+        }
     }
-    const closeModal = () => {
-        setIsModalOpen(false)
+
+    const closeAlertHandler = () => setAlertData(null)
+
+    const openEditModal = (link) => {
+        setEditLink(link)
+        setIsEditModalOpen(true)
+    }
+    const closeEditModal = () => {
+        setIsEditModalOpen(false)
         setEditLink(linkDefault)
     }
-    const closeAlertHandler = () => setAlertData(null)
+
+    const openPasswordModal = () => {
+        setIsPasswordModalOpen(true)
+    }
+
+    const closePasswordModal = () => {
+        setIsPasswordModalOpen(false)
+        setNewPassword(newPasswordDefault)
+    }
 
     return (
         <>
@@ -121,7 +158,7 @@ const Dashboard = () => {
             )}
             {profile ? (
                 <DashboardContainer>
-                    <Modal isOpen={isModalOpen} style={modalStyles}>
+                    <Modal isOpen={isEditModalOpen} style={modalStyles}>
                         <ModalContainer>
                             <h1>Link editor.</h1>
                             <form onSubmit={editLinkHandler}>
@@ -154,7 +191,48 @@ const Dashboard = () => {
                                     <Button
                                         value="Close"
                                         variant="outlined"
-                                        onClick={closeModal}
+                                        onClick={closeEditModal}
+                                    />
+                                </div>
+                            </form>
+                        </ModalContainer>
+                    </Modal>
+                    <Modal isOpen={isPasswordModalOpen} style={modalStyles}>
+                        <ModalContainer>
+                            <h1>Change password.</h1>
+                            <form onSubmit={changePasswordHandler}>
+                                <FormField
+                                    label="New password"
+                                    placeholder="********"
+                                    type="password"
+                                    value={newPassword.password}
+                                    onChange={(e) =>
+                                        setNewPassword({
+                                            ...newPassword,
+                                            password: e.target.value,
+                                        })
+                                    }
+                                    required
+                                />
+                                <FormField
+                                    label="Repeat new password"
+                                    type="password"
+                                    placeholder="********"
+                                    value={newPassword.passwordRepeat}
+                                    onChange={(e) =>
+                                        setNewPassword({
+                                            ...newPassword,
+                                            passwordRepeat: e.target.value,
+                                        })
+                                    }
+                                    required
+                                />
+                                <div>
+                                    <Button value="Save" type="submit" />
+                                    <Button
+                                        value="Close"
+                                        variant="outlined"
+                                        onClick={closePasswordModal}
                                     />
                                 </div>
                             </form>
@@ -245,7 +323,7 @@ const Dashboard = () => {
                                         <LinkDashboard
                                             key={_id}
                                             link={link}
-                                            openModel={openModal}
+                                            openModel={openEditModal}
                                         />
                                     )
                                 })}
@@ -257,15 +335,16 @@ const Dashboard = () => {
 
                     <Container>
                         <h1>Account.</h1>
-                        <form>
                             <FormField
                                 label="Username"
                                 value={profile.username}
                                 disabled
                                 placeholder="username"
                             />
-                            <Button value="Change Password" />
-                        </form>
+                            <Button
+                                value="Change Password"
+                                onClick={openPasswordModal}
+                            />
                     </Container>
                 </DashboardContainer>
             ) : (
