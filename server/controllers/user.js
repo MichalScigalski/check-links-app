@@ -53,7 +53,7 @@ module.exports = {
         }
     },
     async changePassword(req, res) {
-        const newPassword = req.body.password
+        const newPassword = req.body.newPassword
         const _id = req.user.id
         try {
             const hashedPassword = await hashPassword(newPassword)
