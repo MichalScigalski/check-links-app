@@ -21,7 +21,7 @@ export const CreateProfileContainer = styled.div`
 export const DashboardContainer = styled.div`
     margin: 2rem 10%;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 1rem;
 `
 
@@ -117,8 +117,8 @@ export const ColorField = styled.div`
 export const ModalContainer = styled.div`
     h1 {
         position: absolute;
-        top: 15px;
-        left: 15px;
+        top: 25px;
+        left: 25px;
         font-size: 1.5rem;
     }
 
