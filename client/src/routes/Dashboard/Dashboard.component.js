@@ -15,6 +15,8 @@ import Modal from 'react-modal'
 import profileService from '../../services/profile.service'
 import Alert from '../../components/Alert/Alert.component'
 import userService from '../../services/user.service'
+import { UserContext } from '../../context/User.context'
+import { useContext } from 'react'
 
 const linkDefault = {
     name: '',
@@ -23,7 +25,7 @@ const linkDefault = {
 
 const newPasswordDefault = {
     password: '',
-    newPassword: ''
+    newPassword: '',
 }
 
 const modalStyles = {
@@ -41,6 +43,7 @@ const modalStyles = {
 }
 
 const Dashboard = () => {
+    const {setUser} = useContext(UserContext)
     const [profile, setProfile] = useState(null)
     const [isEditModalOpen, setIsEditModalOpen] = useState(false)
     const [isPasswordModalOpen, setIsPasswordModalOpen] = useState(false)
@@ -129,6 +132,13 @@ const Dashboard = () => {
         } catch (err) {
             setAlertData({ status: false, text: err.response.data.message })
         }
+    }
+
+    const logoutHandler = () => {
+        navigate('/')
+        window.location.reload()
+        setUser(null)
+        userService.logout()
     }
 
     const closeAlertHandler = () => setAlertData(null)
@@ -280,6 +290,24 @@ const Dashboard = () => {
                         </form>
                     </Container>
                     <Container>
+                        <h1>Account.</h1>
+                        <FormField
+                            label="Username"
+                            value={profile.username}
+                            disabled
+                            placeholder="username"
+                        />
+                        <Button
+                            value="Change Password"
+                            onClick={openPasswordModal}
+                        />
+                        <Button 
+                            value='Logout'
+                            onClick={logoutHandler}
+                            variant='outlined'
+                        />
+                    </Container>
+                    <Container>
                         <h1>Link creator.</h1>
                         <form onSubmit={addLinkHandler}>
                             <FormField
@@ -331,20 +359,6 @@ const Dashboard = () => {
                         ) : (
                             <h2>Empty</h2>
                         )}
-                    </Container>
-
-                    <Container>
-                        <h1>Account.</h1>
-                            <FormField
-                                label="Username"
-                                value={profile.username}
-                                disabled
-                                placeholder="username"
-                            />
-                            <Button
-                                value="Change Password"
-                                onClick={openPasswordModal}
-                            />
                     </Container>
                 </DashboardContainer>
             ) : (
