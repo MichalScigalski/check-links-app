@@ -55,6 +55,10 @@ module.exports = {
     async changePassword(req, res) {
         const newPassword = req.body.newPassword
         const _id = req.user.id
+
+        if(newPassword.length < 4)
+            return res.status(403).json({ message: 'Password is too short!' })
+
         try {
             const hashedPassword = await hashPassword(newPassword)
             await User.findByIdAndUpdate(_id, { password: hashedPassword })
