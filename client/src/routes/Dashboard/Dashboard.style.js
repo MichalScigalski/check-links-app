@@ -63,15 +63,19 @@ export const Container = styled.div`
     button {
         width: max-content;
     }
+
+    &.links {
+        padding: 4rem 2rem;
+    }
 `
 
 export const LinksContainer = styled.div`
     display: flex;
     flex-direction: column;
-    padding-top: 2rem;
     gap: 1rem;
-    max-height: 360px;
+    max-height: 320px;
     overflow: auto;
+    padding-right: 4px;
 
     &:hover {
         &::-webkit-scrollbar {
@@ -86,7 +90,7 @@ export const LinksContainer = styled.div`
 
     &::-webkit-scrollbar {
         transform: scale(0);
-        width: 8px;
+        width: 4px;
         background-color: #f5f5f5;
     }
 
