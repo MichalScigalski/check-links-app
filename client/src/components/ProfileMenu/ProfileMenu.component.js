@@ -48,7 +48,7 @@ const ProfileMenu = () => {
                         View Page
                     </MenuItem>
                     <MenuItem onClick={() => navigateHandler('/dashboard')}>
-                        Edit Profile
+                        Dashboard
                     </MenuItem>
                     <MenuItem onClick={logoutHandler}>Logout</MenuItem>
                 </DropdownMenu>
