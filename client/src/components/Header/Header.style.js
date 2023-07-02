@@ -12,10 +12,10 @@ export const HeaderContainer = styled.header`
     height: 80px;
     h1 {
         color: ${colors.dark};
-        font-family: 'Merienda', cursive;
-        &:hover {
-            color: ${colors.green};
-        }
+        font-size: 2.5rem;
+        span {
+            color: ${colors.green}
+        }        
     }
 
     h3,h1 {
