@@ -4,10 +4,10 @@ import {colors} from '../../globalStyles'
 export const LoginContainer = styled.div`
     display: flex;
     align-items: stretch;
+    gap: 1rem;
     justify-content: center;
-    padding: 10rem 1rem;
+    padding-top: 2rem;
     margin: 5rem auto;
-    background-color: #fff;
 
     @media (max-width: 768px) {
         img {

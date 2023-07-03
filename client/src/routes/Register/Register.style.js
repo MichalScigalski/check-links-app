@@ -11,9 +11,9 @@ export const RegisterContainer = styled.div`
     display: flex;
     align-items: stretch;
     justify-content: center;
-    padding: 10rem 1rem;
     margin: 5rem auto;
-    background-color: #fff;
+    gap: 1rem;
+    padding-top: 2rem;
 
     @media (max-width: 768px) {
         img {
