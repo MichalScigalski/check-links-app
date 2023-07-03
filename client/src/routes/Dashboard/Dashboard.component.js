@@ -43,7 +43,7 @@ const modalStyles = {
 }
 
 const Dashboard = () => {
-    const {setUser} = useContext(UserContext)
+    const { setUser } = useContext(UserContext)
     const [profile, setProfile] = useState(null)
     const [isEditModalOpen, setIsEditModalOpen] = useState(false)
     const [isPasswordModalOpen, setIsPasswordModalOpen] = useState(false)
@@ -277,16 +277,12 @@ const Dashboard = () => {
                                     }
                                 />
                             </ColorField>
-                            <div>
-                                <Button value="Save" type="submit" />
-                                <Button
-                                    value="Show my page"
-                                    variant="outlined"
-                                    onClick={() =>
-                                        navigate(`/${profile.username}`)
-                                    }
-                                />
-                            </div>
+                            <Button value="Save" type="submit" />
+                            <Button
+                                value="Show my page"
+                                variant="outlined"
+                                onClick={() => navigate(`/${profile.username}`)}
+                            />
                         </form>
                     </Container>
                     <Container>
@@ -301,10 +297,10 @@ const Dashboard = () => {
                             value="Change Password"
                             onClick={openPasswordModal}
                         />
-                        <Button 
-                            value='Logout'
+                        <Button
+                            value="Logout"
                             onClick={logoutHandler}
-                            variant='outlined'
+                            variant="outlined"
                         />
                     </Container>
                     <Container>
@@ -341,7 +337,6 @@ const Dashboard = () => {
                             />
                         </form>
                     </Container>
-
                     <Container className="links">
                         <h1>Your links.</h1>
                         {profile.links.length > 0 ? (
