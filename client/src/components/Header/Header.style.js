@@ -5,32 +5,28 @@ export const HeaderContainer = styled.header`
     display: flex;
     justify-content: space-evenly;
     z-index: 99;
-    align-items: start;
-    background-color: #FFF;
+    align-items: center;
+    row-gap: 8px;
+    background-color: #fff;
     padding: 1rem 0;
     box-shadow: ${shadows.small};
     height: 80px;
     h1 {
         color: ${colors.dark};
         font-size: 2.5rem;
+        margin-left: 1rem;
         span {
-            color: ${colors.green}
-        }        
+            color: ${colors.green};
+        }
     }
 
-    h3,h1 {
+    h3,
+    h1 {
         cursor: pointer;
     }
 
-    div {
-        position: relative;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        column-gap: 10px;
-    }
     @media (max-width: 376px) {
         flex-direction: column;
-        padding-bottom: 1.5rem;
+        padding: 4rem 0;
     }
 `

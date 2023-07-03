@@ -12,18 +12,18 @@ const Header = () => {
 
     return (
         <HeaderContainer>
-            <h1 onClick={() => navigate('/')}>Check<span>Links.</span></h1>
+            <h1 onClick={() => navigate('/')}>
+                Check<span>Links.</span>
+            </h1>
             {user ? (
                 <ProfileMenu />
             ) : (
-                <div>
-                    <Button
-                        variant="outlined"
-                        value={'Login'}
-                        onClick={() => navigate('/login')}
-                        bgColor={colors.green}
-                    />
-                </div>
+                <Button
+                    variant="outlined"
+                    value={'Login'}
+                    onClick={() => navigate('/login')}
+                    bgColor={colors.green}
+                />
             )}
         </HeaderContainer>
     )

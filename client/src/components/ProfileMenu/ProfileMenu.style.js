@@ -3,10 +3,10 @@ import { colors, shadows } from '../../globalStyles'
 
 export const ProfileMenuContainer = styled.div`
     position: relative;
-    flex-direction: column;
+    display: flex;
+    justify-content: center;
     width: 160px;
-    color: #000;
-    z-index: 99;
+    z-index: 100;
 `
 
 export const ProfileButton = styled.button`
@@ -35,8 +35,10 @@ export const ProfileImage = styled.div`
 `
 
 export const DropdownMenu = styled.div`
-    top: -20px;
-    padding-top: 2rem;
+    position: absolute;
+    display: flex;
+    text-align: center;
+    padding-top: 3rem;
     gap: 4px;
     flex-direction: column;
     width: 100%;

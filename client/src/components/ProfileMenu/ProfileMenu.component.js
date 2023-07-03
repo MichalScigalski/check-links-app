@@ -43,7 +43,7 @@ const ProfileMenu = () => {
             </ProfileButton>
             {isOpen && (
                 <DropdownMenu>
-                    <MenuSection>{user.username}</MenuSection>
+                    <MenuSection>@{user.username}</MenuSection>
                     <MenuItem onClick={() => navigateHandler('/' + user.username)}>
                         View Page
                     </MenuItem>
