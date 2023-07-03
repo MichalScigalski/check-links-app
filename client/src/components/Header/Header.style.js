@@ -5,15 +5,16 @@ export const HeaderContainer = styled.header`
     display: flex;
     justify-content: space-evenly;
     z-index: 99;
-    align-items: start;
+    align-items: center;
+    row-gap: 8px;
     background-color: #FFF;
     padding: 1rem 0;
     box-shadow: ${shadows.small};
     height: 80px;
     h1 {
         color: ${colors.dark};
-        font-family: 'Merienda', cursive;
-        &:hover {
+        font-size: 2.5rem;
+        span {
             color: ${colors.green};
         }
     }
@@ -31,6 +32,6 @@ export const HeaderContainer = styled.header`
     }
     @media (max-width: 376px) {
         flex-direction: column;
-        padding-bottom: 1.5rem;
+        padding: 4rem 0;
     }
 `
