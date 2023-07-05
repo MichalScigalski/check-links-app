@@ -3,14 +3,17 @@ import Home from './routes/Home/Home.component'
 import Header from './components/Header/Header.component'
 import Login from './routes/Login/Login.component'
 import Register from './routes/Register/Register.component'
-import { useContext, useEffect } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { UserContext } from './context/User.context'
 import authService from './services/auth.service'
 import Profile from './routes/Profile/Profile.component'
 import Dashboard from './routes/Dashboard/Dashboard.component'
+import { ThemeProvider } from 'styled-components'
+import GlobalStyle, { darkMode, lightMode } from './globalStyles'
 
 const App = () => {
     const { setUser } = useContext(UserContext)
+    const [isDarkTheme, setIsDarkTheme] = useState(false)
 
     useEffect(() => {
         const useSession = authService.getCurrentUser()
@@ -18,8 +21,9 @@ const App = () => {
     }, [])
 
     return (
-        <>
-            <Header />
+        <ThemeProvider theme={isDarkTheme ? darkMode : lightMode}>
+            <GlobalStyle />
+            <Header isDarkTheme={isDarkTheme} setIsDarkTheme={setIsDarkTheme} />
             <Routes>
                 <Route exact index path="/" element={<Home />} />
                 <Route path="/:username" element={<Profile />} />
@@ -32,7 +36,7 @@ const App = () => {
                     </>
                 )}
             </Routes>
-        </>
+        </ThemeProvider>
     )
 }
 
