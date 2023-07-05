@@ -7,9 +7,13 @@ import ProfileMenu from '../ProfileMenu/ProfileMenu.component'
 import { colors } from '../../globalStyles'
 import SwitchToggle from '../SwitchToggle/SwitchToggle.component'
 
-const Header = () => {
+const Header = ({ isDarkTheme, setIsDarkTheme }) => {
     const { user } = useContext(UserContext)
     const navigate = useNavigate()
+
+    const themeToggle = () => {
+        setIsDarkTheme(!isDarkTheme)
+    }
 
     return (
         <HeaderContainer>
@@ -29,7 +33,10 @@ const Header = () => {
                 )}
                 <div>
                     <span>DarkMode</span>
-                    <SwitchToggle />
+                    <SwitchToggle
+                        checked={isDarkTheme}
+                        onChange={themeToggle}
+                    />
                 </div>
             </HeaderSection>
         </HeaderContainer>
