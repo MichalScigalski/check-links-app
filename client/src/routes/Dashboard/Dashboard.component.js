@@ -17,6 +17,7 @@ import Alert from '../../components/Alert/Alert.component'
 import userService from '../../services/user.service'
 import { UserContext } from '../../context/User.context'
 import { useContext } from 'react'
+import { useTheme } from 'styled-components'
 
 const linkDefault = {
     name: '',
@@ -26,20 +27,6 @@ const linkDefault = {
 const newPasswordDefault = {
     password: '',
     newPassword: '',
-}
-
-const modalStyles = {
-    overlay: {
-        backdropFilter: 'blur(2px)',
-    },
-    content: {
-        top: '50%',
-        left: '50%',
-        right: 'auto',
-        bottom: 'auto',
-        transform: 'translate(-50%, -50%)',
-        padding: '5rem',
-    },
 }
 
 const Dashboard = () => {
@@ -52,7 +39,24 @@ const Dashboard = () => {
     const [newPassword, setNewPassword] = useState(newPasswordDefault)
     const [alertData, setAlertData] = useState(null)
 
+    const theme = useTheme()
     const navigate = useNavigate()
+
+    const modalStyles = {
+        overlay: {
+            backdropFilter: 'blur(2px)',
+        },
+        content: {
+            top: '50%',
+            left: '50%',
+            right: 'auto',
+            bottom: 'auto',
+            transform: 'translate(-50%, -50%)',
+            padding: '5rem',
+            background: theme.body 
+        },
+    }
+    
 
     useEffect(() => {
         dashHandle()
