@@ -6,7 +6,7 @@ export const CreateProfileContainer = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: #fff;
+    background-color: ${colors.dark};
     border-radius: 8px;
     padding: 3rem;
     height: 70vh;
@@ -33,7 +33,7 @@ export const Container = styled.div`
     gap: 1rem;
     border-radius: 8px;
     padding: 4rem 3rem;
-    background-color: white;
+    background-color: ${({theme}) => theme.main};
     box-shadow: ${shadows.medium};
 
     h1 {
