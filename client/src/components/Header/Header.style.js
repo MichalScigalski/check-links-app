@@ -41,6 +41,9 @@ export const HeaderSection = styled.div`
         flex-direction: column;
         align-items: center;
         gap: 4px;
-        color: ${colors.green};
+
+        span {
+            color: ${colors.green};
+        }
     }
 `

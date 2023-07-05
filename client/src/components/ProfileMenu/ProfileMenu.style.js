@@ -36,6 +36,7 @@ export const ProfileImage = styled.div`
 
 export const DropdownMenu = styled.div`
     position: absolute;
+    top: 0;
     display: flex;
     text-align: center;
     padding-top: 3rem;
