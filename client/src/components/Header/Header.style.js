@@ -7,12 +7,12 @@ export const HeaderContainer = styled.header`
     z-index: 99;
     align-items: center;
     row-gap: 8px;
-    background-color: #fff;
     padding: 1rem 0;
+    background: ${({theme})=> theme.main};
     box-shadow: ${shadows.small};
     height: 80px;
     h1 {
-        color: ${colors.dark};
+        color: ${({theme}) => theme.text};
         font-size: 2.5rem;
         margin-left: 1rem;
         span {
