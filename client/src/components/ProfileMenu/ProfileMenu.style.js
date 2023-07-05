@@ -6,7 +6,7 @@ export const ProfileMenuContainer = styled.div`
     display: flex;
     justify-content: center;
     width: 160px;
-    z-index: 100;
+    z-index: 3;
 `
 
 export const ProfileButton = styled.button`
@@ -45,7 +45,7 @@ export const DropdownMenu = styled.div`
     width: 100%;
     box-shadow: ${shadows.large};
     border-radius: 8px;
-    background-color: #fff;
+    background-color: ${({ theme }) => theme.main};
 `
 
 export const MenuItem = styled.div`
@@ -54,7 +54,8 @@ export const MenuItem = styled.div`
 
     width: 100%;
     &:hover {
-        background-color: ${colors.gray};
+        background-color: ${({ theme }) =>
+            theme.isDark ? colors.purple : colors.gray};
     }
     &:last-child:hover {
         border-bottom-right-radius: 8px;
