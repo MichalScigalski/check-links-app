@@ -30,3 +30,17 @@ export const HeaderContainer = styled.header`
         padding: 4rem 0;
     }
 `
+
+export const HeaderSection = styled.div`
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    div {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 4px;
+        color: ${colors.green};
+    }
+`
