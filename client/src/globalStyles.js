@@ -17,11 +17,13 @@ export const shadows = {
 }
 
 export const lightMode = {
+    isDark: false,
     body: colors.light,
     text: '#000',
     main: '#FFF',
 }
 export const darkMode = {
+    isDark: true,
     body: colors.dark,
     text: '#FFF',
     main: '#2b3a4d',
