@@ -9,24 +9,22 @@ import {
 } from './ProfileMenu.style'
 import { useState } from 'react'
 import { UserContext } from '../../context/User.context'
+import { AlertContext } from '../../context/Alert.context'
 import AvatarIcon from '../../assets/img/avatar.svg'
 import { useNavigate } from 'react-router'
 import userService from '../../services/user.service'
 
 const ProfileMenu = () => {
     const [isOpen, setIsOpen] = useState(false)
-    const { user, setUser } = useContext(UserContext)
+    const { user } = useContext(UserContext)
     const navigate = useNavigate()
+    const { setAlertData } = useContext(AlertContext)
 
-    const toggleMenu = () => {
-        setIsOpen(!isOpen)
-    }
+    const toggleMenu = () => setIsOpen(!isOpen)
 
     const logoutHandler = () => {
-        navigate('/')
-        window.location.reload()
-        setUser(null)
         userService.logout()
+        setAlertData({ status: true, text: 'logged out', navigation: 0})
     }
 
     const navigateHandler = (url) => {
