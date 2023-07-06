@@ -6,7 +6,7 @@ import { useEffect } from 'react'
 import { useNavigate } from 'react-router'
 
 const Alert = ({ alert, onClose }) => {
-    const { status, text, isRefresh } = alert
+    const { status, text, redirect } = alert
     const navigate = useNavigate()
 
     let header = '',
@@ -24,9 +24,9 @@ const Alert = ({ alert, onClose }) => {
         const timer = setTimeout(
             () => {
                 onClose()
-                if (isRefresh) navigate(0)
+                if (redirect !== undefined) navigate(redirect)
             },
-            isRefresh ? 1000 : 4000
+            redirect !== undefined ? 1000 : 4000
         )
 
         return () => clearTimeout(timer)
@@ -34,7 +34,7 @@ const Alert = ({ alert, onClose }) => {
 
     const closeHandler = () => {
         onClose()
-        if (isRefresh) navigate(0)
+        if (redirect !== undefined) navigate(0)
     }
 
     return (
