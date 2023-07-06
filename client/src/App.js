@@ -12,15 +12,18 @@ import { ThemeProvider } from 'styled-components'
 import GlobalStyle, { darkMode, lightMode } from './globalStyles'
 import { AlertContext } from './context/Alert.context'
 import Alert from './components/Alert/Alert.component'
+import Loader from './components/Loader/Loader.component'
 
 const App = () => {
-    const { setUser } = useContext(UserContext)
+    const { user, setUser } = useContext(UserContext)
     const { alertData } = useContext(AlertContext)
     const [isDarkTheme, setIsDarkTheme] = useState(false)
+    const [isLoading, setIsLoading] = useState(true)
 
     useEffect(() => {
-        const useSession = authService.getCurrentUser()
-        if (useSession) setUser(useSession)
+        const userSession = authService.getCurrentUser()
+        if (userSession) setUser(userSession)
+        setIsLoading(false)
     }, [])
 
     return (
@@ -28,18 +31,22 @@ const App = () => {
             {alertData && <Alert />}
             <GlobalStyle />
             <Header isDarkTheme={isDarkTheme} setIsDarkTheme={setIsDarkTheme} />
-            <Routes>
-                <Route exact index path="/" element={<Home />} />
-                <Route path="/:username" element={<Profile />} />
-                {authService.getCurrentUser() ? (
-                    <Route path="/dashboard" element={<Dashboard />} />
-                ) : (
-                    <>
-                        <Route path="/login" element={<Login />} />
-                        <Route path="/register" element={<Register />} />
-                    </>
-                )}
-            </Routes>
+            {isLoading ? (
+                <Loader />
+            ) : (
+                <Routes>
+                    <Route exact index path="/" element={<Home />} />
+                    {user ? (
+                        <Route path="/dashboard" element={<Dashboard />} />
+                    ) : (
+                        <>
+                            <Route path="/login" element={<Login />} />
+                            <Route path="/register" element={<Register />} />
+                        </>
+                    )}
+                    <Route path="/:username" element={<Profile />} />
+                </Routes>
+            )}
         </ThemeProvider>
     )
 }
