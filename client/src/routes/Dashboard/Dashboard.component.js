@@ -18,6 +18,8 @@ import userService from '../../services/user.service'
 import { UserContext } from '../../context/User.context'
 import { useContext } from 'react'
 import { useTheme } from 'styled-components'
+import { AlertContainer } from '../../components/Alert/Alert.style'
+import { AlertContext } from '../../context/Alert.context'
 
 const linkDefault = {
     name: '',
@@ -37,7 +39,7 @@ const Dashboard = () => {
     const [newLink, setNewLink] = useState(linkDefault)
     const [editLink, setEditLink] = useState(linkDefault)
     const [newPassword, setNewPassword] = useState(newPasswordDefault)
-    const [alertData, setAlertData] = useState(null)
+    const { setAlertData } = useContext(AlertContext)
 
     const theme = useTheme()
     const navigate = useNavigate()
@@ -53,10 +55,9 @@ const Dashboard = () => {
             bottom: 'auto',
             transform: 'translate(-50%, -50%)',
             padding: '5rem',
-            background: theme.body 
+            background: theme.body,
         },
     }
-    
 
     useEffect(() => {
         dashHandle()
@@ -77,7 +78,7 @@ const Dashboard = () => {
             setAlertData({
                 status: true,
                 text: 'Profile created',
-                redirect: 0,
+                navigation: 0,
             })
         } catch (err) {
             setAlertData({ status: false, text: err.response.data.message })
@@ -88,7 +89,7 @@ const Dashboard = () => {
         e.preventDefault()
         try {
             await profileService.addLink(newLink)
-            setAlertData({ status: true, text: 'Link added', redirect: 0 })
+            setAlertData({ status: true, text: 'Link added', navigation: 0 })
         } catch (err) {
             setAlertData({ status: false, text: err.response.data.message })
         }
@@ -112,7 +113,7 @@ const Dashboard = () => {
             setAlertData({
                 status: true,
                 text: 'Link updated',
-                redirect: 0,
+                navigation: 0,
             })
         } catch (err) {
             setAlertData({ status: false, text: err.response.data.message })
@@ -131,7 +132,7 @@ const Dashboard = () => {
             setAlertData({
                 status: true,
                 text: 'Password changed',
-                redirect: 0,
+                navigation: 0,
             })
         } catch (err) {
             setAlertData({ status: false, text: err.response.data.message })
@@ -144,8 +145,6 @@ const Dashboard = () => {
         setUser(null)
         userService.logout()
     }
-
-    const closeAlertHandler = () => setAlertData(null)
 
     const openEditModal = (link) => {
         setEditLink(link)
@@ -167,9 +166,6 @@ const Dashboard = () => {
 
     return (
         <>
-            {alertData && (
-                <Alert alert={alertData} onClose={closeAlertHandler} />
-            )}
             {profile ? (
                 <DashboardContainer>
                     <Modal isOpen={isEditModalOpen} style={modalStyles}>
