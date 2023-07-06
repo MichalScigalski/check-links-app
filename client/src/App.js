@@ -10,9 +10,12 @@ import Profile from './routes/Profile/Profile.component'
 import Dashboard from './routes/Dashboard/Dashboard.component'
 import { ThemeProvider } from 'styled-components'
 import GlobalStyle, { darkMode, lightMode } from './globalStyles'
+import { AlertContext } from './context/Alert.context'
+import Alert from './components/Alert/Alert.component'
 
 const App = () => {
     const { setUser } = useContext(UserContext)
+    const { alertData } = useContext(AlertContext)
     const [isDarkTheme, setIsDarkTheme] = useState(false)
 
     useEffect(() => {
@@ -22,6 +25,7 @@ const App = () => {
 
     return (
         <ThemeProvider theme={isDarkTheme ? darkMode : lightMode}>
+            {alertData && <Alert />}
             <GlobalStyle />
             <Header isDarkTheme={isDarkTheme} setIsDarkTheme={setIsDarkTheme} />
             <Routes>
