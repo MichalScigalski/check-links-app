@@ -2,11 +2,13 @@ import { AlertContainer } from './Alert.style'
 import SuccessIcon from '../../assets/img/success-icon.svg'
 import ErrorIcon from '../../assets/img/error-icon.svg'
 import CloseIcon from '../../assets/img/close-icon.svg'
-import { useEffect } from 'react'
+import { useContext, useEffect } from 'react'
 import { useNavigate } from 'react-router'
+import { AlertContext } from '../../context/Alert.context'
 
-const Alert = ({ alert, onClose }) => {
-    const { status, text, redirect } = alert
+const Alert = () => {
+    const { alertData, setAlertData } = useContext(AlertContext)
+    const { status, text, navigation } = alertData
     const navigate = useNavigate()
 
     let header = '',
@@ -23,18 +25,16 @@ const Alert = ({ alert, onClose }) => {
     useEffect(() => {
         const timer = setTimeout(
             () => {
-                onClose()
-                if (redirect !== undefined) navigate(redirect)
+                closeHandler()
             },
-            redirect !== undefined ? 1000 : 4000
+            navigation !== undefined ? 1000 : 3000
         )
-
         return () => clearTimeout(timer)
-    }, [onClose])
+    }, [])
 
     const closeHandler = () => {
-        onClose()
-        if (redirect !== undefined) navigate(0)
+        setAlertData(null)
+        if (navigation !== undefined) navigate(navigation)
     }
 
     return (
