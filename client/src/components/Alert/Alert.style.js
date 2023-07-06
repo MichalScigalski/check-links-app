@@ -25,7 +25,7 @@ export const AlertContainer = styled.div`
     transform: translate(-50%);
     box-shadow: ${shadows.large};
     color: white;
-    background-color: ${colors.dark};
+    background-color: #2b3a4d;
     max-width: 350px;
     opacity: ${({ show }) => (show ? 1 : 0)};
     animation: ${({ show }) => show && fadeIn} 200ms ease-in;
