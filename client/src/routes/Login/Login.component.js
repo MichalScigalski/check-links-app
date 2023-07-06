@@ -21,7 +21,7 @@ const Login = () => {
             setAlertData({
                 status: true,
                 text: 'Loggin success',
-                isRefresh: true,
+                redirect: 0,
             })
         } catch (err) {
             setAlertData({ status: false, text: err.response.data.message })

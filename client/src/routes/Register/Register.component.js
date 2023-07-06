@@ -27,8 +27,7 @@ const Register = () => {
         }
         try {
             await userService.register(username, password)
-            setAlertData({ status: true, text: 'Register success, now you can login' })
-            navigate('/login')
+            setAlertData({ status: true, text: 'Register success, now you can login', redirect: '/login' })
         } catch (err) {
             setAlertData({ status: false, text: err.response.data.message })
         }

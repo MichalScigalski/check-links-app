@@ -77,7 +77,7 @@ const Dashboard = () => {
             setAlertData({
                 status: true,
                 text: 'Profile created',
-                isRefresh: true,
+                redirect: 0,
             })
         } catch (err) {
             setAlertData({ status: false, text: err.response.data.message })
@@ -88,7 +88,7 @@ const Dashboard = () => {
         e.preventDefault()
         try {
             await profileService.addLink(newLink)
-            setAlertData({ status: true, text: 'Link added', isRefresh: true })
+            setAlertData({ status: true, text: 'Link added', redirect: 0 })
         } catch (err) {
             setAlertData({ status: false, text: err.response.data.message })
         }
@@ -112,7 +112,7 @@ const Dashboard = () => {
             setAlertData({
                 status: true,
                 text: 'Link updated',
-                isRefresh: true,
+                redirect: 0,
             })
         } catch (err) {
             setAlertData({ status: false, text: err.response.data.message })
@@ -131,7 +131,7 @@ const Dashboard = () => {
             setAlertData({
                 status: true,
                 text: 'Password changed',
-                isRefresh: true,
+                redirect: 0,
             })
         } catch (err) {
             setAlertData({ status: false, text: err.response.data.message })
