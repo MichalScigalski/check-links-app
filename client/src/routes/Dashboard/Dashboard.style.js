@@ -6,7 +6,6 @@ export const CreateProfileContainer = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: ${colors.dark};
     border-radius: 8px;
     padding: 3rem;
     height: 70vh;
