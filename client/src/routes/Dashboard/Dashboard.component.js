@@ -13,12 +13,10 @@ import FormField from '../../components/FormField/FormField.component'
 import LinkDashboard from '../../components/LinkDashboard/LinkDashboard.component'
 import Modal from 'react-modal'
 import profileService from '../../services/profile.service'
-import Alert from '../../components/Alert/Alert.component'
 import userService from '../../services/user.service'
 import { UserContext } from '../../context/User.context'
 import { useContext } from 'react'
 import { useTheme } from 'styled-components'
-import { AlertContainer } from '../../components/Alert/Alert.style'
 import { AlertContext } from '../../context/Alert.context'
 
 const linkDefault = {
@@ -61,17 +59,18 @@ const Dashboard = () => {
     }
 
     useEffect(() => {
+        const dashHandle = async () => {
+            try {
+                const profile = await profileService.getDashboard()
+                setProfile(profile)
+            } catch (err) {
+                setAlertData({ status: false, text: err.response.data.message })
+            }
+        }
         dashHandle()
     }, [])
 
-    const dashHandle = async () => {
-        try {
-            const profile = await profileService.getDashboard()
-            setProfile(profile)
-        } catch (err) {
-            setAlertData({ status: false, text: err.response.data.message })
-        }
-    }
+    
 
     const createProfileHandler = async () => {
         try {
