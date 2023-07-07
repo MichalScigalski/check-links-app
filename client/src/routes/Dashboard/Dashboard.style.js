@@ -74,7 +74,7 @@ export const LinksContainer = styled.div`
     gap: 1rem;
     max-height: 320px;
     overflow: auto;
-    padding-right: 4px;
+    padding-right: 10px;
 
     &:hover {
         &::-webkit-scrollbar {
@@ -83,18 +83,15 @@ export const LinksContainer = styled.div`
     }
 
     &::-webkit-scrollbar-track {
-        border-radius: 10px;
         background-color: #f5f5f5;
     }
 
     &::-webkit-scrollbar {
-        transform: scale(0);
-        width: 4px;
+        width: 5px;
         background-color: #f5f5f5;
     }
 
     &::-webkit-scrollbar-thumb {
-        border-radius: 10px;
         background-color: ${colors.purple};
     }
 `
