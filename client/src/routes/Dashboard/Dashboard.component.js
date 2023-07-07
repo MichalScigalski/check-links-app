@@ -47,6 +47,7 @@ const Dashboard = () => {
     const modalStyles = {
         overlay: {
             backdropFilter: 'blur(2px)',
+            zIndex: '99'
         },
         content: {
             top: '50%',
