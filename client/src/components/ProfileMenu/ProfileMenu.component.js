@@ -1,4 +1,4 @@
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 import {
     ProfileMenuContainer,
     ProfileButton,
@@ -13,18 +13,32 @@ import { AlertContext } from '../../context/Alert.context'
 import AvatarIcon from '../../assets/img/avatar.svg'
 import { useNavigate } from 'react-router'
 import userService from '../../services/user.service'
+import profileService from '../../services/profile.service'
 
 const ProfileMenu = () => {
     const [isOpen, setIsOpen] = useState(false)
+    const [isProfile, setIsProfile] = useState(false)
     const { user } = useContext(UserContext)
     const navigate = useNavigate()
     const { setAlertData } = useContext(AlertContext)
+
+    useEffect(() => {
+        const getIsProfile = async () => {
+            try {
+                await profileService.getProfile(user.username)
+                setIsProfile(true)
+            } catch(err) {
+                setIsProfile(false)
+            }
+        }
+        getIsProfile()
+    }, [])
 
     const toggleMenu = () => setIsOpen(!isOpen)
 
     const logoutHandler = () => {
         userService.logout()
-        setAlertData({ status: true, text: 'logged out', navigation: 0})
+        setAlertData({ status: true, text: 'logged out', navigation: 0 })
     }
 
     const navigateHandler = (url) => {
@@ -42,9 +56,12 @@ const ProfileMenu = () => {
             {isOpen && (
                 <DropdownMenu>
                     <MenuSection>@{user.username}</MenuSection>
-                    <MenuItem onClick={() => navigateHandler('/' + user.username)}>
-                        View Page
-                    </MenuItem>
+                    { isProfile && (
+                        <MenuItem
+                            onClick={() => navigateHandler('/' + user.username)}>
+                            View Page
+                        </MenuItem>
+                    )}
                     <MenuItem onClick={() => navigateHandler('/dashboard')}>
                         Dashboard
                     </MenuItem>
