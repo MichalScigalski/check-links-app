@@ -23,6 +23,7 @@ const App = () => {
     useEffect(() => {
         const userSession = authService.getCurrentUser()
         if (userSession) setUser(userSession)
+        setIsDarkTheme(JSON.parse(localStorage.getItem('dark-theme')))
         setIsLoading(false)
     }, [])
 

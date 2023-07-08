@@ -12,6 +12,7 @@ const Header = ({ isDarkTheme, setIsDarkTheme }) => {
     const navigate = useNavigate()
 
     const themeToggle = () => {
+        localStorage.setItem('dark-theme', !isDarkTheme)
         setIsDarkTheme(!isDarkTheme)
     }
 
