@@ -2,6 +2,7 @@ import styled from 'styled-components'
 import { colors } from '../../globalStyles'
 
 export const LinkDashboardContainer = styled.div`
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -23,10 +24,10 @@ export const LinkDashboardData = styled.div`
         display: none;
     }
 
-    p,a {
+    p,
+    a {
         margin: 0;
         color: ${colors.dark};
-
     }
     p {
         font-weight: 700;
