@@ -27,10 +27,11 @@ const Register = () => {
         }
         try {
             await userService.register(username, password)
+            await userService.login(username, password)
             setAlertData({
                 status: true,
-                text: 'Register success, now you can login',
-                navigation: '/login',
+                text: 'Register success',
+                navigation: 0,
             })
         } catch (err) {
             setAlertData({ status: false, text: err.response.data.message })
