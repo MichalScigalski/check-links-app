@@ -139,10 +139,8 @@ const Dashboard = () => {
     }
 
     const logoutHandler = () => {
-        navigate('/')
-        window.location.reload()
-        setUser(null)
         userService.logout()
+        setAlertData({ status: true, text: 'logged out', navigation: 0 })
     }
 
     const openEditModal = (link) => {
@@ -326,7 +324,7 @@ const Dashboard = () => {
                                         url: e.target.value,
                                     })
                                 }
-                                type='url'
+                                type="url"
                                 placeholder="http://instagram.com/user"
                                 required
                             />
