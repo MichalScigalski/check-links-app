@@ -25,6 +25,8 @@ export const MenuSection = styled.span`
     color: ${colors.dark};
     font-size: 1.25rem;
     padding: 1rem 0;
+    width: 90%;
+    word-wrap: break-word;
 `
 
 export const ProfileImage = styled.div`
