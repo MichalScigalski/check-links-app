@@ -41,10 +41,9 @@ const ProfileMenu = () => {
         setAlertData({ status: true, text: 'logged out', navigation: 0 })
     }
 
-    const navigateHandler = (url) => {
-        navigate(url)
-        toggleMenu()
-    }
+    useEffect(() => {
+        setIsOpen(false)
+    }, [navigate])
 
     return (
         <ProfileMenuContainer>
@@ -58,11 +57,11 @@ const ProfileMenu = () => {
                     <MenuSection>@{user.username}</MenuSection>
                     { isProfile && (
                         <MenuItem
-                            onClick={() => navigateHandler('/' + user.username)}>
+                            onClick={() => navigate('/' + user.username)}>
                             View Page
                         </MenuItem>
                     )}
-                    <MenuItem onClick={() => navigateHandler('/dashboard')}>
+                    <MenuItem onClick={() => navigate('/dashboard')}>
                         Dashboard
                     </MenuItem>
                     <MenuItem onClick={logoutHandler}>Logout</MenuItem>
