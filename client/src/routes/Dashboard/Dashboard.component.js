@@ -326,6 +326,7 @@ const Dashboard = () => {
                                         url: e.target.value,
                                     })
                                 }
+                                type='url'
                                 placeholder="http://instagram.com/user"
                                 required
                             />
