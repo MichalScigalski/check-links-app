@@ -7,20 +7,22 @@ import {
 } from './LinkDashboard.style'
 import SwitchToggle from '../SwitchToggle/SwitchToggle.component'
 import { useState } from 'react'
+import ConfirmDialog from '../ConfirmDialog/ConfirmDialog.component'
+import { useEffect } from 'react'
 
 const LinkDashboard = ({ link, openModel }) => {
     const { name, url, isVisible, _id } = link
-    const [ isChecked, setIsChecked ] = useState(isVisible)
+    const [isChecked, setIsChecked] = useState(isVisible)
+    const [isConfirm, setIsConfirm] = useState(false)
+
     const navigate = useNavigate()
 
     const deleteLinkHandler = () => {
-        if (window.confirm(`Are you sure u want to remove ${name}?`)) {
-            try {
-                profileService.deleteLink(_id)
-                navigate(0)
-            } catch (err) {
-                alert(err.response.data.message)
-            }
+        try {
+            profileService.deleteLink(_id)
+            navigate(0)
+        } catch (err) {
+            alert(err.response.data.message)
         }
     }
 
@@ -43,9 +45,21 @@ const LinkDashboard = ({ link, openModel }) => {
             </LinkDashboardData>
             <LinkDashboardButtons>
                 <button onClick={() => openModel(link)}>🖊️</button>
-                <button onClick={deleteLinkHandler}>🗑️</button>
-                <SwitchToggle checked={isChecked} onChange={isVisibleToggleHandler} />
+                <button onClick={() => setIsConfirm(true)}>🗑️ </button>
+
+                <SwitchToggle
+                    checked={isChecked}
+                    onChange={isVisibleToggleHandler}
+                />
             </LinkDashboardButtons>
+
+            {isConfirm && (
+                <ConfirmDialog
+                    setIsOpen={setIsConfirm}
+                    message="Are you sure u want to remove?"
+                    onConfirm={deleteLinkHandler}
+                />
+            )}
         </LinkDashboardContainer>
     )
 }
