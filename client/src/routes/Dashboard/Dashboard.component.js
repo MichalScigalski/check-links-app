@@ -45,7 +45,7 @@ const Dashboard = () => {
     const modalStyles = {
         overlay: {
             backdropFilter: 'blur(2px)',
-            zIndex: '99'
+            zIndex: '99',
         },
         content: {
             top: '50%',
@@ -58,27 +58,26 @@ const Dashboard = () => {
         },
     }
 
-    useEffect(() => {
-        const dashHandle = async () => {
-            try {
-                const profile = await profileService.getDashboard()
-                setProfile(profile)
-            } catch (err) {
-                setAlertData({ status: false, text: err.response.data.message })
-            }
+    const dashHandle = async () => {
+        try {
+            const profile = await profileService.getDashboard()
+            setProfile(profile)
+        } catch (err) {
+            setAlertData({ status: false, text: err.response.data.message })
         }
+    }
+
+    useEffect(() => {
         dashHandle()
     }, [])
-
-    
 
     const createProfileHandler = async () => {
         try {
             await profileService.createProfile()
+            dashHandle()
             setAlertData({
                 status: true,
                 text: 'Profile created',
-                navigation: 0,
             })
         } catch (err) {
             setAlertData({ status: false, text: err.response.data.message })
