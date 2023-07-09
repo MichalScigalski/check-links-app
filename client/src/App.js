@@ -36,7 +36,7 @@ const App = () => {
                 <Loader />
             ) : (
                 <Routes>
-                    <Route exact index path="/" element={<Home />} />
+                    <Route exact index path="/" element={<Home user={user} />} />
                     {user ? (
                         <Route path="/dashboard" element={<Dashboard />} />
                     ) : (
