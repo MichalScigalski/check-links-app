@@ -30,11 +30,19 @@ export const SwitchSlider = styled.span`
         content: '';
         height: 16px;
         width: 16px;
-        left: 2px;
-        bottom: 2px;
-        background-color: white;
         border-radius: 50%;
         transition: 200ms;
+        
+        ${({isThemeSwitch}) => !isThemeSwitch ? (
+            'background-color: #FFF; bottom: 2px; left: 2px;'
+        ):
+            'bottom: 6px;'
+        }
+
+        content: '${({ isThemeSwitch, checked }) =>
+            isThemeSwitch && (checked ? "🌒" : "☀️")}';
+        ${({ isThemeSwitch, checked }) =>
+            isThemeSwitch && (checked ? 'right: 25px' : 'left: 0')};
     }
 `
 
