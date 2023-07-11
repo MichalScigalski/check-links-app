@@ -1,4 +1,4 @@
-import { ConfirmDialogContainer, ConfirmCancelButton } from './ConfirmDialog.style'
+import { ConfirmDialogContainer } from './ConfirmDialog.style'
 
 const ConfirmDialog = ({ message, onConfirm, onCancel, setIsOpen }) => {
     const confirmHandler = () => {
@@ -16,8 +16,11 @@ const ConfirmDialog = ({ message, onConfirm, onCancel, setIsOpen }) => {
 
     return (
         <ConfirmDialogContainer >
-            <p onClick={confirmHandler}>{message}</p>
-            <ConfirmCancelButton onClick={cancelHandler} />
+            <p>{message}</p>
+            <div>
+                <button onClick={confirmHandler}>🗑️</button>
+                <button onClick={cancelHandler} >✖️</button>
+            </div>
         </ConfirmDialogContainer>
     )
 }

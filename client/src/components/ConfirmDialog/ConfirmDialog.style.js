@@ -3,7 +3,8 @@ import { colors, shadows } from '../../globalStyles'
 
 export const ConfirmDialogContainer = styled.dialog`
     display: flex;
-    text-align: center;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
     width: 100%;
     min-height: 100%;
@@ -18,12 +19,18 @@ export const ConfirmDialogContainer = styled.dialog`
     p {
         cursor: pointer;
     }
-`
 
-export const ConfirmCancelButton = styled.span`
-    cursor: pointer;
-    margin-right: 8px;
-    &::before {
-        content: 'X';
+    div {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 4px;
+        align-items: center;
+
+        button {
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            font-size: 1.25rem;
+        }
     }
 `
