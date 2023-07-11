@@ -32,13 +32,11 @@ const Header = ({ isDarkTheme, setIsDarkTheme }) => {
                         bgColor={colors.green}
                     />
                 )}
-                <div>
-                    <span>DarkMode</span>
                     <SwitchToggle
                         checked={isDarkTheme}
                         onChange={themeToggle}
+                        isThemeSwitch={true}
                     />
-                </div>
             </HeaderSection>
         </HeaderContainer>
     )
