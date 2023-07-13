@@ -11,14 +11,8 @@ const origin = process.env.CLIENT_URL
 
 const app = express()
 
-const corsConfig = {
-    origin: [origin],
-    methods: ["POST", "GET"],
-    credentials: true
-}
-
 app.use(express.json())
-app.use(cors(corsConfig))
+app.use(cors({ origin }))
 
 app.use('/api/v1/user', userRouter)
 app.use('/api/v1/profile', profileRouter)
