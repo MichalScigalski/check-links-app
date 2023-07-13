@@ -25,7 +25,7 @@ const App = () => {
         if (userSession) setUser(userSession)
         setIsDarkTheme(JSON.parse(localStorage.getItem('dark-theme')))
         setIsLoading(false)
-    }, [])
+    }, [user,setUser])
 
     return (
         <ThemeProvider theme={isDarkTheme ? darkMode : lightMode}>
