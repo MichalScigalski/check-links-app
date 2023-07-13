@@ -35,7 +35,6 @@ const Header = ({ isDarkTheme, setIsDarkTheme }) => {
                     <SwitchToggle
                         checked={isDarkTheme}
                         onChange={themeToggle}
-                        isThemeSwitch={true}
                     />
             </HeaderSection>
         </HeaderContainer>

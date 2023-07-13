@@ -4,7 +4,7 @@ import {
     SwitchSlider,
 } from './SwitchToggle.style'
 
-const SwitchToggle = ({ checked, isThemeSwitch, onChange }) => {
+const SwitchToggle = ({ checked, onChange }) => {
     return (
         <SwitchContainer>
             <SwitchInputChecked
@@ -12,7 +12,7 @@ const SwitchToggle = ({ checked, isThemeSwitch, onChange }) => {
                 checked={checked}
                 onChange={onChange}
             />
-            <SwitchSlider checked={checked} isThemeSwitch={isThemeSwitch} />
+            <SwitchSlider />
         </SwitchContainer>
     )
 }
