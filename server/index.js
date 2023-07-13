@@ -12,7 +12,7 @@ const origin = process.env.CLIENT_URL
 const app = express()
 
 app.use(express.json())
-app.use(cors({ origin, credentials: true, optionsSuccessStatus: 200 }))
+app.use(cors())
 
 app.use('/api/v1/user', userRouter)
 app.use('/api/v1/profile', profileRouter)
