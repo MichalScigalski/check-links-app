@@ -48,6 +48,7 @@ const Register = () => {
                         value={username}
                         onChange={(e) => setUsername(e.target.value)}
                         color={colors.green}
+                        required
                     />
                     <FormField
                         label={'Password'}
@@ -56,6 +57,7 @@ const Register = () => {
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                         color={colors.green}
+                        required
                     />
                     <FormField
                         label={'Repeat password'}
@@ -64,6 +66,7 @@ const Register = () => {
                         value={passwordRepeat}
                         onChange={(e) => setPasswordRepeat(e.target.value)}
                         color={colors.green}
+                        required
                     />
                     <section>
                         <input required type="checkbox" />

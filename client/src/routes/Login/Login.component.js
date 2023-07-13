@@ -42,6 +42,7 @@ const Login = () => {
                         onChange={(e) => setUsername(e.target.value)}
                         placeholder={'name'}
                         color={colors.green}
+                        required
                     />
                     <FormField
                         label={'Password'}
@@ -51,6 +52,7 @@ const Login = () => {
                         onChange={(e) => setPassword(e.target.value)}
                         placeholder={'**********'}
                         color={colors.green}
+                        required
                     />
                     <span>Forgot password?</span>
                     <Button bgColor={colors.green} value={'Login'} />
