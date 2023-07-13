@@ -1,11 +1,12 @@
-import { HeaderContainer, HeaderSection } from './Header.style'
+import { HeaderContainer, HeaderSection, ThemeButton } from './Header.style'
 import Button from '../Button/Button.component'
 import { useNavigate } from 'react-router'
 import { useContext } from 'react'
 import { UserContext } from '../../context/User.context'
 import ProfileMenu from '../ProfileMenu/ProfileMenu.component'
 import { colors } from '../../globalStyles'
-import SwitchToggle from '../SwitchToggle/SwitchToggle.component'
+import SunIcon from '../../assets/img/sun.png'
+import MoonIcon from '../../assets/img/moon.png'
 
 const Header = ({ isDarkTheme, setIsDarkTheme }) => {
     const { user } = useContext(UserContext)
@@ -32,10 +33,9 @@ const Header = ({ isDarkTheme, setIsDarkTheme }) => {
                         bgColor={colors.green}
                     />
                 )}
-                    <SwitchToggle
-                        checked={isDarkTheme}
-                        onChange={themeToggle}
-                    />
+                <ThemeButton onClick={themeToggle}>
+                    <img src={isDarkTheme ? SunIcon : MoonIcon} alt="theme-icon" />
+                </ThemeButton>
             </HeaderSection>
         </HeaderContainer>
     )

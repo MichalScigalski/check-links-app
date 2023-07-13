@@ -8,11 +8,11 @@ export const HeaderContainer = styled.header`
     align-items: center;
     row-gap: 8px;
     padding: 1rem 0;
-    background: ${({theme})=> theme.main};
+    background: ${({ theme }) => theme.main};
     box-shadow: ${shadows.small};
     height: 80px;
     h1 {
-        color: ${({theme}) => theme.text};
+        color: ${({ theme }) => theme.text};
         font-size: 2.5rem;
         margin-left: 1rem;
         span {
@@ -25,7 +25,7 @@ export const HeaderContainer = styled.header`
         cursor: pointer;
     }
 
-    @media (max-width: 376px) {
+    @media (max-width: 485px) {
         flex-direction: column;
         padding: 4rem 0;
     }
@@ -34,7 +34,7 @@ export const HeaderContainer = styled.header`
 export const HeaderSection = styled.div`
     display: flex;
     align-items: center;
-    gap: 1rem;
+    gap: 8px;
 
     div {
         display: flex;
@@ -45,5 +45,18 @@ export const HeaderSection = styled.div`
         span {
             color: ${colors.green};
         }
+    }
+`
+
+export const ThemeButton = styled.button`
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+
+    img {
+        height: 40px;
     }
 `
