@@ -1,10 +1,10 @@
 const express = require('express')
-const profileRouter = require('./routes/profile')
-const userRouter = require('./routes/user')
+const profileRouter = require('../routes/profile')
+const userRouter = require('../routes/user')
 const cors = require('cors')
 
 require('dotenv').config()
-require('./db/mongoose')
+require('../db/mongoose')
 
 const port = process.env.PORT || 3001
 
