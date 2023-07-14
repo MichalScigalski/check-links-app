@@ -7,10 +7,5 @@ const router = express.Router()
 router.post('/login', userController.login)
 router.post('/register', userController.register)
 router.put('/change-password', auth, userController.changePassword)
-router.get('/test', (req, res) => {
-    res.json({
-        message: 'Hello, success working api'
-    })
-})
 
 module.exports = router;
