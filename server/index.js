@@ -7,7 +7,6 @@ require('dotenv').config()
 require('./db/mongoose')
 
 const port = process.env.PORT || 3001
-const origin = process.env.CLIENT_URL
 
 const app = express()
 
@@ -20,3 +19,5 @@ app.use('/api/v1/profile', profileRouter)
 app.listen(port, () => {
     console.log('Server is listening on http://localhost:' + port)
 })
+
+module.exports = app;
