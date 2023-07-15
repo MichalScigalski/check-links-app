@@ -14,7 +14,7 @@
 
   <p align="center">
     Web fullstack application created in MERN stack. <br />
-    Allow users to share their own website with links.
+    Allows users to share their own website with links.
     <br />
     <br />
     <a href="https://check-links-client.vercel.app/" target="_blank"><strong>View Demo »</strong></a>
