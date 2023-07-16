@@ -8,7 +8,6 @@ import {
 import SwitchToggle from '../SwitchToggle/SwitchToggle.component'
 import { useState } from 'react'
 import ConfirmDialog from '../ConfirmDialog/ConfirmDialog.component'
-import { useEffect } from 'react'
 
 const LinkDashboard = ({ link, openModel }) => {
     const { name, url, isVisible, _id } = link

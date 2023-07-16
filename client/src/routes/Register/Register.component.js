@@ -6,7 +6,6 @@ import { useContext, useState } from 'react'
 import { useNavigate } from 'react-router'
 import userService from '../../services/user.service'
 import { colors } from '../../globalStyles'
-import Alert from '../../components/Alert/Alert.component'
 import { AlertContext } from '../../context/Alert.context'
 
 const Register = () => {
