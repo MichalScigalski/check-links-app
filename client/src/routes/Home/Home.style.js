@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { ProfileContainer } from '../Profile/Profile.style'
 
 export const HomeContainer = styled.div`
     display: flex;
@@ -41,24 +42,31 @@ export const WelcomeContainer = styled.div`
 
 export const CardsContainer = styled.div`
     display: flex;
-
     @media (max-width: 700px) {
         transform: scale(0.5);
         margin-top: -7rem;
     }
+`
 
-    div {
-        max-height: 550px;
-        transform: scale(0.8);
-        border-radius: 1rem;
-
-        &:nth-child(1) {
-            transform: translateX(20%);
-            z-index: 2;
+export const Card = styled.div`
+    height: 550px;
+    width: 410px;
+    ${ProfileContainer} {
+        height: 550px;
+        div {
+            transform: scale(0.8);
         }
-        &:nth-child(2) {
-            transform: translateX(-20%) scale(0.9);
-            opacity: 0.6;
+        a:active {
+            pointer-events: none;
         }
+    }
+    &:nth-child(1) {
+        transform: translateX(20%);
+        z-index: 2;
+    }
+    &:nth-child(2) {
+        transform: translateX(-20%) scale(0.9);
+        filter: blur(2px);
+        opacity: 0.6;
     }
 `

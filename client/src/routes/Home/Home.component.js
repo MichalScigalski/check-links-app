@@ -1,6 +1,6 @@
 import Button from '../../components/Button/Button.component'
 import { colors } from '../../globalStyles'
-import { HomeContainer, WelcomeContainer, CardsContainer } from './Home.style'
+import { HomeContainer, WelcomeContainer, CardsContainer, Card } from './Home.style'
 import Profile from '../Profile/Profile.component'
 import { useNavigate } from 'react-router'
 
@@ -29,8 +29,12 @@ const Home = ({ user }) => {
                 )}
             </WelcomeContainer>
             <CardsContainer>
-                <Profile homeView={'robert'} />
-                <Profile homeView={'jedno'} />
+                <Card>
+                    <Profile homeView={'robert'} />
+                </Card>
+                <Card>
+                    <Profile homeView={'jedno'} />
+                </Card>
             </CardsContainer>
         </HomeContainer>
     )
