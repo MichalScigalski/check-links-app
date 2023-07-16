@@ -17,6 +17,7 @@ import userService from '../../services/user.service'
 import { useContext } from 'react'
 import { useTheme } from 'styled-components'
 import { AlertContext } from '../../context/Alert.context'
+import Loader from '../../components/Loader/Loader.component'
 
 const linkDefault = {
     name: '',
@@ -36,6 +37,7 @@ const Dashboard = () => {
     const [editLink, setEditLink] = useState(linkDefault)
     const [newPassword, setNewPassword] = useState(newPasswordDefault)
     const { setAlertData } = useContext(AlertContext)
+    const [isLoading, setIsLoading] = useState(true)
 
     const theme = useTheme()
     const navigate = useNavigate()
@@ -67,6 +69,7 @@ const Dashboard = () => {
 
     useEffect(() => {
         dashHandle()
+        setIsLoading(false)
     }, [])
 
     const createProfileHandler = async () => {
@@ -161,7 +164,9 @@ const Dashboard = () => {
 
     return (
         <>
-            {profile ? (
+            {isLoading ? (
+                <Loader />
+            ) : profile ? (
                 <DashboardContainer>
                     <Modal isOpen={isEditModalOpen} style={modalStyles}>
                         <ModalContainer>
