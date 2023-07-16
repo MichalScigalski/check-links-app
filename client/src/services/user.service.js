@@ -10,7 +10,7 @@ const login = async (username, password) => {
             password,
         })
         .then((res) => {
-            if (res.data.token) sessionStorage.setItem('token', res.data.token)
+            if (res.data.token) localStorage.setItem('token', res.data.token)
             return res.data
         })
 }
@@ -23,7 +23,7 @@ const register = async (username, password) => {
 }
 
 const logout = () => {
-    sessionStorage.removeItem('token')
+    localStorage.removeItem('token')
 }
 
 const changePassword = async (newPassword) => {

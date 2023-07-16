@@ -1,7 +1,7 @@
 import jwt from 'jwt-decode'
 
 const getAuthToken = () => {
-    const token = sessionStorage.getItem('token')
+    const token = localStorage.getItem('token')
     if (token) return token
     return null
 }
