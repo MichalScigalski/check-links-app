@@ -103,8 +103,10 @@ export const ColorField = styled.div`
         margin: 5px;
     }
     input {
+        border-radius: 0;
         -webkit-appearance: none;
         -moz-appearance: none;
+        -webkit-border-radius:0px;
         appearance: none;
         width: 100px;
         height: 50px;

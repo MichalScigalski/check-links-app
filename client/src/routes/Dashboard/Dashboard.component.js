@@ -14,7 +14,6 @@ import LinkDashboard from '../../components/LinkDashboard/LinkDashboard.componen
 import Modal from 'react-modal'
 import profileService from '../../services/profile.service'
 import userService from '../../services/user.service'
-import { UserContext } from '../../context/User.context'
 import { useContext } from 'react'
 import { useTheme } from 'styled-components'
 import { AlertContext } from '../../context/Alert.context'
@@ -30,7 +29,6 @@ const newPasswordDefault = {
 }
 
 const Dashboard = () => {
-    const { setUser } = useContext(UserContext)
     const [profile, setProfile] = useState(null)
     const [isEditModalOpen, setIsEditModalOpen] = useState(false)
     const [isPasswordModalOpen, setIsPasswordModalOpen] = useState(false)
