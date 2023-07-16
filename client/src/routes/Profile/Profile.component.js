@@ -4,6 +4,7 @@ import { useNavigate, useParams } from 'react-router'
 import { useState } from 'react'
 import LinkProfile from '../../components/LinkProfile/LinkProfile.component'
 import profileService from '../../services/profile.service'
+import Loader from '../../components/Loader/Loader.component'
 
 const Profile = ({ homeView }) => {
     let { username } = useParams()
@@ -27,7 +28,7 @@ const Profile = ({ homeView }) => {
 
     return (
         <>
-            {profile && (
+            {profile ? (
                 <ProfileContainer bgColor={profile.backgroundColor}>
                     <h1>{profile.displayName}</h1>
                     <span>@{profile.username}</span>
@@ -47,7 +48,9 @@ const Profile = ({ homeView }) => {
                         )}
                     </ProfileLinks>
                 </ProfileContainer>
-            )}
+            ): 
+            <Loader />
+            }
         </>
     )
 }
