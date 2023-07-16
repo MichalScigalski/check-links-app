@@ -60,16 +60,17 @@ const Dashboard = () => {
 
     const dashHandle = async () => {
         try {
-            const profile = await profileService.getDashboard()
+            let profile = await profileService.getDashboard()
             setProfile(profile)
+            
         } catch (err) {
             setAlertData({ status: false, text: err.response.data.message })
         }
+        setIsLoading(false)
     }
 
     useEffect(() => {
         dashHandle()
-        setIsLoading(false)
     }, [])
 
     const createProfileHandler = async () => {
