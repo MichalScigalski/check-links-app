@@ -5,6 +5,7 @@ import { BrowserRouter } from 'react-router-dom'
 import { UserContextProvider } from './context/User.context'
 import Modal from 'react-modal'
 import { AlertContextProvider } from './context/Alert.context'
+import { Analytics } from '@vercel/analytics/react'
 
 Modal.setAppElement('#root')
 const root = ReactDOM.createRoot(document.getElementById('root'))
@@ -18,5 +19,6 @@ root.render(
                 </UserContextProvider>
             </AlertContextProvider>
         </BrowserRouter>
+        <Analytics />
     </React.StrictMode>
 )
