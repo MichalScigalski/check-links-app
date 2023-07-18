@@ -12,19 +12,18 @@ const Profile = ({ homeView }) => {
     const [profile, setProfile] = useState(null)
     const navigate = useNavigate()
 
-    useEffect(() => {
-        getProfile()
-    }, [])
-
     const getProfile = async () => {
         try {
             const profile = await profileService.getProfile(username)
             setProfile(profile)
         } catch (err) {
-            console.log(err)
             navigate('/')
         }
     }
+    
+    useEffect(() => {
+        getProfile()
+    }, [])
 
     return (
         <>
@@ -48,9 +47,9 @@ const Profile = ({ homeView }) => {
                         )}
                     </ProfileLinks>
                 </ProfileContainer>
-            ): 
-            <Loader />
-            }
+            ) : (
+                <Loader />
+            )}
         </>
     )
 }
