@@ -20,8 +20,9 @@ export const AlertContainer = styled.div`
     font-weight: bold;
     z-index: 99;
     position: fixed;
-    bottom: 5%;
+    bottom: 50px;
     left: 50%;
+    width: max-content;
     transform: translate(-50%);
     box-shadow: ${shadows.large};
     color: white;

@@ -25,7 +25,7 @@ export const HeaderContainer = styled.header`
         cursor: pointer;
     }
 
-    @media (max-width: 485px) {
+    @media (max-width: 520px) {
         flex-direction: column;
         padding: 4rem 0;
     }
@@ -50,7 +50,7 @@ export const HeaderSection = styled.div`
 
 export const ThemeButton = styled.button`
     position: absolute;
-    right: 20px;
+    right: 15px;
     top: 20px;
     border: none;
     background: transparent;
