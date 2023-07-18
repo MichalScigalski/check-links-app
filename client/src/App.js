@@ -1,4 +1,4 @@
-import { Route, Routes } from 'react-router'
+import { Route, Routes, useNavigate } from 'react-router'
 import Home from './routes/Home/Home.component'
 import Header from './components/Header/Header.component'
 import Login from './routes/Login/Login.component'
@@ -16,16 +16,23 @@ import Loader from './components/Loader/Loader.component'
 
 const App = () => {
     const { user, setUser } = useContext(UserContext)
-    const { alertData } = useContext(AlertContext)
+    const { alertData, setAlertData } = useContext(AlertContext)
     const [isDarkTheme, setIsDarkTheme] = useState(false)
     const [isLoading, setIsLoading] = useState(true)
+    const navigate = useNavigate()
 
     useEffect(() => {
-        const userSession = authService.getCurrentUser()
-        if (userSession) setUser(userSession)
+        try {
+            const userSession = authService.getCurrentUser()
+            if (userSession) setUser(userSession)
+        } catch(err) {
+            setUser(null)
+            setAlertData({ status: false, text: err.message })
+        }
+
         setIsDarkTheme(JSON.parse(localStorage.getItem('dark-theme')))
         setIsLoading(false)
-    }, [])
+    }, [navigate])
 
     return (
         <ThemeProvider theme={isDarkTheme ? darkMode : lightMode}>
