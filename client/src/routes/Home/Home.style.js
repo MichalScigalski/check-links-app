@@ -43,7 +43,7 @@ export const WelcomeContainer = styled.div`
 export const CardsContainer = styled.div`
     display: flex;
     @media (max-width: 700px) {
-        transform: scale(0.5);
+        transform: scale(0.4);
         margin-top: -7rem;
     }
 `
