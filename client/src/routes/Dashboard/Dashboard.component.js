@@ -15,9 +15,9 @@ import Modal from 'react-modal'
 import profileService from '../../services/profile.service'
 import userService from '../../services/user.service'
 import { useContext } from 'react'
-import { useTheme } from 'styled-components'
 import { AlertContext } from '../../context/Alert.context'
 import Loader from '../../components/Loader/Loader.component'
+import { modalStyles } from '../../globalStyles'
 
 const linkDefault = {
     name: '',
@@ -39,24 +39,7 @@ const Dashboard = () => {
     const { setAlertData } = useContext(AlertContext)
     const [isLoading, setIsLoading] = useState(true)
 
-    const theme = useTheme()
     const navigate = useNavigate()
-
-    const modalStyles = {
-        overlay: {
-            backdropFilter: 'blur(2px)',
-            zIndex: '99',
-        },
-        content: {
-            top: '50%',
-            left: '50%',
-            right: 'auto',
-            bottom: 'auto',
-            transform: 'translate(-50%, -50%)',
-            padding: '5rem',
-            background: theme.body,
-        },
-    }
 
     const dashHandle = async () => {
         try {

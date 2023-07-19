@@ -29,6 +29,22 @@ export const darkMode = {
     main: '#2b3a4d',
 }
 
+export const modalStyles = {
+    overlay: {
+        backdropFilter: 'blur(2px)',
+        zIndex: '99',
+    },
+    content: {
+        top: '50%',
+        left: '50%',
+        right: 'auto',
+        bottom: 'auto',
+        transform: 'translate(-50%, -50%)',
+        padding: '5rem',
+        background: colors.dark,
+    },
+}
+
 const GlobalStyle = createGlobalStyle`
     body {
         margin: 0;
