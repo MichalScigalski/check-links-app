@@ -1,12 +1,20 @@
 const jwt = require('jsonwebtoken')
 const User = require('../db/models/user')
-const bcrypt = require('bcrypt')
-const { hashPassword } = require('../helper')
+const {
+    hashPassword,
+    isOnlyLettersAndNumbers,
+    isUsernameAllowed,
+} = require('../helper')
 
 module.exports = {
     async register(req, res) {
         const username = req.body.username
         const password = req.body.password
+
+        if (!isOnlyLettersAndNumbers(username) || !isUsernameAllowed(username))
+            return res
+                .status(403)
+                .json({ message: 'This username is not allowed!' })
 
         const userExists = await User.findOne({ username })
         if (userExists)
@@ -44,7 +52,7 @@ module.exports = {
                 const token = jwt.sign(
                     { id: user._id, username },
                     process.env.TOKEN_SECRET,
-                    { expiresIn: '30m', }
+                    { expiresIn: '30m' }
                 )
                 res.status(200).json({ token })
             }
@@ -56,7 +64,7 @@ module.exports = {
         const newPassword = req.body.newPassword
         const _id = req.user.id
 
-        if(newPassword.length < 4)
+        if (newPassword.length < 4)
             return res.status(403).json({ message: 'Password is too short!' })
 
         try {
@@ -66,5 +74,5 @@ module.exports = {
         } catch (err) {
             return res.status(422).json({ message: err.message })
         }
-    }
+    },
 }
