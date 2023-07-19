@@ -17,7 +17,7 @@
     Allows users to share their own website with links.
     <br />
     <br />
-    <a href="https://check-links-client.vercel.app/" target="_blank"><strong>View Demo »</strong></a>
+    <a href="https://checklinks.vercel.app/" target="_blank"><strong>View Demo »</strong></a>
     <br />
     <br />
     ·
@@ -30,7 +30,7 @@
 ## About The Project
 
 The Custom Profile Web Application is a user-friendly platform that enables individuals to create and customize their own profile web pages.<br />With this application, users can easily showcase their all media links in one single place. <br />
-[Get started](https://check-links-client.vercel.app/)
+[Get started](https://checklinks.vercel.app/)
 <br />
 
 
@@ -42,6 +42,7 @@ The Custom Profile Web Application is a user-friendly platform that enables indi
  [![Node][Node]][Node-url]
 <br />
 
+
 ## License
 
 Distributed under the MIT License. See `LICENSE` for more information.
@@ -50,6 +51,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 ## Gallery
 <img src="https://github.com/MichalScigalski/check-links-app/assets/38386731/3f03babe-f36f-4090-822c-2436834ab7c1" />
 <img src="https://github.com/MichalScigalski/check-links-app/assets/38386731/61414890-c2b9-4d58-ae59-2cb52e926684" />
+<img src="https://github.com/MichalScigalski/check-links-app/assets/38386731/93f9d98a-c6b4-45ae-8de9-70e1ed1a4064" />
 <img src="https://github.com/MichalScigalski/check-links-app/assets/38386731/d553c19b-593e-4055-9093-23b2caf89876" />
 <img src="https://github.com/MichalScigalski/check-links-app/assets/38386731/a529d933-41e8-47c0-acbe-ff4faf492ac8" />
 
