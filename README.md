@@ -1,5 +1,4 @@
 
-[![MIT License][license-shield]][license-url]
 [![Issues][issues-shield]][issues-url]
 [![LinkedIn][linkedin-shield]][linkedin-url]
 
@@ -7,7 +6,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/MichalScigalski/check-links-app">
-    <img src="https://github.com/MichalScigalski/check-links-app/assets/38386731/f7e7de4d-e31e-40e5-8551-b3be190e56bd" alt="Logo"  height="80">
+    <img src="https://github.com/MichalScigalski/check-links-app/assets/38386731/c2645dd6-000c-4607-ba20-b1ddde700e22" alt="Logo"  height="80">
   </a>
 
 <h3 align="center">CheckLinks</h3>
@@ -44,18 +43,20 @@ The Custom Profile Web Application is a user-friendly platform that enables indi
 
 
 ## License
+[![MIT License][license-shield]][license-url]
 
 Distributed under the MIT License. See `LICENSE` for more information.
 <br />
 
 ## Gallery
-<img src="https://github.com/MichalScigalski/check-links-app/assets/38386731/3f03babe-f36f-4090-822c-2436834ab7c1" />
-<img src="https://github.com/MichalScigalski/check-links-app/assets/38386731/61414890-c2b9-4d58-ae59-2cb52e926684" />
-<img src="https://github.com/MichalScigalski/check-links-app/assets/38386731/93f9d98a-c6b4-45ae-8de9-70e1ed1a4064" />
-<img src="https://github.com/MichalScigalski/check-links-app/assets/38386731/d553c19b-593e-4055-9093-23b2caf89876" />
-<img src="https://github.com/MichalScigalski/check-links-app/assets/38386731/a529d933-41e8-47c0-acbe-ff4faf492ac8" />
+<img src="https://github.com/MichalScigalski/check-links-app/assets/38386731/03d42de7-2f87-4fad-80d4-ee1ec70c2369" />
+<img src="https://github.com/MichalScigalski/check-links-app/assets/38386731/72c3d750-601f-44d9-b77a-3e38aa8654f3" />
+<img src="https://github.com/MichalScigalski/check-links-app/assets/38386731/73fcf154-f208-4a89-8740-0dc923a29484" />
+<img src="https://github.com/MichalScigalski/check-links-app/assets/38386731/064a7ce3-312c-42b9-82f9-3b850e662a03" />
+<img src="https://github.com/MichalScigalski/check-links-app/assets/38386731/21494177-243c-451e-8717-927ad1fd5129" />
 
-[license-shield]: https://img.shields.io/github/license/MichalScigalski/check-links-app.svg?style=for-the-badge
+
+[license-shield]: https://img.shields.io/github/license/MichalScigalski/check-links-app.svg?
 [license-url]: https://github.com/MichalScigalski/check-links-app/blob/master/LICENSE
 [issues-shield]: https://img.shields.io/github/issues/MichalScigalski/check-links-app.svg?style=for-the-badge
 [issues-url]: https://github.com/MichalScigalski/check-links-app/issues
