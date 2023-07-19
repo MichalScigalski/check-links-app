@@ -8,7 +8,7 @@ const {
 
 module.exports = {
     async register(req, res) {
-        const username = req.body.username
+        const username = req.body.username.toLowerCase()
         const password = req.body.password
 
         if (!isOnlyLettersAndNumbers(username) || !isUsernameAllowed(username))
