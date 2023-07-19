@@ -45,20 +45,17 @@ const LinkDashboard = ({ link, openModel }) => {
             <LinkDashboardButtons>
                 <button onClick={() => openModel(link)}>🖊️</button>
                 <button onClick={() => setIsConfirm(true)}>🗑️ </button>
-
                 <SwitchToggle
                     checked={isChecked}
                     onChange={isVisibleToggleHandler}
                 />
             </LinkDashboardButtons>
-
-            {isConfirm && (
-                <ConfirmDialog
-                    setIsOpen={setIsConfirm}
-                    message="Are you sure u want to remove?"
-                    onConfirm={deleteLinkHandler}
-                />
-            )}
+            <ConfirmDialog
+                isOpen={isConfirm}
+                setIsOpen={setIsConfirm}
+                message="Are you sure u want to remove?"
+                onConfirm={deleteLinkHandler}
+            />
         </LinkDashboardContainer>
     )
 }
