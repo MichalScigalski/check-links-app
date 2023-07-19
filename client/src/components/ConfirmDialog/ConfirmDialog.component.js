@@ -1,6 +1,9 @@
 import { ConfirmDialogContainer } from './ConfirmDialog.style'
+import Modal from 'react-modal'
+import { colors, modalStyles } from '../../globalStyles'
+import Button from '../Button/Button.component'
 
-const ConfirmDialog = ({ message, onConfirm, onCancel, setIsOpen }) => {
+const ConfirmDialog = ({ message, onConfirm, onCancel, isOpen, setIsOpen }) => {
     const confirmHandler = () => {
         setIsOpen(false)
         if (onConfirm) {
@@ -15,13 +18,19 @@ const ConfirmDialog = ({ message, onConfirm, onCancel, setIsOpen }) => {
     }
 
     return (
-        <ConfirmDialogContainer >
-            <p>{message}</p>
-            <div>
-                <button onClick={confirmHandler}>🗑️</button>
-                <button onClick={cancelHandler} >✖️</button>
-            </div>
-        </ConfirmDialogContainer>
+        <Modal isOpen={isOpen} style={modalStyles}>
+            <ConfirmDialogContainer>
+                <h2>{message}</h2>
+                <div>
+                    <Button onClick={confirmHandler} value="Confirm" />
+                    <Button
+                        onClick={cancelHandler}
+                        bgColor={colors.red}
+                        value="Cancel"
+                    />
+                </div>
+            </ConfirmDialogContainer>
+        </Modal>
     )
 }
 
