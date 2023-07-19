@@ -32,7 +32,7 @@ const ProfileMenu = () => {
             }
         }
         getIsProfile()
-    }, [])
+    }, [navigate])
 
     const toggleMenu = () => setIsOpen(!isOpen)
 
