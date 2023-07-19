@@ -18,6 +18,7 @@ import { useContext } from 'react'
 import { AlertContext } from '../../context/Alert.context'
 import Loader from '../../components/Loader/Loader.component'
 import { modalStyles } from '../../globalStyles'
+import { useTheme } from 'styled-components'
 
 const linkDefault = {
     name: '',
@@ -40,6 +41,8 @@ const Dashboard = () => {
     const [isLoading, setIsLoading] = useState(true)
 
     const navigate = useNavigate()
+    const theme = useTheme()
+    modalStyles.content.background = theme.body
 
     const dashHandle = async () => {
         try {
