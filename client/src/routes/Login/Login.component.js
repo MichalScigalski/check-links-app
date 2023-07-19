@@ -53,7 +53,6 @@ const Login = () => {
                         color={colors.green}
                         required
                     />
-                    <span>Forgot password?</span>
                     <Button bgColor={colors.green} value={'Login'} />
                     <p>
                         Not a member?{' '}
