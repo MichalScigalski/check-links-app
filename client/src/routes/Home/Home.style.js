@@ -6,13 +6,12 @@ export const HomeContainer = styled.div`
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    padding-top: 5rem;
+    padding: 5rem 0;
 `
 
 export const WelcomeContainer = styled.div`
     display: flex;
     flex-direction: column;
-
     h1 {
         font-size: 4rem;
         span {
@@ -27,7 +26,9 @@ export const WelcomeContainer = styled.div`
         padding: 1rem 2rem;
     }
 
-    @media (max-width: 700px) {
+    @media (max-width: 840px) {
+        text-align: center;
+        align-items: center;
         h1 {
             font-size: 2rem;
         }
@@ -42,9 +43,13 @@ export const WelcomeContainer = styled.div`
 
 export const CardsContainer = styled.div`
     display: flex;
-    @media (max-width: 700px) {
+    @media (max-width: 840px) {
+        margin-top: -5rem;
+        transform: scale(0.7);
+    }
+    @media (max-width: 580px) {
+        margin-top: -8rem;
         transform: scale(0.4);
-        margin-top: -7rem;
     }
 `
 
