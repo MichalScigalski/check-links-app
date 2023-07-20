@@ -34,7 +34,7 @@ module.exports = {
         }
     },
     async login(req, res) {
-        const username = req.body.username
+        const username = req.body.username.toLowerCase()
         const password = req.body.password
 
         try {
