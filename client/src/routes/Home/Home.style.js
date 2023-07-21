@@ -70,7 +70,7 @@ export const Card = styled.div`
         z-index: 2;
     }
     &:nth-child(2) {
-        transform: translateX(-20%) scale(0.9);
+        transform: translateX(-30%) scale(0.9);
         filter: blur(2px);
         opacity: 0.6;
     }

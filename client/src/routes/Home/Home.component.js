@@ -30,7 +30,7 @@ const Home = ({ user }) => {
             </WelcomeContainer>
             <CardsContainer>
                 <Card>
-                    <Profile homeView={'robert'} />
+                    <Profile homeView={'scigal'} />
                 </Card>
                 <Card>
                     <Profile homeView={'jedno'} />
