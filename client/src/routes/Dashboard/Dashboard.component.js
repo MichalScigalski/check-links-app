@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import {
     DashboardContainer,
-    CreateProfileContainer,
     Container,
     LinksContainer,
     ColorField,
@@ -44,25 +43,31 @@ const Dashboard = () => {
     const theme = useTheme()
     modalStyles.content.background = theme.body
 
-    const dashHandle = async () => {
-        try {
-            let profile = await profileService.getDashboard()
-            setProfile(profile)
-            
-        } catch (err) {
-            setAlertData({ status: false, text: err.response.data.message })
-        }
+    const fetchHandler = async () => {
+        const isProfile = await userService.getIsProfile()
+
+        if (isProfile) getDashboardHandler()
+        else createProfileHandler()
         setIsLoading(false)
     }
 
     useEffect(() => {
-        dashHandle()
+        fetchHandler()
     }, [])
+
+    const getDashboardHandler = async () => {
+        try {
+            let profile = await profileService.getDashboard()
+            setProfile(profile)
+        } catch (err) {
+            setAlertData({ status: false, text: err.response.data.message })
+        }
+    }
 
     const createProfileHandler = async () => {
         try {
             await profileService.createProfile()
-            dashHandle()
+            getDashboardHandler()
             setAlertData({
                 status: true,
                 text: 'Profile created',
@@ -153,18 +158,155 @@ const Dashboard = () => {
         <>
             {isLoading ? (
                 <Loader />
-            ) : profile ? (
-                <DashboardContainer>
-                    <Modal isOpen={isEditModalOpen} style={modalStyles}>
-                        <ModalContainer>
-                            <h1>Link editor.</h1>
-                            <form onSubmit={editLinkHandler}>
+            ) : (
+                profile && (
+                    <DashboardContainer>
+                        <Modal isOpen={isEditModalOpen} style={modalStyles}>
+                            <ModalContainer>
+                                <h1>Link editor.</h1>
+                                <form onSubmit={editLinkHandler}>
+                                    <FormField
+                                        label="Name"
+                                        value={editLink.name}
+                                        onChange={(e) =>
+                                            setEditLink({
+                                                ...editLink,
+                                                name: e.target.value,
+                                            })
+                                        }
+                                        placeholder="Instagram"
+                                        required
+                                    />
+                                    <FormField
+                                        label="Url"
+                                        value={editLink.url}
+                                        onChange={(e) =>
+                                            setEditLink({
+                                                ...editLink,
+                                                url: e.target.value,
+                                            })
+                                        }
+                                        placeholder="http://instagram.com/user"
+                                        required
+                                    />
+                                    <div>
+                                        <Button value="Update" type="submit" />
+                                        <Button
+                                            value="Close"
+                                            variant="outlined"
+                                            onClick={closeEditModal}
+                                        />
+                                    </div>
+                                </form>
+                            </ModalContainer>
+                        </Modal>
+                        <Modal isOpen={isPasswordModalOpen} style={modalStyles}>
+                            <ModalContainer>
+                                <h1>Change password.</h1>
+                                <form onSubmit={changePasswordHandler}>
+                                    <FormField
+                                        label="New password"
+                                        placeholder="********"
+                                        type="password"
+                                        value={newPassword.password}
+                                        onChange={(e) =>
+                                            setNewPassword({
+                                                ...newPassword,
+                                                password: e.target.value,
+                                            })
+                                        }
+                                        required
+                                    />
+                                    <FormField
+                                        label="Repeat new password"
+                                        type="password"
+                                        placeholder="********"
+                                        value={newPassword.passwordRepeat}
+                                        onChange={(e) =>
+                                            setNewPassword({
+                                                ...newPassword,
+                                                passwordRepeat: e.target.value,
+                                            })
+                                        }
+                                        required
+                                    />
+                                    <div>
+                                        <Button value="Save" type="submit" />
+                                        <Button
+                                            value="Close"
+                                            variant="outlined"
+                                            onClick={closePasswordModal}
+                                        />
+                                    </div>
+                                </form>
+                            </ModalContainer>
+                        </Modal>
+                        <Container>
+                            <h1>Profile.</h1>
+                            <form onSubmit={updateHandler}>
+                                <FormField
+                                    label="Display name"
+                                    value={profile.displayName}
+                                    onChange={(e) =>
+                                        setProfile({
+                                            ...profile,
+                                            displayName: e.target.value,
+                                        })
+                                    }
+                                />
+                                <ColorField>
+                                    <label htmlFor="Background color">
+                                        Background profile color
+                                    </label>
+                                    <input
+                                        label="Background color"
+                                        value={profile.backgroundColor}
+                                        type="color"
+                                        onChange={(e) =>
+                                            setProfile({
+                                                ...profile,
+                                                backgroundColor: e.target.value,
+                                            })
+                                        }
+                                    />
+                                </ColorField>
+                                <Button value="Save" type="submit" />
+                                <Button
+                                    value="Show my page"
+                                    variant="outlined"
+                                    onClick={() =>
+                                        navigate(`/${profile.username}`)
+                                    }
+                                />
+                            </form>
+                        </Container>
+                        <Container>
+                            <h1>Account.</h1>
+                            <FormField
+                                label="Username"
+                                value={profile.username}
+                                disabled
+                                placeholder="username"
+                            />
+                            <Button
+                                value="Change Password"
+                                onClick={openPasswordModal}
+                            />
+                            <Button
+                                value="Logout"
+                                onClick={logoutHandler}
+                                variant="outlined"
+                            />
+                        </Container>
+                        <Container>
+                            <h1>Link creator.</h1>
+                            <form onSubmit={addLinkHandler}>
                                 <FormField
                                     label="Name"
-                                    value={editLink.name}
+                                    value={newLink.name}
                                     onChange={(e) =>
-                                        setEditLink({
-                                            ...editLink,
+                                        setNewLink({
+                                            ...newLink,
                                             name: e.target.value,
                                         })
                                     }
@@ -173,184 +315,44 @@ const Dashboard = () => {
                                 />
                                 <FormField
                                     label="Url"
-                                    value={editLink.url}
+                                    value={newLink.url}
                                     onChange={(e) =>
-                                        setEditLink({
-                                            ...editLink,
+                                        setNewLink({
+                                            ...newLink,
                                             url: e.target.value,
                                         })
                                     }
+                                    type="url"
                                     placeholder="http://instagram.com/user"
                                     required
                                 />
-                                <div>
-                                    <Button value="Update" type="submit" />
-                                    <Button
-                                        value="Close"
-                                        variant="outlined"
-                                        onClick={closeEditModal}
-                                    />
-                                </div>
+                                <Button
+                                    type="submit"
+                                    $primary
+                                    value="Create link"
+                                />
                             </form>
-                        </ModalContainer>
-                    </Modal>
-                    <Modal isOpen={isPasswordModalOpen} style={modalStyles}>
-                        <ModalContainer>
-                            <h1>Change password.</h1>
-                            <form onSubmit={changePasswordHandler}>
-                                <FormField
-                                    label="New password"
-                                    placeholder="********"
-                                    type="password"
-                                    value={newPassword.password}
-                                    onChange={(e) =>
-                                        setNewPassword({
-                                            ...newPassword,
-                                            password: e.target.value,
-                                        })
-                                    }
-                                    required
-                                />
-                                <FormField
-                                    label="Repeat new password"
-                                    type="password"
-                                    placeholder="********"
-                                    value={newPassword.passwordRepeat}
-                                    onChange={(e) =>
-                                        setNewPassword({
-                                            ...newPassword,
-                                            passwordRepeat: e.target.value,
-                                        })
-                                    }
-                                    required
-                                />
-                                <div>
-                                    <Button value="Save" type="submit" />
-                                    <Button
-                                        value="Close"
-                                        variant="outlined"
-                                        onClick={closePasswordModal}
-                                    />
-                                </div>
-                            </form>
-                        </ModalContainer>
-                    </Modal>
-                    <Container>
-                        <h1>Profile.</h1>
-                        <form onSubmit={updateHandler}>
-                            <FormField
-                                label="Display name"
-                                value={profile.displayName}
-                                onChange={(e) =>
-                                    setProfile({
-                                        ...profile,
-                                        displayName: e.target.value,
-                                    })
-                                }
-                            />
-                            <ColorField>
-                                <label htmlFor="Background color">
-                                    Background profile color
-                                </label>
-                                <input
-                                    label="Background color"
-                                    value={profile.backgroundColor}
-                                    type="color"
-                                    onChange={(e) =>
-                                        setProfile({
-                                            ...profile,
-                                            backgroundColor: e.target.value,
-                                        })
-                                    }
-                                />
-                            </ColorField>
-                            <Button value="Save" type="submit" />
-                            <Button
-                                value="Show my page"
-                                variant="outlined"
-                                onClick={() => navigate(`/${profile.username}`)}
-                            />
-                        </form>
-                    </Container>
-                    <Container>
-                        <h1>Account.</h1>
-                        <FormField
-                            label="Username"
-                            value={profile.username}
-                            disabled
-                            placeholder="username"
-                        />
-                        <Button
-                            value="Change Password"
-                            onClick={openPasswordModal}
-                        />
-                        <Button
-                            value="Logout"
-                            onClick={logoutHandler}
-                            variant="outlined"
-                        />
-                    </Container>
-                    <Container>
-                        <h1>Link creator.</h1>
-                        <form onSubmit={addLinkHandler}>
-                            <FormField
-                                label="Name"
-                                value={newLink.name}
-                                onChange={(e) =>
-                                    setNewLink({
-                                        ...newLink,
-                                        name: e.target.value,
-                                    })
-                                }
-                                placeholder="Instagram"
-                                required
-                            />
-                            <FormField
-                                label="Url"
-                                value={newLink.url}
-                                onChange={(e) =>
-                                    setNewLink({
-                                        ...newLink,
-                                        url: e.target.value,
-                                    })
-                                }
-                                type="url"
-                                placeholder="http://instagram.com/user"
-                                required
-                            />
-                            <Button
-                                type="submit"
-                                $primary
-                                value="Create link"
-                            />
-                        </form>
-                    </Container>
-                    <Container className="links">
-                        <h1>Your links.</h1>
-                        {profile.links.length > 0 ? (
-                            <LinksContainer>
-                                {profile.links.map((link, _id) => {
-                                    return (
-                                        <LinkDashboard
-                                            key={_id}
-                                            link={link}
-                                            openModel={openEditModal}
-                                        />
-                                    )
-                                })}
-                            </LinksContainer>
-                        ) : (
-                            <h2>Empty</h2>
-                        )}
-                    </Container>
-                </DashboardContainer>
-            ) : (
-                <CreateProfileContainer>
-                    <Button
-                        value="Create profile"
-                        onClick={createProfileHandler}
-                    />
-                </CreateProfileContainer>
+                        </Container>
+                        <Container className="links">
+                            <h1>Your links.</h1>
+                            {profile.links.length > 0 ? (
+                                <LinksContainer>
+                                    {profile.links.map((link, _id) => {
+                                        return (
+                                            <LinkDashboard
+                                                key={_id}
+                                                link={link}
+                                                openModel={openEditModal}
+                                            />
+                                        )
+                                    })}
+                                </LinksContainer>
+                            ) : (
+                                <h2>Empty</h2>
+                            )}
+                        </Container>
+                    </DashboardContainer>
+                )
             )}
         </>
     )
