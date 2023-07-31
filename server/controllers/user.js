@@ -75,4 +75,10 @@ module.exports = {
             return res.status(422).json({ message: err.message })
         }
     },
+    async getIsProfile(req,res) {
+        const _id = req.user.id
+        const user = await User.findOne({ _id })
+        
+        return res.status(200).json(user.isProfile)
+    }
 }
