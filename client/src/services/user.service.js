@@ -38,11 +38,21 @@ const changePassword = async (newPassword) => {
     )
 }
 
+const getIsProfile = async () => {
+    const res = await axios.get(API_URL + `/user/get-isProfile`, {
+        headers: {
+            Authorization: 'Bearer ' + authService.getAuthToken(),
+        },
+    })
+    return res.data
+}
+
 const userService = {
     login,
     register,
     logout,
-    changePassword
+    changePassword,
+    getIsProfile
 }
 
 export default userService
