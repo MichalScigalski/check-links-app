@@ -1,22 +1,6 @@
 import styled from 'styled-components'
 import { colors, shadows } from '../../globalStyles'
 
-export const CreateProfileContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    border-radius: 8px;
-    padding: 3rem;
-    height: 70vh;
-    margin: 1rem;
-
-    div {
-        display: flex;
-        gap: 1rem;
-    }
-`
-
 export const DashboardContainer = styled.div`
     margin: 2rem 10%;
     display: grid;
