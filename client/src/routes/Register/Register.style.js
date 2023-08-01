@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import {colors} from '../../globalStyles'
+import { colors } from '../../globalStyles'
 
 export const FormContainer = styled.div`
     display: flex;
@@ -16,7 +16,7 @@ export const RegisterContainer = styled.div`
     padding-top: 2rem;
 
     @media (max-width: 768px) {
-        img {
+        & > img {
             display: none;
         }
     }
@@ -28,6 +28,11 @@ export const RegisterContainer = styled.div`
             color: ${colors.green};
             cursor: pointer;
         }
+    }
+
+    div {
+        display: flex;
+        flex-direction: column;
     }
 
     form {

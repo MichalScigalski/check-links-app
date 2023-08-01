@@ -10,7 +10,7 @@ export const LoginContainer = styled.div`
     margin: 5rem auto;
 
     @media (max-width: 768px) {
-        img {
+        &>img {
             display: none;
         }
     }
