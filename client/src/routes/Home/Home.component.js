@@ -24,7 +24,7 @@ const Home = ({ user }) => {
                     <Button
                         bgColor={colors.green}
                         value={'Get Started!'}
-                        onClick={() => navigate('/login')}
+                        onClick={() => navigate('/register')}
                     />
                 )}
             </WelcomeContainer>
