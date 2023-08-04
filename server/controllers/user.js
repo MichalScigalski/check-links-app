@@ -23,6 +23,12 @@ module.exports = {
             return res
                 .status(500)
                 .json({ message: 'Username or password is too short!' })
+
+        if (username.length > 30 || password.length > 50)
+            return res
+                .status(500)
+                .json({ message: 'Username or password is too long!' })
+
         let user
         try {
             user = new User({ username, password })
@@ -75,10 +81,10 @@ module.exports = {
             return res.status(422).json({ message: err.message })
         }
     },
-    async getIsProfile(req,res) {
+    async getIsProfile(req, res) {
         const _id = req.user.id
         const user = await User.findOne({ _id })
-        
+
         return res.status(200).json(user.isProfile)
-    }
+    },
 }
