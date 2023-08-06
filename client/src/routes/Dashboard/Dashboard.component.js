@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import {
     DashboardContainer,
     Container,
@@ -42,6 +42,7 @@ const Dashboard = () => {
     const navigate = useNavigate()
     const theme = useTheme()
     modalStyles.content.background = theme.body
+    const bgColorPickerBtn = useRef(null)
 
     const fetchHandler = async () => {
         const isProfile = await userService.getIsProfile()
@@ -258,11 +259,17 @@ const Dashboard = () => {
                                     <label htmlFor="Background color">
                                         Background profile color
                                     </label>
+                                    <Button
+                                        onClick={() => bgColorPickerBtn.current.click()}
+                                        type="button"
+                                        bgColor={profile.backgroundColor}
+                                    />
                                     <input
                                         label="Background color"
+                                        ref={bgColorPickerBtn}
                                         value={profile.backgroundColor}
                                         type="color"
-                                        onChange={(e) =>
+                                        onChange={(e) => 
                                             setProfile({
                                                 ...profile,
                                                 backgroundColor: e.target.value,

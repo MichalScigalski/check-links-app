@@ -35,12 +35,6 @@ export const Container = styled.div`
         display: flex;
         flex-direction: column;
         gap: 1rem;
-
-        div {
-            button:nth-child(2) {
-                margin-left: 1rem;
-            }
-        }
     }
 
     button {
@@ -83,8 +77,10 @@ export const LinksContainer = styled.div`
 export const ColorField = styled.div`
     display: flex;
     flex-direction: column;
-    label {
-        margin: 5px;
+    row-gap: 6px;
+    button {
+        width: 100px;
+        padding: 1rem 2rem;
     }
     input {
         border-radius: 0;
@@ -93,10 +89,11 @@ export const ColorField = styled.div`
         -webkit-border-radius:0px;
         appearance: none;
         width: 100px;
-        height: 50px;
+        height: 0;
         background-color: transparent;
         border: none;
         cursor: pointer;
+        opacity: 0;
     }
 `
 
